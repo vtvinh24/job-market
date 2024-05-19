@@ -1,5 +1,5 @@
 .App {
-  text-align: center;
+  font-family: Arial, sans-serif;
 }
 
 .App-logo {
@@ -35,4 +35,40 @@
   to {
     transform: rotate(360deg);
   }
+}
+.header {
+  margin-bottom: 20px;
+}
+
+.content-boxes {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 20px;
+}
+
+.content-box {
+  background-color: #d3d3d3;
+  padding: 20px;
+  flex: 1;
+  margin: 0 10px;
+  text-align: center;
+  border-radius: 5px;
+}
+
+.hot-news {
+  margin-top: 20px;
+}
+
+.new-box {
+  background-color: #d3d3d3;
+  padding: 20px;
+  text-align: center;
+  border-radius: 5px;
+}
+
+.help-center {
+  text-align: right;
+  padding: 20px;
+  font-size: 14px;
+  color: #7f7f7f;
 }
