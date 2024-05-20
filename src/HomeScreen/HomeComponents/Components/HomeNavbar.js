@@ -13,7 +13,7 @@ function HomeNavbar() {
             <div className='nav-item'><a className="nav-link" href="#jobmarket">JobMarket</a></div>
             <div className='nav-item'><a className="nav-link" href="#comisson-market">Comisson Market</a></div>
             <div className='nav-item'><a className="nav-link" href="#company">Company</a></div>
-            <div className='nav-item'><a className="nav-link" href="#advise">Advise</a></div>
+            <div className='nav-item'><a className="nav-link" href="#advise">Community</a></div>
             <div className='nav-item'><a className="nav-link" href="#blog">Blog</a></div>
           </div>
           <div className="d-flex">
