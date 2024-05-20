@@ -1,6 +1,7 @@
 import React from 'react'
 import './Home.css'
 import 'bootstrap/dist/css/bootstrap.min.css';
+import Carousel from 'react-bootstrap/Carousel';
 
 function HomeGuest() {
     return (
@@ -44,7 +45,23 @@ function HomeGuest() {
               </div>
             </div>
           </header>
-          <main className="container my-4">
+          <div className='carousel-container'>
+          <Carousel data-bs-theme="dark" className='Carousel' >
+            <Carousel.Item>
+            <div className="p-3 border bg-light text-center content-boxs">Content Box 1</div>
+
+            </Carousel.Item>
+            <Carousel.Item>
+            <div className="p-3 border bg-light text-center content-boxs">Content Box 2</div>
+              
+            </Carousel.Item>
+            <Carousel.Item>
+            <div className="p-3 border bg-light text-center content-boxs">Content Box 3</div>
+              
+            </Carousel.Item>
+          </Carousel>
+          </div>
+          {/* <main className="container my-4">
             <div className="row">
               <div className="col-md-4 mb-3 content-boxs">
                 <div className="p-3 border bg-light text-center content-boxs">Content Box</div>
@@ -60,7 +77,14 @@ function HomeGuest() {
               <h2>Hot News</h2>
               <div className="p-3 border bg-light text-center">New Box</div>
             </div>
-          </main>
+          </main> */}
+          <div  className='hot-news'>
+            <div className="mt-4">
+            <h2>Hot News</h2>
+            <div className="p-3 border bg-light text-center new-box">New Box</div>
+        </div>
+
+          </div>
           <footer className="text-end p-3">
             <div className="text-muted">Help Center</div>
           </footer>
