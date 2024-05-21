@@ -2,6 +2,7 @@ import React from 'react';
 import './App.css';
 import HomeGuest from './HomeScreen/HomeGuest.js';
 import Test from './Test.js';
+import JobMarket from './JobMarket/JobMarket.js';
 import {
   BrowserRouter as Router,
   Routes,
@@ -23,6 +24,10 @@ function App() {
               path="/Test"
               element={<Test />}
               />
+            <Route
+              path="/JobMarket"
+              element={<JobMarket />}
+              />  
             <Route
               path="*"
               element={<Navigate to="/" />}
