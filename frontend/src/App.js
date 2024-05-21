@@ -1,8 +1,7 @@
-import logo from './logo.svg';
-import './App.css';
-import Slide1_2 from './slide/Slide1_2';
-import 'bootstrap/dist/css/bootstrap.min.css';
 
+import './App.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import HomeScreen from './HomeScreen/HomeGuest.js';
 
 function App() {
   const enabled = false;
@@ -12,10 +11,8 @@ function App() {
 
     return (
       <section>
-
-      <Slide1_2/>
-      <button disabled={!enabled}>{text}</button>
-      <input placeholder={placeholder} size={size} />
+      <Router></Router>
+      <HomeScreen />
       </section>
       
     );
