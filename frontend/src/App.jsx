@@ -1,8 +1,6 @@
-
 import './App.css';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import HomeScreen from './HomeScreen/HomeGuest.js';
-import JobMarket from './JobMarket/JobMarket.js';
+import HomeScreen from './pages/HomeGuest';
+import JobMarket from './pages/JobMarket';
 import {
   BrowserRouter as Router,
   Routes,
@@ -11,11 +9,6 @@ import {
 } from "react-router-dom";
 
 function App() {
-  const enabled = false;
-  const text= 'A Button';
-  const placeholder = 'input value...';
-  const size = 50;  
-
     return (
       <>
         <Router>

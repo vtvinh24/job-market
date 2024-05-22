@@ -1,10 +1,10 @@
 import React from 'react'
-import './Home.css'
+import '../assets/css/Home.css'
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Footer from './HomeComponents/Components/Footer.js';
-import HomeNavbar from './HomeComponents/Components/HomeNavbar.js';
-import CarouselComponent from './HomeComponents/Components/CarouselComponent.js';
-import HotNew from './HomeComponents/Components/HotNew.js';
+import Footer from '../components/Footer.jsx';
+import HomeNavbar from '../components/HomeNavbar.jsx';
+import CarouselComponent from '../components/HomeCarousel.jsx';
+import HotNew from '../components/HotNew.js';
 
 function HomeGuest() {
     return (

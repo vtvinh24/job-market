@@ -2,7 +2,7 @@
 import React from 'react';
 import { Container, Row, Col, Form, Button, Dropdown } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Navbar from './HomeNavbar.js';
+import Navbar from '../components/Navbar';
 
 // import './Marketplace.css'; // Custom styles (optional)
 

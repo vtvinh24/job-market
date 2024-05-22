@@ -1,7 +1,7 @@
 import React from 'react';
 import Carousel from 'react-bootstrap/Carousel';
 
-function CarouselComponent() {
+function HomeCarousel() {
   return (
     <div className='carousel-container'>
       <Carousel data-bs-theme="dark" className='Carousel'>
@@ -19,4 +19,4 @@ function CarouselComponent() {
   );
 }
 
-export default CarouselComponent;
+export default HomeCarousel;
