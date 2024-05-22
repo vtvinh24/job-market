@@ -2,6 +2,13 @@
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import HomeScreen from './HomeScreen/HomeGuest.js';
+import JobMarket from './JobMarket/JobMarket.js';
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Navigate,
+} from "react-router-dom";
 
 function App() {
   const enabled = false;
@@ -10,10 +17,26 @@ function App() {
   const size = 50;  
 
     return (
-      <section>
-      <Router></Router>
-      <HomeScreen />
-      </section>
+      <>
+        <Router>
+                <Routes>
+                    <Route
+                        exact
+                        path="/"
+                        element={<HomeScreen />}
+                    />
+                    
+                    <Route
+                        path="/JobMarket"
+                        element={<JobMarket />}
+                    />
+                    <Route
+                        path="*"
+                        element={<Navigate to="/" />}
+                    />
+                </Routes>
+            </Router>
+      </>
       
     );
   }
