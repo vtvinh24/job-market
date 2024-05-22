@@ -1,4 +1,5 @@
 import './App.css';
+import Forum from './pages/Forum';
 import HomeScreen from './pages/HomeGuest';
 import JobMarket from './pages/JobMarket';
 import {
@@ -19,6 +20,8 @@ function App() {
                         element={<HomeScreen />}
                     />
                     
+                    <Route exact path='/forum' element={<Forum />} />
+
                     <Route
                         path="/JobMarket"
                         element={<JobMarket />}
