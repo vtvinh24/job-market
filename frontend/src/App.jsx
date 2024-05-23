@@ -1,37 +1,40 @@
 import './App.css';
+import "react-router-dom";
 import Forum from './pages/Forum';
-import HomeScreen from './pages/HomeGuest';
+import HomeGuest from './pages/HomeGuest';
+import HomePage from './pages/HomePage';
 import JobMarket from './pages/JobMarket';
-import {
-  BrowserRouter as Router,
-  Routes,
-  Route,
-  Navigate,
-} from "react-router-dom";
+import Jobs from './pages/Jobs';
+import Login from './pages/Login';
+import PageNotFound from './pages/PageNotFound';
+import Profile from './pages/Profile';
+import Settings from './pages/Settings';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+
 
 function App() {
     return (
       <>
-        <Router>
+        <BrowserRouter>
                 <Routes>
                     <Route
                         exact
                         path="/"
-                        element={<HomeScreen />}
+                        element={<HomePage />}
                     />
                     
                     <Route exact path='/forum' element={<Forum />} />
+                    <Route exact path='/login' element={<Login />} />
+                    <Route exact path='/settings' element={<Settings />} />
+                    <Route exact path='/profile' element={<Profile />} />
+                    <Route exact path='/jobs' element={<Jobs />} />
 
                     <Route
-                        path="/JobMarket"
-                        element={<JobMarket />}
-                    />
-                    <Route
                         path="*"
-                        element={<Navigate to="/" />}
+                        element={<PageNotFound />}
                     />
                 </Routes>
-            </Router>
+            </BrowserRouter>
       </>
       
     );

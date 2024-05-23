@@ -1,10 +1,10 @@
 import React from 'react'
 import '../assets/css/Home.css'
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Footer from '../components/Footer.jsx';
+import HomeFooter from '../components/HomeFooter.jsx';
 import HomeNavbar from '../components/HomeNavbar.jsx';
 import CarouselComponent from '../components/HomeCarousel.jsx';
-import HotNew from '../components/HotNew.js';
+import HotNew from '../components/HotNew.jsx';
 
 function HomeGuest() {
     return (
@@ -12,7 +12,7 @@ function HomeGuest() {
         <HomeNavbar />
         <CarouselComponent />
         <HotNew />
-        <Footer />
+        <HomeFooter />
       </div>
         // <div className="App">
         //   <header className="navbar navbar-expand-lg navbar-light bg-light">

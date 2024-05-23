@@ -1,32 +1,24 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
-
-const API_URL = 'http://localhost:8000';
+import React from 'react';
+import usePostsQuery from '../hooks/usePostsQuery';
+import HomeNavbar from '../components/HomeNavbar';
+import HomeFooter from '../components/HomeFooter';
 
 const Forum = () => {
-    const [posts, setPosts] = useState([]);
+    const { posts, loading, error } = usePostsQuery();
 
-    useEffect(() => {
-        const fetchPosts = async () => {
-            try {
-                const response = await axios.get(`${API_URL}/posts`);
-                setPosts(response.data);
-            } catch (error) {
-                console.error('Error fetching posts:', error);
-            }
-        };
-
-        fetchPosts();
-    }, []);
+    if (loading) return <div>Loading...</div>;
+    if (error) return <div>Error: {error.message}</div>;
 
     return (
         <div>
+            <HomeNavbar />
             {posts.map((post) => (
                 <div key={post.id}>
                     <h2>{post.title}</h2>
                     <p>{post.content}</p>
                 </div>
             ))}
+            <HomeFooter />
         </div>
     );
 };

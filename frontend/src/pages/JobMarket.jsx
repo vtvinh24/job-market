@@ -2,14 +2,14 @@
 import React from 'react';
 import { Container, Row, Col, Form, Button, Dropdown } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Navbar from '../components/Navbar.jsx';
+import HomeNavbar from '../components/HomeNavbar.jsx';
 
 // import './Marketplace.css'; // Custom styles (optional)
 
 function JobMarket() {
   return (
     <div>
-      <Navbar />
+      <HomeNavbar />
       <Container className="mt-3">
         <Row className="align-items-center mb-3">
           <Col md={3}>
