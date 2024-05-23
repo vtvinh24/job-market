@@ -11,7 +11,10 @@ body {
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  background: rgb(43, 40, 65);
+  background:url(./Components/Assets/background.jpg)
+  no-repeat;
+  background-size: cover;
+  background-position: center;
 }
 
 

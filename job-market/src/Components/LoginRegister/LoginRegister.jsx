@@ -15,7 +15,7 @@ const LoginRegister =() => {
     return(
         <div className={`wrapper ${action}`}>
             <div className='form-box login'>
-                <form action="">
+                <form action="active">
                     <h1>Login</h1>
                     <div className="input-box">
                         <input type="text"
@@ -31,7 +31,7 @@ const LoginRegister =() => {
                         <label><input type="checkbox" />
                         Remember me</label>
                         <a href="#">Forgot password?</a>
-                        <button type = "submit">login</button>S
+                        <button type = "submit">login</button>
                     <div className='register-link'>
                         <p>Don't have an account? <a href="#" onClick={registerlink}>Register</a></p>
                     </div>
