@@ -7,9 +7,9 @@ import { MdAlternateEmail } from "react-icons/md";
 const LoginRegister =() => {
     const [action,setAction]= useState('')
     const registerlink = () => {
-        setAction('avtive')
+        setAction('active')
     };
-    const loginlink = () => {
+    const loginLink = () => {
         setAction('')
     }
     return(
@@ -63,7 +63,7 @@ const LoginRegister =() => {
         
                         <button type = "submit">Resister</button>
                     <div className='register-link'>
-                        <p>Already have an account? <a href="#"onClick={loginlink}>Login</a></p>
+                        <p>Already have an account? <a href="#"onClick={loginLink}>Login</a></p>
                     </div>
                     
                 </form>
