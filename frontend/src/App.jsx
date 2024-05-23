@@ -1,16 +1,14 @@
 import './App.css';
 import "react-router-dom";
 import Forum from './pages/Forum';
-import HomeGuest from './pages/HomeGuest';
 import HomePage from './pages/HomePage';
-import JobMarket from './pages/JobMarket';
 import Jobs from './pages/Jobs';
 import Login from './pages/Login';
 import PageNotFound from './pages/PageNotFound';
 import Profile from './pages/Profile';
 import Settings from './pages/Settings';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-
+import { CookiesProvider, useCookies } from 'react-cookie'
 
 function App() {
     return (
@@ -24,6 +22,8 @@ function App() {
                     />
                     
                     <Route exact path='/forum' element={<Forum />} />
+                    <Route exact path='/post' element={<Post />} />
+                    <Route exact path='/add-post' element={<AddPost />} />
                     <Route exact path='/login' element={<Login />} />
                     <Route exact path='/settings' element={<Settings />} />
                     <Route exact path='/profile' element={<Profile />} />
