@@ -6,8 +6,8 @@ const HomeNavbar = ({ user }) => {
         <Navbar bg="light" expand="lg">
             <Navbar.Brand href="#">Logo</Navbar.Brand>
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
-            <Navbar.Collapse id="basic-navbar-nav">
-                <Nav className="mr-auto">
+            <Navbar.Collapse id="basic-navbar-nav" style={{ justifyContent: 'space-between',marginLeft: 'auto' }}>
+                <Nav className="mr-auto container">
                     <Nav.Link href="/home">Home</Nav.Link>
                     <Nav.Link href="/jobs">Jobs</Nav.Link>
                     <Nav.Link href="/forum">Forum</Nav.Link>
@@ -22,7 +22,12 @@ const HomeNavbar = ({ user }) => {
                         </NavDropdown>
                     </Nav>
                 ) : (
-                    <Button variant="outline-secondary" onClick={() => window.location.href = '/login'}>Login</Button>
+                    <Nav className='container'>
+                        <Button variant="outline-secondary" onClick={() => window.location.href = '/login'}>Login</Button>
+                        <Button variant="outline-secondary" onClick={() => window.location.href = '/signup'}>Sign Up</Button>
+                    </Nav>
+                    
+                    
                 )}
             </Navbar.Collapse>
         </Navbar>
