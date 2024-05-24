@@ -1,14 +1,8 @@
 import './App.css';
 import "react-router-dom";
-// import Forum from './pages/Forum';
-import HomePage from './pages/HomePage';
-// import Jobs from './pages/EnlistJob';
-// import Login from './pages/Login';
-import PageNotFound from './pages/PageNotFound';
-// import Profile from './pages/Profile';
-// import Settings from './pages/Settings';
+import HomePage from './pages/home/HomePage';
+import PageNotFound from './pages/technical/PageNotFound';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import { CookiesProvider, useCookies } from 'react-cookie'
 
 function App() {
     return (
