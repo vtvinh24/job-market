@@ -7,6 +7,7 @@ import Login from './pages/Login';
 import PageNotFound from './pages/PageNotFound';
 import Profile from './pages/Profile';
 import Settings from './pages/Settings';
+import Addjob from './pages/Addjob';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { CookiesProvider, useCookies } from 'react-cookie'
 
@@ -28,6 +29,7 @@ function App() {
                     <Route exact path='/settings' element={<Settings />} />
                     <Route exact path='/profile' element={<Profile />} />
                     <Route exact path='/jobs' element={<Jobs />} />
+                    <Route exact path='/Addjob' element={<Addjob />} />
 
                     <Route
                         path="*"
