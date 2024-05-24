@@ -1,8 +1,9 @@
 import React from 'react';
-import { Navbar, Nav, Button, NavDropdown } from 'react-bootstrap';
+import { Navbar, Nav, Button, NavDropdown, Container } from 'react-bootstrap';
 
 const HomeNavbar = ({ user }) => {
     return (
+        <Container>
         <Navbar bg="light" expand="lg">
             <Navbar.Brand href="#">Logo</Navbar.Brand>
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
@@ -26,6 +27,7 @@ const HomeNavbar = ({ user }) => {
                 )}
             </Navbar.Collapse>
         </Navbar>
+        </Container>
     );
 };
 
