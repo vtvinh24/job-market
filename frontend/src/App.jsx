@@ -1,12 +1,12 @@
 import './App.css';
 import "react-router-dom";
-import Forum from './pages/Forum';
-import HomePage from './pages/HomePage';
-import Jobs from './pages/Jobs';
-import Login from './pages/Login';
-import PageNotFound from './pages/PageNotFound';
-import Profile from './pages/Profile';
-import Settings from './pages/Settings';
+// import Forum from './pages/Forum.jsx';
+import HomePage from './pages/HomePage.jsx';
+// import Jobs from './pages/EnlistJobs.jsx';
+// import Login from './pages/Login.jsx';
+import PageNotFound from './pages/PageNotFound.jsx';
+// import Profile from './pages/Profile.jsx';
+// import Settings from './pages/Settings.jsx';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { CookiesProvider, useCookies } from 'react-cookie'
 
@@ -21,13 +21,13 @@ function App() {
                         element={<HomePage />}
                     />
                     
-                    <Route exact path='/forum' element={<Forum />} />
+                    {/* <Route exact path='/forum' element={<Forum />} />
                     <Route exact path='/post' element={<Post />} />
                     <Route exact path='/add-post' element={<AddPost />} />
                     <Route exact path='/login' element={<Login />} />
                     <Route exact path='/settings' element={<Settings />} />
                     <Route exact path='/profile' element={<Profile />} />
-                    <Route exact path='/jobs' element={<Jobs />} />
+                    <Route exact path='/jobs' element={<Jobs />} /> */}
 
                     <Route
                         path="*"
