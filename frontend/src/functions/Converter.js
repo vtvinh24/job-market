@@ -1,4 +1,4 @@
-function getMoment(timestamp) {
+export function getMoment(timestamp) {
     const now = Date.now() / 1000;
     const diff = now - timestamp;
 
