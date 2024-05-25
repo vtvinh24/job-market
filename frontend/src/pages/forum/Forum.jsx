@@ -1,7 +1,7 @@
 import React from 'react';
 import usePostsQuery from '../hooks/usePostsQuery';
-import HomeNavbar from '../components/HomeNavbar';
-import HomeFooter from '../components/HomeFooter';
+import HomeNavbar from '../../components/HomeNavbar';
+import HomeFooter from '../../components/HomeFooter';
 
 const Forum = () => {
     const { posts, loading, error } = usePostsQuery();
