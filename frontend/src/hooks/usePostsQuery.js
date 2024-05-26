@@ -1,17 +1,22 @@
-import { useState, useEffect } from 'react';
 import axios from 'axios';
+import { useState, useEffect } from 'react';
 
 const API_URL = 'http://localhost:8000/api';
 
-const usePostsQuery = () => {
+const usePostsQuery = (sortBy = null) => {
     const [posts, setPosts] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
     useEffect(() => {
         const fetchPosts = async () => {
+            // await new Promise((resolve) => setTimeout(resolve, 5000));
             try {
-                const response = await axios.get(`${API_URL}/posts`);
+                let url = `${API_URL}/posts`;
+                // if (sortBy) {
+                //     url += `?_sort=${sortBy}`;
+                // }
+                const response = await axios.get(url);
                 setPosts(response.data);
                 setLoading(false);
             } catch (error) {
@@ -21,7 +26,7 @@ const usePostsQuery = () => {
         };
 
         fetchPosts();
-    }, []);
+    }, [sortBy]);
 
     return { posts, loading, error };
 };
