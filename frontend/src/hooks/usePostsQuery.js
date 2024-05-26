@@ -29,7 +29,6 @@ const usePostsQuery = (sortBy = null) => {
 
         fetchPosts();
     }, [sortBy]);
-    }, [sortBy]);
 
     return { posts, loading, error };
 };
