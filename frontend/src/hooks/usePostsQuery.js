@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 
-const API_URL = 'http://localhost:8000';
+const API_URL = 'http://localhost:8000/api';
 
 const usePostsQuery = () => {
     const [posts, setPosts] = useState([]);
