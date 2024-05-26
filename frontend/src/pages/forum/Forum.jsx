@@ -1,5 +1,5 @@
 import React from 'react';
-import usePostsQuery from '../hooks/usePostsQuery';
+import usePostsQuery from '../../hooks/usePostsQuery';
 import HomeNavbar from '../../components/HomeNavbar';
 import HomeFooter from '../../components/HomeFooter';
 
