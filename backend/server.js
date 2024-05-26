@@ -7,8 +7,8 @@ const app = express();
 const port = 8000;
 
 // Queries
-const SELECT_POSTS = 'SELECT title, content, username as author, created_timestamp FROM Posts JOIN Users ON Posts.author = Users.id';
-const SELECT_POST_BY_ID = 'SELECT title, content, username as author, created_timestamp FROM Posts JOIN Users ON Posts.author = Users.id WHERE Posts.id = @id';
+const SELECT_POSTS = 'SELECT Posts.id as id, title, content, username as author, created_timestamp FROM Posts JOIN Users ON Posts.author = Users.id';
+const SELECT_POST_BY_ID = 'SELECT Posts.id as id, title, content, username as author, created_timestamp FROM Posts JOIN Users ON Posts.author = Users.id WHERE Posts.id = @id';
 
 // Define CORS rule
 app.use(cors({
