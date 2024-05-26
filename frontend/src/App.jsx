@@ -1,7 +1,7 @@
 import './App.css';
 import "react-router-dom";
-import HomePage from './pages/home/HomePage';
-import PageNotFound from './pages/technical/PageNotFound';
+import AddJob from './pages/Addjob';
+import PageNotFound from './pages/PageNotFound';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 function App() {
@@ -12,7 +12,7 @@ function App() {
                     <Route
                         exact
                         path="/"
-                        element={<HomePage />}
+                        element={<AddJob />}
                     />
                     {/*
                     <Route exact path='/forum' element={<Forum />} />
