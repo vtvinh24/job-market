@@ -1,27 +1,20 @@
 import './App.css';
 import "react-router-dom";
-import Forum from './pages/Forum';
-import HomePage from './pages/HomePage';
-import Jobs from './pages/Jobs';
-import Login from './pages/Login';
-import PageNotFound from './pages/PageNotFound';
-import Profile from './pages/Profile';
-import Settings from './pages/Settings';
-import Addjob from './pages/Addjob';
+import HomePage from './pages/home/HomePage';
+import PageNotFound from './pages/technical/PageNotFound';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import { CookiesProvider, useCookies } from 'react-cookie'
 
 function App() {
     return (
       <>
-        <BrowserRouter>
+         <BrowserRouter>
                 <Routes>
                     <Route
                         exact
                         path="/"
                         element={<HomePage />}
                     />
-                    
+                    {/*
                     <Route exact path='/forum' element={<Forum />} />
                     <Route exact path='/post' element={<Post />} />
                     <Route exact path='/add-post' element={<AddPost />} />
@@ -29,38 +22,15 @@ function App() {
                     <Route exact path='/settings' element={<Settings />} />
                     <Route exact path='/profile' element={<Profile />} />
                     <Route exact path='/jobs' element={<Jobs />} />
-                    <Route exact path='/Addjob' element={<Addjob />} />
-
+                    */}
                     <Route
                         path="*"
                         element={<PageNotFound />}
                     />
-                </Routes>
-            </BrowserRouter>
+                </Routes>                
+            </BrowserRouter> 
       </>
       
     );
   }
 export default App;
-//   function App() {
-//   return (
-//     <div className="App">
-//       <header className="App-header">
-//         <img src={logo} className="App-logo" alt="logo" />
-//         <p>
-//           Edit <code>src/App.js</code> and save to reload.
-//         </p>
-//         <a
-//           className="App-link"
-//           href="https://reactjs.org"
-//           target="_blank"
-//           rel="noopener noreferrer"
-//         >
-//           Learn React
-//         </a>
-//       </header>
-//     </div>
-//   );
-// }
-
-// export default App;
