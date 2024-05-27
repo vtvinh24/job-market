@@ -11,9 +11,9 @@ function HomeGuest() {
     return (
       <div className="App">
         <HomeNavbar />
-        <CarouselComponent />
-        <HotNew />
+        <CarouselComponent />        
         <HelpCenter />
+        <HotNew />
         <Footer /> 
       </div>
     );

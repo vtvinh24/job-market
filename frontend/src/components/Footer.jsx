@@ -1,15 +1,29 @@
-import React from 'react'
+import React from 'react';
+import { Container, Row, Col } from 'react-bootstrap';
 
-function Footer() {
+const Footer = () => {
   return (
-    <>
-    <Footer>
-        <div>Contact:</div>
-        <div>Email: </div>
-        <div>Phone: </div>
-    </Footer>
-    </>
-  )
+    <div className="bg-dark text-white">
+      <Container>
+        <Row>
+          <Col md={6}>
+            <h5>About Us</h5>
+            <p>We are a company that does things.</p>
+          </Col>
+          <Col md={6}>
+            <h5>Contact Us</h5>
+            <p>Email: info@company.com</p>
+            <p>Phone: +123 456 7890</p>
+          </Col>
+        </Row>
+        <Row>
+          <Col className="text-center py-3">
+            &copy; {new Date().getFullYear()} MyCompany. All rights reserved.
+          </Col>
+        </Row>
+      </Container>
+    </div>
+  );
 }
 
-export default Footer
+export default Footer;
