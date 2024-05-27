@@ -11,7 +11,9 @@ const Forum = () => {
       <Row>
         <Col md={10}></Col>
         <Col md={2}>
-        <Button href="/add-post" className="forum-button">Create</Button>
+          <Button href="/add-post" className="forum-button">
+            Create
+          </Button>
         </Col>
       </Row>
       <ListPost />
