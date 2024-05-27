@@ -1,7 +1,7 @@
 import React from "react";
 import HomeNavbar from "../../components/HomeNavbar";
 import HomeFooter from "../../components/Footer";
-// import ListPost from "../../components/forum/ListPost";
+import ListPost from "../../components/forum/ListPost";
 import { Button, Row, Col } from "react-bootstrap";
 
 const Forum = () => {
@@ -16,7 +16,7 @@ const Forum = () => {
           </Button>
         </Col>
       </Row>
-      {/* <ListPost /> */}
+      <ListPost />
       <HomeFooter />
     </div>
   );

@@ -99,7 +99,7 @@ app.post("/api/posts", async (req, res) => {
 
 
 //Select Marketing content
-app.get("/api/posts", async (req, res) => {
+app.get("/api/marketing", async (req, res) => {
   try {
     const pool = await db.poolPromise;
     const result = await pool.request().query(SELECT_MARKETING_CONTENT);
@@ -111,7 +111,7 @@ app.get("/api/posts", async (req, res) => {
 });
 
 //Select Post content
-app.get("/api/posts", async (req, res) => {
+app.get("/api/datapost", async (req, res) => {
   try {
     const pool = await db.poolPromise;
     const result = await pool.request().query(SELECT_POSTS_CONTENT);
