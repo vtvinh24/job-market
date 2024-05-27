@@ -12,18 +12,11 @@ const AddForm = () => {
     const author = 1; // Set author here
     await insertPost(title, content, author); // Use insertPost here
   };
-  
+
   return (
     <Container>
       <Row>
-        <Col md={2}>
-          <Button href="/forum" className="forum-button">
-            Back to Forum
-          </Button>
-        </Col>
-        <Col md={10}>
-          <h1 className="text-center">Create a Post</h1>
-        </Col>
+        <h1 className="text-center">Create a Post</h1>
       </Row>
       <Form onSubmit={handleSubmit}>
         <Row className="mb-3">

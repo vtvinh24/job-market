@@ -9,6 +9,11 @@ const AddPost = () => {
   return (
     <>
       <HomeNavbar />
+      <Col md={2}>
+        <Button href="/forum" className="forum-button">
+          Back to Forum
+        </Button>
+      </Col>
       <AddForm />
       <HomeFooter />
     </>
