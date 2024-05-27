@@ -1,6 +1,6 @@
 import React from "react";
 import HomeNavbar from "../../components/HomeNavbar";
-import HomeFooter from "../../components/HomeFooter";
+import HomeFooter from "../../components/Footer";
 import ListPost from "../../components/forum/ListPost";
 import { Button, Row, Col } from "react-bootstrap";
 
