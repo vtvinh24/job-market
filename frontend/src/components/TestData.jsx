@@ -20,13 +20,10 @@ const ListNews = () => {
     <div>
       {news.map((newcontent) => (
         <Card className="post-card" key={newcontent.id}>
-          <Link
-            to={`/posts/${post.id}`}
-            style={{ textDecoration: "none", color: "inherit" }}
-          ></Link>
+          
             <Card.Body>
               <Card.Title as="h2" style={{ color: "blue" }}>
-                {newcontent.title}
+                {newcontent.topic}
               </Card.Title>
               <Card.Text className="post-card-content">
                 {newcontent.content}
@@ -54,4 +51,4 @@ const ListNews = () => {
   );
 };
 
-export default ListPost;
+export default ListNews;

@@ -1,10 +1,10 @@
 import React from 'react';
-
+import '../assets/css/HelpCenter.css';
 function HelpCenter() {
   return (
-    <div className="text-end p-3 position-fixed" style={{ right: '0%', bottom: '0%'}}>
-      <div className="text-muted help-center">Help Center</div>
-    </div>
+    <button className="help-center-button">
+            Help Center
+    </button>
   );
 }
 
