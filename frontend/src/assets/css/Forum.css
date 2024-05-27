@@ -1,0 +1,68 @@
+.post {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  margin: 10px;
+}
+
+.post-content {
+  font-size: larger;
+}
+
+.post p {
+  text-align: left;
+}
+.post-card {
+  margin: 10px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #ffffff;
+  text-align: left;
+}
+
+.post-card-content {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.post-card:hover {
+  background-color: #f0f0f0;
+  cursor: pointer;
+}
+
+.post-title {
+  color: #0062a7;
+  
+}
+
+.post-author {
+  text-decoration: none;
+  float: left;
+  color: #18d8a6;
+}
+
+.forum-button {
+  margin: 10px;
+  background-color: #0062a7;
+  color: white;
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+}
+
+.toolbar {
+  background-color: gray;
+  display: flex;
+  justify-content: center;
+}
+
+.submit {
+  background-color: lightgreen;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
