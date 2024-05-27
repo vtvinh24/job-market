@@ -42,18 +42,19 @@ app.use((req, res, next) => {
 
 app.get("/api/posts/:id", async (req, res) => {
   try {
+    const { id } = req.params;
+
     const pool = await db.poolPromise;
-
-    const id = parseInt(req.params.id, 10);
-    if (isNaN(id)) {
-      return res.status(400).json({ message: "Invalid post ID" });
-    }
-
     const result = await pool
       .request()
       .input("id", db.sql.Int, id)
       .query(SELECT_POST_BY_ID);
-    console.log(result.recordset);
+
+    if (result.recordset.length === 0) {
+      res.status(404).json({ message: "Post not found" });
+    } else {
+      res.json(result.recordset[0]);
+    }
   } catch (err) {
     console.log(err);
     res.status(500).json({ message: "Error occurred", error: err });
@@ -82,11 +83,9 @@ app.post("/api/posts", async (req, res) => {
       .input("content", db.sql.NVarChar, content)
       .input("author", db.sql.Int, author)
       .query(INSERT_POST);
-    console.log(1);
     // res.json({ message: "Post inserted successfully" });
     res.status(201).json({ message: "Post inserted successfully" });
   } catch (err) {
-    console.log(err);
     res.status(500).json({ message: "Error occurred", error: err });
   }
 });
