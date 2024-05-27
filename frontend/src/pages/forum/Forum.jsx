@@ -1,7 +1,7 @@
 import React from 'react';
 import usePostsQuery from '../../hooks/usePostsQuery';
 import HomeNavbar from '../../components/HomeNavbar';
-import HomeFooter from '../../components/HomeFooter';
+import HomeFooter from '../../components/HelpCenter';
 import { Button, Col, Container, Row, Table } from 'react-bootstrap';
 import { getMoment } from '../../functions/Converter'; '../../functions/Converter';
 
