@@ -2,8 +2,8 @@ const sql = require('mssql');
 const configF = require('../../config/db.json');
 
 const config = {
-  user: 'sa',
-  password: '1400',
+  user: 'hoangmnhe176788',
+  password: '123456',
   server: 'localhost',
   database: 'Test1',
   encrypt: false,
