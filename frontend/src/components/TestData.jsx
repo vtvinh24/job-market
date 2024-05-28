@@ -1,12 +1,12 @@
 import React from "react";
-import useNewsContent from "../hooks/useNewsContent.js";
+import useMarketContent from "../hooks/useMarketContent.js";
 import "../assets/css/Forum.css";
 import { getMoment } from "../functions/Converter";
 import { Card } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
-const ListNews = () => {
-  const {news, loading, error } = useNewsContent();
+const ListContent = () => {
+  const {contents, loading, error } = useMarketContent();
 
   if (loading) {
     return <div>Loading...</div>;
@@ -18,30 +18,30 @@ const ListNews = () => {
 
   return (
     <div>
-      {news.map((newcontent) => (
-        <Card className="post-card" key={newcontent.id}>
+      {contents.map((marketcontent) => (
+        <Card className="post-card" key={marketcontent.id}>
           
             <Card.Body>
               <Card.Title as="h2" style={{ color: "blue" }}>
-                {newcontent.topic}
+                {marketcontent.topic}
               </Card.Title>
               <Card.Text className="post-card-content">
-                {newcontent.content}
+                {marketcontent.content}
               </Card.Text>
               <Card.Link
-                href={`/users/${newcontent.author}`}
+                href={`/users/${marketcontent.author}`}
                 className="post-author"
                 data-toggle="tooltip"
-                title={`Author: ${newcontent.author}`}
+                title={`Author: ${marketcontent.author}`}
                 onClick={(e) => e.stopPropagation()}
               >
-                {newcontent.author}
+                {marketcontent.author}
               </Card.Link>
               <Card.Text
                 className="post-card-content"
                 style={{ textAlign: "right", fontSize: "small" }}
               >
-                {getMoment(newcontent.created_timestamp)}
+                {getMoment(marketcontent.created_timestamp)}
               </Card.Text>
             </Card.Body>
        
@@ -51,4 +51,4 @@ const ListNews = () => {
   );
 };
 
-export default ListNews;
+export default ListContent;
