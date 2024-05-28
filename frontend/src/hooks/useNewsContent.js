@@ -3,17 +3,17 @@ import { useState, useEffect } from "react";
 
 const API_URL = "http://localhost:8000/api";
 
-const usePostsQuery = () => {
-  const [posts, setPosts] = useState([]);
+const useNewsContent = () => {
+  const [news, setNews] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    const fetchPosts = async () => {
+    const fetchnews = async () => {
       try {
-        const url = `${API_URL}/posts`;
+        const url = `${API_URL}/datapost`;
         const response = await axios.get(url);
-        setPosts(response.data);
+        setNews(response.data);
         setLoading(false);
       } catch (error) {
         setError(error);
@@ -21,10 +21,10 @@ const usePostsQuery = () => {
       }
     };
 
-    fetchPosts();
+    fetchnews();
   }, []);
 
-  return { posts, loading, error };
+  return {news, loading, error };
 };
 
-export default usePostsQuery;
+export default useNewsContent;
