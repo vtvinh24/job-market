@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-const Addjob = () => {
+const AddJob = () => {
   const [jobTitle, setJobTitle] = useState('');
   const [company, setCompany] = useState('');
   const [description, setDescription] = useState('');
@@ -41,4 +41,4 @@ const Addjob = () => {
   );
 };
 
-export default Addjob;
+export default AddJob;
