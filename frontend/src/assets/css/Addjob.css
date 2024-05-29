@@ -135,21 +135,21 @@
 
 .footer {
   bottom: 0%;
-  margin-top: 150px;
+  margin-top: 50px;
 }
 
 .form-input::placeholder {
   color: black;
-  /* Change placeholder color */
+
   opacity: 1;
-  /* Ensure full opacity */
+
 }
 
 .forminput2::placeholder {
   color: black;
-  /* Change placeholder color */
+
   opacity: 1;
-  /* Ensure full opacity */
+
 }
 
 .forminput3::placeholder {
