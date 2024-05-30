@@ -1,38 +1,74 @@
-import React, { useState } from 'react';
+import React, { useState } from 'react'
+import "./../../assets/css/LoginRegister.css";
+import { FaUser } from "react-icons/fa";
+import { FaLock } from "react-icons/fa";
+import { MdAlternateEmail } from "react-icons/md";
 
-const Login = () => {
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
-
-    const handleEmailChange = (e) => {
-        setEmail(e.target.value);
+const Login =() => {
+    const [action,setAction]= useState('')
+    const registerlink = () => {
+        setAction('active')
     };
-
-    const handlePasswordChange = (e) => {
-        setPassword(e.target.value);
-    };
-
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        // Add your login logic here
-    };
-
-    return (
-        <div>
-            <h2>Login</h2>
-            <form onSubmit={handleSubmit}>
-                <div>
-                    <label>Email:</label>
-                    <input type="email" value={email} onChange={handleEmailChange} />
-                </div>
-                <div>
-                    <label>Password:</label>
-                    <input type="password" value={password} onChange={handlePasswordChange} />
-                </div>
-                <button type="submit">Login</button>
-            </form>
+    const loginLink = () => {
+        setAction('')
+    }
+    return(
+        <div className={`wrapper ${action}`}>
+            <div className='form-box login'>
+                <form action="">
+                    <h1>Login</h1>
+                    <div className="input-box">
+                        <input type="text"
+                        placeholder='Username'required />
+                        <FaUser className='icon' />
+                    </div>
+                    <div className="input-box">
+                        <input type="password"
+                        placeholder='Password'required />
+                        <FaLock className='icon' />
+                    </div>
+                    <div className="remember-forgot">
+                        <label><input type="checkbox" />
+                        Remember me</label>
+                        <a href="#">Forgot password?</a>
+                        </div>
+                        <button type = "submit">login</button>
+                    <div className='register-link'>
+                        <p>Don't have an account? <a href="#" onClick={registerlink}>Register</a></p>
+                    </div>
+                </form>
+            </div>
+            <div className='form-box register'>
+                <form action="">
+                    <h1>Register</h1>
+                    <div className="input-box">
+                        <input type="text"
+                        placeholder='Username'required />
+                        <FaUser className='icon' />
+                    </div>
+                    <div className="input-box">
+                        <input type="email"
+                        placeholder='Email'required />
+                        <MdAlternateEmail className='icon' />
+                    </div>
+                    <div className="input-box">
+                        <input type="password"
+                        placeholder='Password'required />
+                        <FaLock className='icon' />
+                    </div>
+                    <div className="remember-forgot">
+                        <label><input type="checkbox" />
+                        I agree to the terms & conditions</label>
+                    </div>    
+        
+                        <button type = "submit">Resister</button>
+                    <div className='register-link'>
+                        <p>Already have an account? <a href="#"onClick={loginLink}>Login</a></p>
+                    </div>
+                    
+                </form>
+            </div>
         </div>
-    );
+    )
 };
-
 export default Login;

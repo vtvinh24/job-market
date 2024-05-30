@@ -6,6 +6,7 @@ import Forum from "./pages/forum/Forum";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import AddPost from "./pages/forum/AddPost";
 import PostDetail from "./pages/forum/PostDetail";
+import Login from "./pages/auth/Login";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
           <Route exact path="/forum" element={<Forum />} />
           <Route exact path="/add-post" element={<AddPost />} />
           <Route path="/posts/:id" element={<PostDetail />} />
+          <Route exact path="/login" element={<Login />} />
 
           {/*
                     
