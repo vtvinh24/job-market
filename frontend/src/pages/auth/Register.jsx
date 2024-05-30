@@ -5,6 +5,7 @@ import { MdAlternateEmail } from "react-icons/md";
 
 const Register = () => {
     return (
+        <div className='boxx'>
         <div className='form-box register'>
             <form>
                 <h1>Register</h1>
@@ -31,6 +32,8 @@ const Register = () => {
                 </div>
             </form>
         </div>
+        </div>
+
     );
 };
 

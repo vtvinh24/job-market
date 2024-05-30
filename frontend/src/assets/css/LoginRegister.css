@@ -1,7 +1,7 @@
 .wrapper {
     position: absolute;
     width: 420px;
-    height: auto; /* Thay đổi từ 450px thành auto để phù hợp với chiều cao linh hoạt */
+    height: auto;
     background: transparent;
     border: 2px solid rgba(0, 0, 0, 0.1);
     backdrop-filter: blur(30px);
@@ -10,31 +10,47 @@
     display: flex;
     align-items: center;
     overflow: hidden;
-    transition: height .2s ease;
+    justify-content: center;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+.boxx{
+    position: absolute;
+    width: 420px;
+    height: auto;
+    background: transparent;
+    border: 2px solid rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(30px);
+    border-radius: 10px;
+    color: #000000;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
     justify-content: center;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
 }
 
-.wrapper .form-box  {
+.wrapper .form-box {
     width: 100%;
     padding: 30px;
 }
 
 .wrapper.active .form-box.login {
-    transition: none; /* Loại bỏ transition none */
-    transform: translate(-400px); /* Thay đổi từ translate:-400px thành transform: translate(-400px) */
+    transition: none;
+    transform: translate(-400px);
 }
 
 .wrapper .form-box.register {
     position: absolute;
-    transform: translate(400px); /* Thay đổi từ translate: 400px thành transform: translate(400px) */
+    transform: translate(400px);
 }
 
 .wrapper.active .form-box.register {
-    transition: translate .18s ease;
-    transform: translate(0); /* Thay đổi từ translate: 0 thành transform: translate(0) */
+    transition: transform .18s ease; /* Sửa từ translate thành transform */
+    transform: translate(0);
 }
 
 form h1 {
@@ -70,7 +86,7 @@ form .input-box {
     position: absolute;
     right: 20px;
     top: 50%;
-    transform: translateY(-50%); /* Thay đổi từ translate: 0-50% thành transform: translateY(-50%) */
+    transform: translateY(-50%);
     font-size: 16px;
 }
 
