@@ -24,10 +24,21 @@ function App() {
           <Route exact path="/home" element={<HomePage />} />
           <Route exact path="/forum" element={<Forum />} />
           <Route exact path="/add-post" element={<AddPost />} />
-          <Route exact path="/posts/:id" element={<PostDetail />} />
-          <Route exact path="/jobs" element={<Market />} />
+
+          <Route path="/posts/:id" element={<PostDetail />} />
           <Route exact path="/login" element={<Login />} />
           <Route exact path="/signup" element={<Register />} />
+
+          {/*
+                    
+                    <Route exact path='/post' element={<Post />} />
+                    
+                    <Route exact path='/login' element={<Login />} />
+                    <Route exact path='/settings' element={<Settings />} />
+                    <Route exact path='/profile' element={<Profile />} />
+                    <Route exact path='/jobs' element={<Jobs />} />
+                    */}
+          <Route exact path="/jobs" element={<Market />} />
           <Route path="*" element={<PageNotFound />} />
         </Routes>
       </div>
