@@ -1,9 +1,11 @@
 import React from "react";
 import { Link, useParams } from "react-router-dom";
 import usePostDetail from "../../hooks/usePostDetail.js";
-import { Button } from "react-bootstrap";
+import { Button, Row, Col } from "react-bootstrap";
 import "../../assets/css/Forum.css";
 import { getMoment } from "../../functions/Converter.js";
+import avatar from "../../assets/img/default_avatar.webp";
+
 
 const PostDetail = () => {
   const { id } = useParams();
@@ -19,10 +21,19 @@ const PostDetail = () => {
       </Button>
 
       <div className="post">
-        <h1>{post.title}</h1>
-        <Link to={`/users/${post.author}`}>{post.author}</Link>
-        <p>{getMoment(post.created_timestamp)}</p>
-        <p className="post-content">{post.content}</p>
+        <div className="post-title">
+          <h1>{post.post_title}</h1>
+        </div>
+        <div className="d-flex gap-2">
+          <div className="post-author">
+            <div><img className="avatar" src={avatar} alt="Default Avatar" /></div>
+            <div><Link to={`/users/${post.author}`}>{post.author}</Link></div>
+            <div><p>{getMoment(post.post_created_date)}</p></div>
+          </div>
+          <div className="post-content flex-grow">
+            <p>{post.post_content}</p>
+          </div>
+        </div>
       </div>
     </div>
   );

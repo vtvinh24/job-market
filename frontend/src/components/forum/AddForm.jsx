@@ -19,8 +19,10 @@ const AddForm = () => {
       return;
     }
 
-    const author = 1; // Set author here
-    const result = await insertPost(title, content, author);
+
+    //const user_id = userContext.user_id;
+    const user_id = 3; // Set author here
+    const result = await insertPost(title, content, user_id);
 
     if (result) {
       navigate("/forum");
@@ -46,19 +48,19 @@ const AddForm = () => {
             </Form.Group>
           </Col>
         </Row>
-        <Row className="mb-5">
+        <Row className="mb-3">
           <Form.Group controlId="content">
             {/* <Form.Label>Content</Form.Label> */}
             <Form.Control
               as="textarea"
-              rows={3}
+              rows={10}
               placeholder="Content"
               value={content}
               onChange={(e) => setContent(e.target.value)}
             />
           </Form.Group>
         </Row>
-        <Row>
+        <Row className="row-submit">
           <Button variant="primary" type="submit" className="forum-button">
             Submit
           </Button>
