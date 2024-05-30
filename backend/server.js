@@ -15,6 +15,8 @@ const SELECT_POSTS_BY_DATE_DESC =
   "SELECT post_id, post_title, post_content, Posts.user_id AS user_id, Users.username AS author, post_created_date FROM Posts JOIN Users ON Posts.user_id = Users.user_id ORDER BY post_created_date DESC";
 const SELECT_POST_BY_ID =
   "SELECT post_id, post_title, post_content, Posts.user_id AS user_id, Users.username AS author, post_created_date FROM Posts JOIN Users ON Posts.user_id = Users.user_id WHERE Posts.post_id = @id";
+const SELECT_USER_HASH = "SELECT hash FROM Users WHERE username = @username";
+
 
 //Select Marketing content
 const SELECT_MARKETING_CONTENT = "Select m.id,m.topic,m.content from Marketing m";
@@ -95,7 +97,24 @@ app.post("/api/posts", async (req, res) => {
 });
 
 
+app.get("/api/auth", (req, res) => {
+  try {
+    const { username, password } = req.query;
 
+    // Perform authentication logic here
+    // ...
+    
+
+    // If authentication is successful
+    res.json({ authenticated: true, message: "Authentication successful" });
+
+    // If authentication fails
+    // res.json({ authenticated: false, message: "Authentication failed" });
+  } catch (err) {
+    console.log(err);
+    res.status(500).json({ message: "Error occurred", error: err });
+  }
+});
 
 //Select Marketing content
 app.get("/api/marketing", async (req, res) => {
