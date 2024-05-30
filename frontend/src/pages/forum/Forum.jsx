@@ -1,23 +1,17 @@
 import React from "react";
-import HomeNavbar from "../../components/HomeNavbar";
-import HomeFooter from "../../components/Footer";
 import ListPost from "../../components/forum/ListPost";
-import { Button, Row, Col } from "react-bootstrap";
+import { Button, Row } from "react-bootstrap";
 
 const Forum = () => {
   return (
     <div>
-      <HomeNavbar />
+      <Button className="forum-buton" href="/add-post">
+        Create
+      </Button>
+
       <Row>
-        <Col md={10}></Col>
-        <Col md={2}>
-          <Button href="/add-post" className="forum-button">
-            Create
-          </Button>
-        </Col>
+        <ListPost />
       </Row>
-      <ListPost />
-      <HomeFooter />
     </div>
   );
 };
