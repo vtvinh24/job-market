@@ -19,8 +19,10 @@ const AddForm = () => {
       return;
     }
 
-    const author = 1; // Set author here
-    const result = await insertPost(title, content, author);
+
+    //const user_id = userContext.user_id;
+    const user_id = 3; // Set author here
+    const result = await insertPost(title, content, user_id);
 
     if (result) {
       navigate("/forum");

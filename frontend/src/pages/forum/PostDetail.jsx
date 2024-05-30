@@ -22,16 +22,16 @@ const PostDetail = () => {
 
       <div className="post">
         <div className="post-title">
-          <h1>{post.title}</h1>
+          <h1>{post.post_title}</h1>
         </div>
         <div className="d-flex gap-2">
           <div className="post-author">
             <div><img className="avatar" src={avatar} alt="Default Avatar" /></div>
             <div><Link to={`/users/${post.author}`}>{post.author}</Link></div>
-            <div><p>{getMoment(post.created_timestamp)}</p></div>
+            <div><p>{getMoment(post.post_created_date)}</p></div>
           </div>
           <div className="post-content flex-grow">
-            <p>{post.content}</p>
+            <p>{post.post_content}</p>
           </div>
         </div>
       </div>

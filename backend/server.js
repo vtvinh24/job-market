@@ -79,14 +79,14 @@ app.get("/api/posts", async (req, res) => {
 
 app.post("/api/posts", async (req, res) => {
   try {
-    const { title, content, author } = req.body;
+    const { title, content, user_id } = req.body;
 
     const pool = await db.poolPromise;
     const result = await pool
       .request()
       .input("post_title", db.sql.NVarChar, title)
       .input("post_content", db.sql.NVarChar, content)
-      .input("post_id", db.sql.Int, author)
+      .input("user_id", db.sql.Int, user_id)
       .query(INSERT_POST);
     res.status(201).json({ message: "Post inserted successfully" });
   } catch (err) {
