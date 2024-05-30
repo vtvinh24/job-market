@@ -72,7 +72,7 @@
 }
 .hot-news{
   margin: 4%;
-  height: 200px;
+  /* height: 200px; */
 }
 .new-box{
   display: flex;

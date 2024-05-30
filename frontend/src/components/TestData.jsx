@@ -1,9 +1,11 @@
-import React from 'react';
+import React from "react";
 import useNewsContent from "../hooks/useNewsContent.js";
+import "../assets/css/Forum.css";
 import { getMoment } from "../functions/Converter";
 import { Card } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
-function HotNew() {
+const ListNews = () => {
   const {news, loading, error } = useNewsContent();
 
   if (loading) {
@@ -15,16 +17,7 @@ function HotNew() {
   }
 
   return (
-    <div className='hot-news container'>
-      {/* <div className="mt-4">
-        <h2 style={{marginLeft: '20px', textAlign: 'left'}}>Hot News</h2>
-        <Container>
-        <div className="p-3 border bg-light text-center new-box" style={{marginBottom: '10px'}}>New Box</div>
-        <div className="p-3 border bg-light text-center new-box" style={{marginBottom: '10px'}}>New Box</div>
-        <div className="p-3 border bg-light text-center new-box" style={{marginBottom: '10px'}}>New Box</div>
-        </Container>
-      </div> */}
-      <h2 style={{marginLeft: '30px', textAlign: 'left'}}>Hot News</h2>
+    <div>
       {news.map((newcontent) => (
         <Card className="post-card" key={newcontent.id}>
           
@@ -56,6 +49,6 @@ function HotNew() {
       ))}
     </div>
   );
-}
+};
 
-export default HotNew;
+export default ListNews;

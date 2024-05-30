@@ -16,6 +16,11 @@ const SELECT_POSTS =
 const SELECT_POST_BY_ID =
   "SELECT Posts.id as id, title, content, username as author, created_timestamp FROM Posts JOIN Users ON Posts.author = Users.id WHERE Posts.id = @id";
 
+//Select Marketing content
+const SELECT_MARKETING_CONTENT = "Select m.id,m.topic,m.content from Marketing m";
+//Select Post Content
+const SELECT_POSTS_CONTENT = "Select p.post_id,p.topic,p.content from post p";
+
 // Define CORS rule
 app.use(
   cors({
@@ -90,6 +95,35 @@ app.post("/api/posts", async (req, res) => {
   }
 });
 
+
+
+
+//Select Marketing content
+app.get("/api/marketing", async (req, res) => {
+  try {
+    const pool = await db.poolPromise;
+    const result = await pool.request().query(SELECT_MARKETING_CONTENT);
+    res.json(result.recordset);
+  } catch (err) {
+    console.log(err);
+    res.status(500).json({ message: "Error occurred", error: err });
+  }
+});
+
+//Select Post content
+app.get("/api/datapost", async (req, res) => {
+  try {
+    const pool = await db.poolPromise;
+    const result = await pool.request().query(SELECT_POSTS_CONTENT);
+    res.json(result.recordset);
+  } catch (err) {
+    console.log(err);
+    res.status(500).json({ message: "Error occurred", error: err });
+  }
+});
+
+
+
 app.listen(port, () => {
-  console.log(`Server is running on port ${port}`);
+  console.log(`(server.js) Server is running on port ${port}`);
 });

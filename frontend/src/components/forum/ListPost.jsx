@@ -32,7 +32,7 @@ const ListPost = () => {
               </Card.Text>
               <Card.Link
                 href={`/users/${post.author}`}
-                className="post-author"
+                className="card-author"
                 data-toggle="tooltip"
                 title={`Author: ${post.author}`}
                 onClick={(e) => e.stopPropagation()}
