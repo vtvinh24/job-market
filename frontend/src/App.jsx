@@ -10,7 +10,8 @@ import HomeNavbar from "./components/HomeNavbar";
 import HomeFooter from "./components/HomeFooter";
 import AddPost from "./pages/forum/AddPost";
 import PostDetail from "./pages/forum/PostDetail";
-
+import Login from "./pages/auth/Login";
+import Register from './pages/auth/Register';
 function App() {
   return (
     <BrowserRouter>

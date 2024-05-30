@@ -1,36 +1,33 @@
-import React, { useState } from 'react';
+import React from 'react';
+import "./../../assets/css/LoginRegister.css";
+import { FaUser, FaLock } from "react-icons/fa";
 
 const Login = () => {
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
-
-    const handleEmailChange = (e) => {
-        setEmail(e.target.value);
-    };
-
-    const handlePasswordChange = (e) => {
-        setPassword(e.target.value);
-    };
-
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        // Add your login logic here
-    };
-
     return (
-        <div>
-            <h2>Login</h2>
-            <form onSubmit={handleSubmit}>
-                <div>
-                    <label>Email:</label>
-                    <input type="email" value={email} onChange={handleEmailChange} />
-                </div>
-                <div>
-                    <label>Password:</label>
-                    <input type="password" value={password} onChange={handlePasswordChange} />
-                </div>
-                <button type="submit">Login</button>
-            </form>
+        <div className='boxx'>
+            <div className='form-box login'>
+                <form>
+                    <h1>Login</h1>
+                    <div className="input-box">
+                        <input type="text" placeholder='Username' required />
+                        <FaUser className='icon' />
+                    </div>
+                    <div className="input-box">
+                        <input type="password" placeholder='Password' required />
+                        <FaLock className='icon' />
+                    </div>
+                    <div className="remember-forgot">
+                        <label>
+                            <input type="checkbox" /> Remember me
+                        </label>
+                        <a href="#">Forgot password?</a>
+                    </div>
+                    <button type="submit">Login</button>
+                    <div className='register-link'>
+                        <p>Don't have an account? <a href="/signup">Register</a></p>
+                    </div>
+                </form>
+            </div>
         </div>
     );
 };
