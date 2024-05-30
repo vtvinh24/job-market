@@ -11,7 +11,7 @@ import Footer from '../../components/HomeFooter.jsx';
 function JobMarket() {
   return (
     <>
-      
+      <HomeNavbar />
       <Container className="mt-3">
         <Row className="align-items-center mb-3">
           <Col md={3}>
@@ -71,7 +71,7 @@ function JobMarket() {
         </Row>     
       </Container>
       <HelpCenter />
-      
+      <Footer />
     </>
   );
 }

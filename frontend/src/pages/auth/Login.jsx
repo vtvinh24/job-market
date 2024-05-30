@@ -1,6 +1,6 @@
 import React from 'react';
 import "./../../assets/css/LoginRegister.css";
-import { FaUser, FaLock } from "react-icons/fa";
+// import { FaUser, FaLock } from "react-icons/fa";
 
 const Login = () => {
     return (
@@ -10,11 +10,11 @@ const Login = () => {
                     <h1>Login</h1>
                     <div className="input-box">
                         <input type="text" placeholder='Username' required />
-                        <FaUser className='icon' />
+                        {/* <FaUser className='icon' /> */}
                     </div>
                     <div className="input-box">
                         <input type="password" placeholder='Password' required />
-                        <FaLock className='icon' />
+                        {/* <FaLock className='icon' /> */}
                     </div>
                     <div className="remember-forgot">
                         <label>
