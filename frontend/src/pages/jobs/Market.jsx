@@ -4,15 +4,14 @@ import { Container, Row, Col, Form, Button, Dropdown } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import HomeNavbar from '../../components/HomeNavbar.jsx';
 import HelpCenter from '../../components/HelpCenter.jsx';
-
-import Footer from '../../components/Footer.jsx';
+import Footer from '../../components/HomeFooter.jsx';
 
 // import './Marketplace.css'; // Custom styles (optional)
 
 function JobMarket() {
   return (
     <>
-      <HomeNavbar />
+      
       <Container className="mt-3">
         <Row className="align-items-center mb-3">
           <Col md={3}>
@@ -72,7 +71,7 @@ function JobMarket() {
         </Row>     
       </Container>
       <HelpCenter />
-      <Footer />
+      
     </>
   );
 }
