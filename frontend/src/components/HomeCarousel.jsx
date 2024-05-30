@@ -1,7 +1,19 @@
 import React from 'react';
 import Carousel from 'react-bootstrap/Carousel';
+import useNewsContent from "../hooks/useNewsContent.js";
 
 function HomeCarousel() {
+
+  const {news, loading, error } = useNewsContent();
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
+  if (error) {
+    return <div>Error: {error.message}</div>;
+  }
+
   return (
     <div className='carousel-container'>
       <Carousel data-bs-theme="dark" className='Carousel'>
