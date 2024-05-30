@@ -29,6 +29,11 @@ function App() {
           <Route exact path="/login" element={<Login />} />
           <Route exact path="/signup" element={<Register />} />
           <Route path="*" element={<PageNotFound />} />
+        <Route path="/dashboard" component={AdminDashboard} />
+        <Route path="/jobs" component={Jobs} />
+        <Route path="/users" component={Users} />
+        <Route path="/settings" component={Setting} />
+        <Route path="/" exact component={AdminDashboard} />
         </Routes>
       </div>
       <div className="footer">
