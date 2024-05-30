@@ -8,13 +8,13 @@ const port = 8000;
 // Queries
 // INSERT
 const INSERT_POST =
-  "INSERT INTO Posts (title, content, author) VALUES (@title, @content, @author)";
+  "INSERT INTO Posts (post_title, post_content, user_id, post_status) VALUES (@post_title, @post_content, @user_id, 'published')";
 
 // SELECT
-const SELECT_POSTS =
-  "SELECT Posts.id as id, title, content, username as author, created_timestamp FROM Posts JOIN Users ON Posts.author = Users.id ORDER BY created_timestamp DESC";
+const SELECT_POSTS_BY_DATE_DESC =
+  "SELECT post_id, post_title, post_content, Posts.user_id AS user_id, Users.username AS author, post_created_date FROM Posts JOIN Users ON Posts.user_id = Users.user_id ORDER BY post_created_date DESC";
 const SELECT_POST_BY_ID =
-  "SELECT Posts.id as id, title, content, username as author, created_timestamp FROM Posts JOIN Users ON Posts.author = Users.id WHERE Posts.id = @id";
+  "SELECT post_id, post_title, post_content, Posts.user_id AS user_id, Users.username AS author, post_created_date FROM Posts JOIN Users ON Posts.user_id = Users.user_id WHERE Posts.post_id = @id";
 
 //Select Marketing content
 const SELECT_MARKETING_CONTENT = "Select m.id,m.topic,m.content from Marketing m";
@@ -69,7 +69,7 @@ app.get("/api/posts/:id", async (req, res) => {
 app.get("/api/posts", async (req, res) => {
   try {
     const pool = await db.poolPromise;
-    const result = await pool.request().query(SELECT_POSTS);
+    const result = await pool.request().query(SELECT_POSTS_BY_DATE_DESC);
     res.json(result.recordset);
   } catch (err) {
     console.log(err);
@@ -79,16 +79,15 @@ app.get("/api/posts", async (req, res) => {
 
 app.post("/api/posts", async (req, res) => {
   try {
-    const { title, content, author } = req.body;
+    const { title, content, user_id } = req.body;
 
     const pool = await db.poolPromise;
     const result = await pool
       .request()
-      .input("title", db.sql.NVarChar, title)
-      .input("content", db.sql.NVarChar, content)
-      .input("author", db.sql.Int, author)
+      .input("post_title", db.sql.NVarChar, title)
+      .input("post_content", db.sql.NVarChar, content)
+      .input("user_id", db.sql.Int, user_id)
       .query(INSERT_POST);
-    // res.json({ message: "Post inserted successfully" });
     res.status(201).json({ message: "Post inserted successfully" });
   } catch (err) {
     res.status(500).json({ message: "Error occurred", error: err });
@@ -125,5 +124,5 @@ app.get("/api/datapost", async (req, res) => {
 
 
 app.listen(port, () => {
-  console.log(`Server is running on port ${port}`);
+  console.log(`(server.js) Server is running on port ${port}`);
 });

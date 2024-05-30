@@ -1,16 +1,32 @@
 import React, { useState } from "react";
 import { Form, Button, Container, Row, Col } from "react-bootstrap";
 import usePostInsert from "../../hooks/usePostInsert";
+import { useNavigate } from "react-router-dom";
 
 const AddForm = () => {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
-  const { insertPost, loading, error } = usePostInsert();
+  const { insertPost } = usePostInsert();
+  const [error, setError] = useState(null);
+  const navigate = useNavigate();
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    const author = 1; // Set author here
-    await insertPost(title, content, author); // Use insertPost here
+    setError(null);
+
+    if (!title.trim() || !content.trim()) {
+      setError("Title and content must not be empty");
+      return;
+    }
+
+
+    //const user_id = userContext.user_id;
+    const user_id = 3; // Set author here
+    const result = await insertPost(title, content, user_id);
+
+    if (result) {
+      navigate("/forum");
+    }
   };
 
   return (
@@ -20,25 +36,6 @@ const AddForm = () => {
       </Row>
       <Form onSubmit={handleSubmit}>
         <Row className="mb-3">
-          {" "}
-          {/* Add margin bottom */}
-          {/* <Col md={2}>
-            <Form.Group controlId="category">
-          
-              <Form.Control
-                as="select"
-                value={category}
-                onChange={(e) => setCategory(e.target.value)}
-              >
-                <option value="">Select a category</option>
-                <option value="ask">Ask</option>
-                <option value="advice">Advice</option>
-                <option value="discussion">Discussion</option>
-                <option value="other">Other</option>
-              </Form.Control>
-            </Form.Group>
-          </Col> */}
-          {/* <Col md={10}> */}
           <Col>
             <Form.Group controlId="title">
               {/* <Form.Label>Title</Form.Label> */}
@@ -52,23 +49,24 @@ const AddForm = () => {
           </Col>
         </Row>
         <Row className="mb-3">
-          {" "}
-          {/* Add margin bottom */}
           <Form.Group controlId="content">
             {/* <Form.Label>Content</Form.Label> */}
             <Form.Control
               as="textarea"
-              rows={3}
+              rows={10}
               placeholder="Content"
               value={content}
               onChange={(e) => setContent(e.target.value)}
             />
           </Form.Group>
         </Row>
-        <Row>
+        <Row className="row-submit">
           <Button variant="primary" type="submit" className="forum-button">
             Submit
           </Button>
+        </Row>
+        <Row>
+          <p className="text-danger mt-3">{error && <p>{error}</p>}</p>
         </Row>
       </Form>
     </Container>
