@@ -22,4 +22,4 @@ function HomeGuest() {
     );
 }
 
-export default HomeGuest
+export default HomeGuest;

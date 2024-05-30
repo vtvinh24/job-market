@@ -9,8 +9,7 @@ import HomeNavbar from "./components/HomeNavbar";
 import HomeFooter from "./components/HomeFooter";
 import AddPost from "./pages/forum/AddPost";
 import PostDetail from "./pages/forum/PostDetail";
-import Login from "./pages/auth/Login";
-import Register from './pages/auth/Register';
+import AddJob from "./pages/jobs/AddJob";
 function App() {
   return (
     <BrowserRouter>
@@ -21,6 +20,7 @@ function App() {
           <Route exact path="/home" element={<HomePage />} />
           <Route exact path="/forum" element={<Forum />} />
           <Route exact path="/add-post" element={<AddPost />} />
+          <Route exact path="/add-job" element={<AddJob />} />
           <Route exact path="/posts/:id" element={<PostDetail />} />
           <Route exact path="/jobs" element={<Market />} />
           <Route exact path="/login" element={<Login />} />
