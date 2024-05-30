@@ -1,7 +1,7 @@
 import React from "react";
 import "./../../assets/css/LoginRegister.css";
-import { FaUser, FaLock } from "react-icons/fa";
-import { MdAlternateEmail } from "react-icons/md";
+// import { FaUser, FaLock } from "react-icons/fa";
+// import { MdAlternateEmail } from "react-icons/md";
 
 const Register = () => {
   return (
