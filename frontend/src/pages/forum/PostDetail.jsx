@@ -13,7 +13,7 @@ const PostDetail = () => {
   if (error) return <div>Error: {error.message}</div>;
 
   return (
-    <div>
+    <div className="forum-body">
       <Button href="/forum" className="forum-button">
         Back to Forum
       </Button>
