@@ -4,8 +4,7 @@ import AddForm from "../../components/forum/AddForm";
 
 const AddPost = () => {
   return (
-    <>
-      
+    <div className="forum-body">
       <Col md={2}>
         <Button href="/forum" className="forum-button">
           Back to Forum
@@ -13,7 +12,7 @@ const AddPost = () => {
       </Col>
       <AddForm />
       
-    </>
+    </div>
   );
 };
 
