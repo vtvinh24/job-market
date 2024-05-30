@@ -1,7 +1,7 @@
 import React from 'react';
 import { Container, Navbar, Nav, Button, Card } from 'react-bootstrap';
 
-const AdminJobManagement = () => {
+const Jobs = () => {
     const handleAddJob = () => {
         alert('Add Job function not implemented.');
     };
@@ -85,4 +85,4 @@ const JobCard = ({ title, company, location, posted, onEdit, onDelete }) => (
     </Card>
 );
 
-export default AdminJobManagement;
+export default Jobs;

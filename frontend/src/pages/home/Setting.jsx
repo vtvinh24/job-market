@@ -1,7 +1,7 @@
 import React from 'react';
 import { Container, Navbar, Nav, Form, Button, Card } from 'react-bootstrap';
 
-const AdminSettings = () => {
+const Setting = () => {
     const handleUpdateProfile = () => {
         alert('Update Profile function not implemented.');
     };
@@ -78,4 +78,4 @@ const AdminSettings = () => {
     );
 };
 
-export default AdminSettings;
+export default Setting;

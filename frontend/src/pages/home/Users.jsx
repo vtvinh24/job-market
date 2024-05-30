@@ -1,7 +1,7 @@
 import React from 'react';
 import { Container, Navbar, Nav, Button, Card } from 'react-bootstrap';
 
-const AdminUsers = () => {
+const Users = () => {
     const handleAddUser = () => {
         alert('Add User function not implemented.');
     };
@@ -80,4 +80,4 @@ const UserCard = ({ name, email, role, registered, onEdit, onDelete }) => (
     </Card>
 );
 
-export default AdminUsers;
+export default Users;
