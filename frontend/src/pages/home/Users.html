@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin User Management</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        .header {
+            background-color: #333;
+            color: white;
+            padding: 10px 0;
+            text-align: center;
+        }
+        .navbar {
+            display: flex;
+            justify-content: space-around;
+            background-color: #444;
+            padding: 10px 0;
+        }
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            padding: 8px 16px;
+        }
+        .navbar a:hover {
+            background-color: #555;
+        }
+        .container {
+            padding: 20px;
+        }
+        .actions {
+            margin-bottom: 20px;
+        }
+        .actions button {
+            padding: 10px 15px;
+            margin-right: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .actions button:hover {
+            background-color: #45a049;
+        }
+        .user-listing {
+            background-color: white;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            position: relative;
+        }
+        .user-listing h2 {
+            margin-top: 0;
+        }
+        .user-listing p {
+            margin: 5px 0;
+        }
+        .user-listing .details {
+            color: #777;
+        }
+        .user-listing .actions {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+        }
+        .user-listing .actions button {
+            background-color: #f44336;
+        }
+        .user-listing .actions button.edit {
+            background-color: #2196F3;
+        }
+        .user-listing .actions button:hover {
+            background-color: #d32f2f;
+        }
+        .user-listing .actions button.edit:hover {
+            background-color: #1976D2;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Admin Dashboard - User Management</h1>
+    </div>
+    <div class="navbar">
+        <a href="#dashboard">Dashboard</a>
+        <a href="#jobs">Jobs</a>
+        <a href="#users">Users</a>
+        <a href="#settings">Settings</a>
+        <a href="#logout">Logout</a>
+    </div>
+    <div class="container">
+        
+        <div class="user-listing">
+            <h2>Pham Duc Minh</h2>
+            <p class="details">Email: minh@gmail.com | Role: Admin | Registered: 2 days ago</p>
+            <p>Additional information...</p>
+            <div class="actions">
+                <button class="edit" onclick="editUser()">Edit</button>
+                <button onclick="deleteUser()">Delete</button>
+            </div>
+        </div>
+        <div class="user-listing">
+            <h2>Truong Tuan Vinh</h2>
+            <p class="details">Email: vinh@gmail.com | Role: User | Registered: 3 days ago</p>
+            <p>Additional information...</p>
+            <div class="actions">
+                <button class="edit" onclick="editUser()">Edit</button>
+                <button onclick="deleteUser()">Delete</button>
+            </div>
+        </div>
+        <div class="user-listing">
+            <h2>Do Minh Duc</h2>
+            <p class="details">Email: duc@gmail.com | Role: User | Registered: 4 days ago</p>
+            <p>Additional information...</p>
+            <div class="actions">
+                <button class="edit" onclick="editUser()">Edit</button>
+                <button onclick="deleteUser()">Delete</button>
+            </div>
+        </div>
+    </div>
+    <script>
+        function addUser() {
+            alert('Add User function not implemented.');
+        }
+        function editUser() {
+            alert('Edit User function not implemented.');
+        }
+        function deleteUser() {
+            alert('Delete User function not implemented.');
+        }
+    </script>
+</body>
+</html>
