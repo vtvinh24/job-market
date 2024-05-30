@@ -3,13 +3,13 @@ import { useState, useEffect } from "react";
 
 const API_URL = "http://localhost:8000/api";
 
-const usePostsQuery = () => {
-  const [content, setContents] = useState([]);
+const useMarketContent = () => {
+  const [contents, setContents] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    const fetchContent = async () => {
+    const fetchContents = async () => {
       try {
         const url = `${API_URL}/marketing`;
         const response = await axios.get(url);
@@ -21,10 +21,10 @@ const usePostsQuery = () => {
       }
     };
 
-    fetchContent();
+    fetchContents();
   }, []);
 
-  return { content, loading, error };
+  return { contents, loading, error };
 };
 
-export default usePostsQuery;
+export default useMarketContent;

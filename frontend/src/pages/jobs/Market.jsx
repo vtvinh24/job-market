@@ -3,13 +3,15 @@ import React from 'react';
 import { Container, Row, Col, Form, Button, Dropdown } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import HomeNavbar from '../../components/HomeNavbar.jsx';
+import HelpCenter from '../../components/HelpCenter.jsx';
+import Footer from '../../components/HomeFooter.jsx';
 
 // import './Marketplace.css'; // Custom styles (optional)
 
 function JobMarket() {
   return (
-    <div>
-      <HomeNavbar />
+    <>
+      
       <Container className="mt-3">
         <Row className="align-items-center mb-3">
           <Col md={3}>
@@ -32,24 +34,45 @@ function JobMarket() {
           </Col>
         </Row>
         <Row>
-          <Col className="mb-3">
-            <div className="p-3 border bg-light">Content Box</div>
-          </Col>
-          <Col className="mb-3">
-            <div className="p-3 border bg-light">Content Box</div>
-          </Col>
-          <Col className="mb-3">
-            <div className="p-3 border bg-light">Content Box</div>
-          </Col>
-          <Col className="mb-3">
-            <div className="p-3 border bg-light">Content Box</div>
-          </Col>
-        </Row>
+        <div className="p-3 border bg-light">Content Box</div>
+        </Row>     
+        <Row>
+        <div className="p-3 border bg-light">Content Box</div>
+        </Row> 
+        <Row>
+        <div className="p-3 border bg-light">Content Box</div>
+        </Row> 
+        <Row>
+        <div className="p-3 border bg-light">Content Box</div>
+        </Row>      
+        <Row>
+        <div className="p-3 border bg-light">Content Box</div>
+        </Row>      
+        <Row>
+        <div className="p-3 border bg-light">Content Box</div>
+        </Row>      
+        <Row>
+        <div className="p-3 border bg-light">Content Box</div>
+        </Row>      
+        <Row>
+        <div className="p-3 border bg-light">Content Box</div>
+        </Row>      
+        <Row>
+        <div className="p-3 border bg-light">Content Box</div>
+        </Row>      
+        <Row>
+        <div iv className="p-3 border bg-light">Content Box</div>
+        </Row>      
+        <Row>
+        <div className="p-3 border bg-light">Content Box</div>
+        </Row>      
+        <Row>
+        <div className="p-3 border bg-light">Content Box</div>
+        </Row>     
       </Container>
-      <footer className="text-end p-3">
-        <div className="text-muted">Help Center</div>
-      </footer>
-    </div>
+      <HelpCenter />
+      
+    </>
   );
 }
 
