@@ -1,14 +1,30 @@
 // Marketplace.js
-import React from 'react';
+import React, { useState } from 'react';
 import { Container, Row, Col, Form, Button, Dropdown } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import HomeNavbar from '../../components/HomeNavbar.jsx';
 import HelpCenter from '../../components/HelpCenter.jsx';
 import Footer from '../../components/HomeFooter.jsx';
+import SearchBar from '../../components/SearchBar.jsx';
 
 // import './Marketplace.css'; // Custom styles (optional)
 
 function JobMarket() {
+  // const [searchQuery, setSearchQuery] = useState('');
+
+  // const items = [
+  //   'Apple',
+  //   'Banana',
+  //   'Orange',
+  //   'Mango',
+  //   'Pineapple',
+  //   'Strawberry'
+  // ];
+
+  // const filteredItems = items.filter(item =>
+  //   item.toLowerCase().includes(searchQuery.toLowerCase())
+  // );
+
   return (
     <>
 
@@ -19,6 +35,7 @@ function JobMarket() {
       <Container className="mt-3">
         <Row className="align-items-center mb-3">
           <Col md={3}>
+            {/* <SearchBar onSearch={setSearchQuery}/> */}
             <Form.Control type="text" placeholder="Search" />
           </Col>
           <Col md={3}>
@@ -37,6 +54,15 @@ function JobMarket() {
             <Form.Control type="text" placeholder="Price" />
           </Col>
         </Row>
+        {/* <div>
+          <h1>Search Bar Example</h1>
+          <SearchBar onSearch={setSearchQuery} />
+          <ul>
+            {filteredItems.map((item, index) => (
+              <li key={index}>{item}</li>
+            ))}
+          </ul>
+        </div> */}
         <Row>
         <div className="p-3 border bg-light">Content Box</div>
         </Row>     

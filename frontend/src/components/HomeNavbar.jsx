@@ -6,7 +6,7 @@ const HomeNavbar = ({ user }) => {
     return (
         <>
         <Navbar bg="light" expand="lg">
-            <Navbar.Brand href="#" style={{backgroundColor:'darkgray', padding: '20px 40px 20px 40px'}}>Logo</Navbar.Brand>
+            <Navbar.Brand href="/home" style={{backgroundColor:'darkgray', padding: '20px 40px 20px 40px'}}>Logo</Navbar.Brand>
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav" style={{ justifyContent: 'space-between',marginLeft: 'auto' }}>
                 {/* <Nav className="mr-auto container" style={{ justifyContent: 'space-evenly'}}>
