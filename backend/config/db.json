@@ -1,5 +1,8 @@
 {
-\>>>>>>> main
+
+    "user": "sa",
+    "password": "123",
+
     "server": "localhost",
     "database": "Test1",
     "encrypt": false
