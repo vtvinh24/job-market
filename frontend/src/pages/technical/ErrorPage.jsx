@@ -10,7 +10,7 @@ function MyComponent() {
           <Col md={12} lg={8} xl={6}>
             <div className="text-center">
               <h1 className="text-9xl font-bold text-white md:text-4xl">
-                ERROR! 
+                ERROR!
                 <br />
                 <span className="text-4xl text-white ">
                   Something unexpected happens.

@@ -11,7 +11,7 @@ function MyComponent() {
             <div className="text-center">
               <h1 className="text-9xl font-bold text-black md:text-4xl">
                 <span className="text-black">404</span>
-                <span className="text-8xl text-black">. NOT FOUND </span>
+                <span className="text-8xl text-black">. NOT FOUND</span>
                 <br />
                 <span className="text-4xl text-black ">
                   This page is not available on our platform.
