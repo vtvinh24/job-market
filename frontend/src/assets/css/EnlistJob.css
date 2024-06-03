@@ -1,0 +1,97 @@
+.job-form-container {
+  padding: 20px;
+ 
+  margin: 0 auto;
+}
+.section {
+  margin-bottom: 10px;
+}
+
+.section h2 {
+  margin-bottom: 10px;
+}
+
+.back-button {
+  background-color: #007bff;
+  color: white;
+  border-radius: 20px;
+  padding: 10px;
+  cursor: pointer;
+  width: 100px;
+}
+
+.job-form {
+  padding-left: 15%;
+}
+
+.header1{
+  padding-left: 580px;
+  font-weight: bolder;
+  font-size: 50px;
+  padding-bottom: 15px;
+}
+.header2{
+  width: 309px;
+  color: var(--fg-6, #0062A7);
+font-family: 'Times New Roman', Times, serif;
+font-size: 25px;
+font-style: normal;
+font-weight: 200;
+line-height: normal;
+padding-left:50px;
+}
+
+label {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 10px;
+}
+.title{
+  padding-left: 10px;
+  width:910px;
+}
+.customIteration{
+  width: 500px;
+  margin-left: 8px;
+}
+
+input, select, textarea {
+  padding: 10px;
+  margin-top: 5px;
+  border: 1px solid #ccc;
+  border-radius: 20px;
+  background-color: aliceblue;
+  color: black;
+  margin-left: 5px;
+}
+.description{
+  width: 980px;
+  height: 500px;
+  margin-left: 8px;
+  border-radius: 10px;
+}
+.contactInfo{
+  width: 900px;
+}
+
+.currency{
+  margin-left: 10px;
+}
+
+.workType{
+  width:200px;
+}
+.payWithBalance{
+  padding-left: 30px;
+}
+.enlist-button {
+  background-color: #007bff;
+  color: white;
+  padding: 10px;
+  cursor: pointer;
+  font-size: 16px;
+  border-radius: 20px;
+  margin-left: 35%;
+  margin-bottom: 20px;
+  width:150px;
+}
