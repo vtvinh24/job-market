@@ -13,8 +13,8 @@ import Login from "./pages/auth/Login";
 import Register from "./pages/auth/Register";
 import AdminDashboard from "./pages/home/Dashboard"
 import Jobs from "./pages/home/Jobs"
-import Setting from "./pages/home/settings"
-import Users from "./pages/home/users"
+import Setting from "./pages/home/Setting"
+import Users from "./pages/home/Users"
 //import AddJob from "./pages/jobs/Addjob";
 function App() {
   return (
