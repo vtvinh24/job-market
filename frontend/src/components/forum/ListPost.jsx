@@ -18,21 +18,21 @@ const ListPost = () => {
   return (
     <div>
       {posts.map((post) => (
-        <Card className="post-card" key={post.id}>
+        <Card className="post-card" key={post.post_id}>
           <Link
-            to={`/posts/${post.id}`}
+            to={`/posts/${post.post_id}`}
             style={{ textDecoration: "none", color: "inherit" }}
           >
             <Card.Body>
               <Card.Title as="h2" style={{ color: "blue" }}>
-                {post.title}
+                {post.post_title}
               </Card.Title>
               <Card.Text className="post-card-content">
-                {post.content}
+                {post.post_content}
               </Card.Text>
               <Card.Link
                 href={`/users/${post.author}`}
-                className="post-author"
+                className="card-author"
                 data-toggle="tooltip"
                 title={`Author: ${post.author}`}
                 onClick={(e) => e.stopPropagation()}
@@ -43,7 +43,7 @@ const ListPost = () => {
                 className="post-card-content"
                 style={{ textAlign: "right", fontSize: "small" }}
               >
-                {getMoment(post.created_timestamp)}
+                {getMoment(post.post_created_date)}
               </Card.Text>
             </Card.Body>
           </Link>

@@ -1,10 +1,11 @@
 import React from 'react';
 import Carousel from 'react-bootstrap/Carousel';
-import useNewsContent from "../hooks/useNewsContent.js";
+import useMarketContent from "../hooks/useMarketContent.js";
+import { getMoment } from "../functions/Converter";
+import { Card } from "react-bootstrap";
 
 function HomeCarousel() {
-
-  const {news, loading, error } = useNewsContent();
+  const {contents, loading, error } = useMarketContent();
 
   if (loading) {
     return <div>Loading...</div>;
@@ -12,22 +13,29 @@ function HomeCarousel() {
 
   if (error) {
     return <div>Error: {error.message}</div>;
-  }
+  }  
 
   return (
+    <>
     <div className='carousel-container'>
-      <Carousel data-bs-theme="dark" className='Carousel'>
-        <Carousel.Item>
-          <div className="p-3 border bg-light text-center content-boxs">Content Box 1</div>
-        </Carousel.Item>
-        <Carousel.Item>
-          <div className="p-3 border bg-light text-center content-boxs">Content Box 2</div>
-        </Carousel.Item>
-        <Carousel.Item>
-          <div className="p-3 border bg-light text-center content-boxs">Content Box 3</div>
-        </Carousel.Item>
+      <Carousel data-bs-theme="dark" className='Carousel'>        
+        {contents.map((marketcontent) => (
+        <Carousel.Item className='content-box'>  
+        <Card className="post-card " key={marketcontent.id}>          
+          <Card.Body style={{height: '200px'}}>
+            <Card.Title as="h2" style={{ color: "blue" }}>
+              {marketcontent.topic}
+            </Card.Title>
+            <Card.Text className="post-card-content">
+              {marketcontent.content}
+            </Card.Text>
+          </Card.Body>
+      </Card>
+      </Carousel.Item>
+      ))}
       </Carousel>
     </div>
+    </>
   );
 }
 
