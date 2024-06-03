@@ -1,6 +1,8 @@
 {
+
     "user": "khanhnqhe81237",
     "password": "123",
+    
     "server": "localhost",
     "database": "Test1",
     "encrypt": false
