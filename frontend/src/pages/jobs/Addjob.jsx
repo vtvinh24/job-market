@@ -2,8 +2,6 @@ import React from "react";
 import { Container, Row, Col, Form, Button, Dropdown } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import HomeNavbar from "../../components/HomeNavbar.jsx";
-import "bootstrap/dist/css/bootstrap.min.css";
-import "../../assets/css/AddJob.css";
 import HomeFooter from "../../components/HomeFooter.jsx";
 import HelpCenter from "../../components/HelpCenter.jsx";
 function AddJob() {

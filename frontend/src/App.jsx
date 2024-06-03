@@ -5,11 +5,11 @@ import Forum from "./pages/forum/Forum";
 import Market from "./pages/jobs/Market";
 import HomeGuest from "./pages/home/HomeGuest";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import HomeNavbar from "./components/HomeNavbar";
-import HomeFooter from "./components/HomeFooter";
 import AddPost from "./pages/forum/AddPost";
 import PostDetail from "./pages/forum/PostDetail";
-import AddJob from "./pages/jobs/AddJob";
+import AddJob from './pages/jobs/Addjob';
+import Login from './pages/auth/Login';
+import Register from './pages/auth/Register';
 function App() {
   return (
     <BrowserRouter>
