@@ -9,15 +9,13 @@ function MyComponent() {
         <Row className="justify-content-center mt-20">
           <Col md={12} lg={8} xl={6}>
             <div className="text-center">
-              <h1 className="text-9xl font-bold text-black md:text-4xl">
-                <span className="text-black">404</span>
-                <span className="text-8xl text-black">. NOT FOUND </span>
-                <br />
-                <span className="text-4xl text-black ">
-                  This page is not available on our platform.
+              <h1 className="text-9xl font-bold text-white md:text-4xl">
+                <span className="text-white">NO PERMISSION</span> <br />
+                <span className="text-4xl text-white ">
+                  Sorry, you don’t have permission to view this page.
                 </span>
                 <br />
-                <span className="text-4xl text-black ">
+                <span className="text-4xl text-white ">
                   If you believe this is an error, please contact our staff.
                 </span>
               </h1>
