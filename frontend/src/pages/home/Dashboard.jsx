@@ -14,8 +14,8 @@ const AdminDashboard = () => {
           <Nav.Link href="/jobs">Jobs</Nav.Link>
           <Nav.Link href="/users">Users</Nav.Link>
           <Nav.Link href="/settings">Settings</Nav.Link>
-          <Nav.Link href="/logout">Logout</Nav.Link>
         </Nav>
+
       </Navbar>
       <Container fluid className="mt-3">
         <Row>
@@ -26,7 +26,11 @@ const AdminDashboard = () => {
               <Nav.Link href="/jobs" className="text-white">Jobs</Nav.Link>
               <Nav.Link href="/users" className="text-white">Users</Nav.Link>
               <Nav.Link href="/settings" className="text-white">Settings</Nav.Link>
-              <Nav.Link href="/logout" className="text-white">Logout</Nav.Link>
+              <Row>
+                <Col><Button variant="primary" href="/home">Home</Button></Col>
+                <Col><Button variant="outline-light" href="/logout">Logout</Button></Col>
+              </Row>
+
             </Nav>
           </Col>
           <Col md={9} className="p-4">

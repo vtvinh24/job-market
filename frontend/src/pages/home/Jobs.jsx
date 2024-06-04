@@ -26,7 +26,7 @@ const Jobs = () => {
                         <Nav.Link href="/jobs">Jobs</Nav.Link>
                         <Nav.Link href="/users">Users</Nav.Link>
                         <Nav.Link href="/settings">Settings</Nav.Link>
-                        <Nav.Link href="/logout">Logout</Nav.Link>
+                        
                     </Nav>
                 </Container>
             </Navbar>
