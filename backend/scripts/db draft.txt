@@ -1,0 +1,172 @@
+By default: use SQL Server, any $_action_time is datetime, default to getdate(), also columns should be referenced if needed
+
+table: auth
+user_id INT IDENTITY(1,1) PRIMARY KEY,
+username NVARCHAR(50) UNIQUE,
+hash NVARCHAR(255) NOT NULL,
+user_created_date DATETIME NOT NULL DEFAULT GETDATE(),
+last_session DATETIME NULL DEFAULT GETDATE()
+
+table: auth_log
+user_id foreign key reference auth(user_id)
+auth_action varchar(16) not null -- register, login, logout
+auth_time datetime not null default GETDATE()
+
+table: session -- suggest me this table, as I don't know much about user sessions
+session_id primary key not null
+user_id foreign key reference user(user_id)
+session_token not null
+session_expiration not null default getdate() -- plus 1 day
+session_data -- json
+
+table: post
+post_id INT IDENTITY(1,1) PRIMARY KEY,
+post_is_original boolean -- true if the post is Original Post
+post_title NVARCHAR(255) NOT NULL,
+post_content NVARCHAR(MAX) NOT NULL,
+post_created_date DATETIME NOT NULL DEFAULT GETDATE(),
+user_id NVARCHAR(50) NOT NULL,
+post_status NVARCHAR(50) NOT NULL,
+FOREIGN KEY (user_id) REFERENCES Users(user_id)
+
+table: post_log
+post_id reference post(post_id)
+post_action varchar(16) not null -- create, edit, delete, archive, ...
+post_action_time datetime default getdate()
+
+table: post_history
+post_id reference post(post_id)
+post_content nvarchar(max)
+post_updated_time datetime default getdate()
+
+table: job
+job_id identity(1,1) not null
+job_creator varchar(32) not null reference Users(user_id)
+job_created_time datetime not null default getdatetime()
+job_title nvarchar(max) not null
+job_work_type boolean not null
+job_work_location nvarchar(max)
+job_tags varchar(max)
+job_max_applications int default 0
+job_approval_method boolean not null default true
+job_recuits_number int not null
+job_recruits_start_date date default getdate()
+job_recruits_end_date date
+job_recruitment_status boolean not null default true n 
+job_compensation_platform boolean not null default false
+job_compensation_type char(12) not null
+job_compensation_amount int 
+job_compensation_currency char(4)
+job_compensation_period char(6)
+job_custom_iteration char(24)
+job_hours_per_day
+job_description not null
+job_contact_info nvarchar(max) not null
+
+table: job_log
+job_id reference job(job_id)
+job_action varchar(16) not null -- create, edit, delete, status
+job_action_time datetime default getdate()
+
+table: job_requirement
+requirement_id identity(1,1) primary key
+job_id reference job(job_id) not null
+requirement_type char(32) not null
+requirement_content nvarchar(max)
+
+table: job_history
+user_id reference user(user_id)
+job_id reference job(job_id) not null
+job_status char(12) not null -- ongoing, done, pending, cancelled
+
+table: profile
+user_avatar (suggest me this one)
+user_id primary key reference Users(user_id)
+user_bio nvarchar(256)
+user_dob date -- date of birth
+user_address nvarchar(max)
+user_citizen_id nvarchar(32) -- some country ID may have letters?
+user_email nvarchar(320)
+user_phone_number nvarchar(16) -- some country may have special letters such as p, w, +?
+
+table: profile_log
+user_id
+profile_action_time
+profile_action nvarchar(max) -- should store json to store old and new version of profile data
+
+table: linked_profile
+user_id foreign reference Users(user_id)
+linked_profile_id primary key
+linked_profile_url
+linked_profile_type boolean -- professional (github, linkedin, ... vs social (fb, x, ...)
+
+
+table: work_xp
+user_id foreign key reference Users(user_id)
+work_id primary key identity(1,1)
+work_job_title
+work_job_description
+work_company
+work_start_date
+work_end_date
+work_other_info
+
+table: user_title -- (dr, professor, ...)
+user_id
+title_id -- one user can have multiple title
+
+table: title
+title_id
+title
+
+table: accomplishment
+user_id foreign key reference user(user_id)
+accomplishment_id
+accomplishment_url
+accomplishment_location
+accomplishment_year -- grad year
+accomplishment_description
+
+table: user_skill
+user_id foreign key reference user(user_id)
+skill_id reference skill(skill_id)
+skill_level
+
+table: skill
+skill_id
+skill_name
+
+table: job_preference
+user_id primary key reference user(user_id)
+job_interest
+preferred_location
+salary_expectation
+availability char(16) -- NONE, SEEKING, WORKING
+
+table: user_balance
+user_id primary key reference user(user_id)
+balance -- prefer decimal format #####.##
+
+
+table: payment_method
+payment_method_id INT PRIMARY KEY,
+payment_method_name VARCHAR(50) NOT NULL,
+payment_method_type VARCHAR(20) NOT NULL  -- e.g. credit_card, paypal, etc.
+
+table: user_payment_method
+user_id reference user(user_id),
+payment_method_id reference payment_method(payment_method_id)
+payment_method_details VARCHAR(200) NOT NULL,  -- e.g. credit card number, paypal email, etc.
+is_default BOOLEAN NOT NULL DEFAULT FALSE
+
+table: payment_method_log
+user_id reference user(user_id)
+payment_method_action varchar(16) -- add, edit, remove
+payment_method_action_time datetime default getdate()
+
+table: payment_history
+tx_id primary key -- suggest me a data type
+user_id reference user(user_id)
+tx_action varchar(8) -- deposit, withdraw
+tx_action_value -- sync data type with user_balance(balance)
+tx_action_target varchar(32) -- destination or source
