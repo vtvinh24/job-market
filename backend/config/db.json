@@ -4,6 +4,6 @@
     "password": "123",
 
     "server": "localhost",
-    "database": "Test1",
+    "database": "mJOB",
     "encrypt": false
 }
