@@ -5,13 +5,15 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import HomeNavbar from '../../components/HomeNavbar.jsx';
 import HelpCenter from '../../components/HelpCenter.jsx';
 import Footer from '../../components/HomeFooter.jsx';
-import SearchBar from '../../components/SearchBar.jsx';
+import SearchBar from '../../components/job/SearchBar.jsx';
 import FilterPrice from '../../components/job/FilterPrice.jsx';
 
 // import './Marketplace.css'; // Custom styles (optional)
 
 function JobMarket() {
-  // const [searchQuery, setSearchQuery] = useState('');
+  const [searchQuery, setSearchQuery] = useState('');
+  const [priceStart, setPriceStart] = useState('');
+  const [priceEnd, setPriceEnd] = useState('');
 
   // const items = [
   //   'Apple',
@@ -36,8 +38,7 @@ function JobMarket() {
       <Container className="mt-3">
         <Row className="align-items-center mb-3">
           <Col md={3}>
-            {/* <SearchBar onSearch={setSearchQuery}/> */}
-            <Form.Control type="text" placeholder="Search" />
+            <SearchBar onSearch={setSearchQuery} /> 
           </Col>
           <Col md={3}>
             <Dropdown>
@@ -51,13 +52,21 @@ function JobMarket() {
               </Dropdown.Menu>
             </Dropdown>
           </Col>
-          <Col md={3}>
-            <Form.Control type="text" placeholder="Price" />
+          <Col md={6}>
+            <FilterPrice onStartPrice={setPriceStart} onEndPrice={setPriceEnd}/>
           </Col>
         </Row>
-        <Row>
-          <FilterPrice/>
+        {/* <Row style={{display: 'flex', alignItems: 'center'}}>
+          <Col md={4} style={{display: 'flex', alignItems: 'center'}}> <SearchBar onSearch={setSearchQuery} />   </Col>     
+          <Col md><FilterPrice onStartPrice={setPriceStart} onEndPrice={setPriceEnd}/></Col>
         </Row>
+        <h1>{priceStart}</h1>
+        <h1>{priceEnd}</h1> */}
+        {/*<Row style={{display: 'flex', alignItems: 'center'}}>
+        
+           <Col><SearchBar/></Col>
+          <Col><FilterPrice/></Col> 
+        </Row>*/}
         {/* <div>
           <h1>Search Bar Example</h1>
           <SearchBar onSearch={setSearchQuery} />
