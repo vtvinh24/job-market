@@ -19,10 +19,10 @@ const Setting = () => {
                 <Container>
                     <Navbar.Brand href="#dashboard">Dashboard</Navbar.Brand>
                     <Nav className="ml-auto">
-                        <Nav.Link href="#jobs">Jobs</Nav.Link>
-                        <Nav.Link href="#users">Users</Nav.Link>
-                        <Nav.Link href="#settings">Settings</Nav.Link>
-                        <Nav.Link href="#logout">Logout</Nav.Link>
+                        <Nav.Link href="/jobs">Jobs</Nav.Link>
+                        <Nav.Link href="/users">Users</Nav.Link>
+                        <Nav.Link href="/settings">Settings</Nav.Link>
+                        <Nav.Link href="/logout">Logout</Nav.Link>
                     </Nav>
                 </Container>
             </Navbar>
