@@ -73,20 +73,25 @@ input, select, textarea {
   margin-left: 8px;
   border-radius: 10px;
 }
-.contactInfo{
-  width: 900px;
+.circle-button {
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  font-size: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  background-color: #007bff; /* Bootstrap primary color */
+  color: white;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-right: 95%;
 }
 
-.currency{
-  margin-left: 10px;
-}
 
-.workType{
-  width:200px;
-}
-.payWithBalance{
-  padding-left: 30px;
-}
+
 .enlistbutton {
   background-color: #007bff;
   color: white;
