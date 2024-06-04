@@ -6,6 +6,7 @@ import HomeNavbar from '../../components/HomeNavbar.jsx';
 import HelpCenter from '../../components/HelpCenter.jsx';
 import Footer from '../../components/HomeFooter.jsx';
 import SearchBar from '../../components/SearchBar.jsx';
+import FilterPrice from '../../components/job/FilterPrice.jsx';
 
 // import './Marketplace.css'; // Custom styles (optional)
 
@@ -53,6 +54,9 @@ function JobMarket() {
           <Col md={3}>
             <Form.Control type="text" placeholder="Price" />
           </Col>
+        </Row>
+        <Row>
+          <FilterPrice/>
         </Row>
         {/* <div>
           <h1>Search Bar Example</h1>

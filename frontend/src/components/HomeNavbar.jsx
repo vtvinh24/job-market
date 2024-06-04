@@ -30,7 +30,7 @@ const HomeNavbar = ({ user }) => {
                     </Nav>
                 ) : (
                     <Nav className='container' style={{ justifyContent: 'flex-end' }}>
-                        <Button variant="outline-secondary" onClick={() => window.location.href = '/login'}>Login</Button>
+                        <Button variant="outline-secondary" onClick={() => window.location.href = '/login'} style={{ marginRight: '10px' }}>Login</Button>
                         <Button variant="outline-secondary" onClick={() => window.location.href = '/signup'}>Sign Up</Button>
                     </Nav>
                     
