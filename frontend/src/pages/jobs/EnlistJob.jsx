@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import '../../assets/css/EnlistJob.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Container, Button, Row, Form, Col } from 'react-bootstrap';
@@ -6,7 +6,11 @@ import backgroundImg from '../../assets/img/Stole.jpg'; // Assuming your image i
 import HomeNavbar from '../../components/HomeNavbar.jsx';
 import Footer from '../../components/HomeFooter.jsx';
 const EnlistJob = () => {
+  const [showAdditionalRequirements, setShowAdditionalRequirements] = useState(false);
 
+  const toggleAdditionalRequirements = () => {
+    setShowAdditionalRequirements(!showAdditionalRequirements);
+  };
 /* 
 
        COL 1 | COL 2 | COL 3
@@ -102,6 +106,7 @@ ROW 3  TAGS
                   </Form.Control>
               </Form.Group>
             </Col>
+            <Row><h3 className='header2'>Requirements</h3></Row>
             <Row>
             <Col md={3}>
               <Form.Group controlId="CV">
@@ -110,7 +115,27 @@ ROW 3  TAGS
                </Form.Control>
               </Form.Group>
             </Col>
+            <Col>
+            <Button  className="circle-button" onClick={toggleAdditionalRequirements}>+</Button>
+            </Col>
             </Row>
+            {showAdditionalRequirements && (
+            <Row>
+              <Col md={3}>
+                <Form.Group controlId="additionalRequirement1">
+                  <Form.Label>Age</Form.Label>
+                  <Form.Control type="text" placeholder="Enter age requirement" />
+                </Form.Group>
+              </Col>
+              <Col md={3}>
+                <Form.Group controlId="additionalRequirement2">
+                  <Form.Label>Gender</Form.Label>
+                  <Form.Control type="text" placeholder="Enter gender requirement" />
+                </Form.Group>
+              </Col>
+              {/* Add more additional requirements here if needed */}
+            </Row>
+          )}
             <Row><h3 className='header2'>Compensation</h3></Row>
             <Row>
             <Col md={3}>
@@ -149,6 +174,8 @@ ROW 3  TAGS
                   <option>month</option>
                   <option>week</option>
                   <option>day</option>
+                  <option>hour</option>
+                  <option>custom</option>
                   </Form.Control>
             </Col>
             <Col md={5}>
