@@ -26,6 +26,20 @@ VALUES
 -- passWord10
 GO
 
+INSERT INTO profile (user_id, user_bio, user_dob, user_address, user_citizen_id, user_email, user_phone_number)
+VALUES
+(1, '5 năm cống hiến tại AB Studio', '20000215', '25 ABC, FE DAB, BAREY', '001199xxxxxx', 'nguyenan1999@abstudio', '03457924816'),
+(2, 'Cố vấn Tổng thống tối cao', '19870130', '25 ABC, FE DAB, BAREY', '001199xxxxxx', 'nguyenan1999@abstudio', '03457924816'),
+(3, 'bio', '20000215', '2 DEF, WX YZ, HURON', '065100', 'trannam29@gmailx.com', '0346171416'),
+(4, 'bio', '20000215', '39 MNO, MN OPQ, FAROA', '079100', '__OwO__@hotxmail.com', '0342366328'),
+(5, 'bio', '20000215', '82 JKL, MN OPQ, FAROA', '068100', 'TheRealAdmin@gmailx.com', '0345281869'),
+(6, 'bio', '20000215', '71 ABC, MN OPQ, HURON', '026100', 'admin01@yahoox.com', '0348517508'),
+(7, 'bio', '20000215', '53 DEF, RS TUV, FAROA', '086100', 'he250178@yahoox.com', '0345520352'),
+(8, 'bio', '20000215', '95 ABC, XY ZAB, BAREY', '042100', 'hoang_tuna@yahoox.com', '0344500911'),
+(9, 'bio', '20000215', '48 JKL, MN OPQ, FAROA', '083100', 'NguyenKhanh@gmailx.com', '0345034158'),
+(10, 'bio', '20000215', '88 GHI, XY ZAB, BAREY', '087100', 'TrumBacKi@hotmailx.com', '0341511921');
+GO
+
 INSERT INTO auth_log (user_id, auth_action, auth_time)
 VALUES
 (1, 'REGISTER', '20190618 11:34:09 AM'),
@@ -93,7 +107,24 @@ INSERT INTO job(user_id, job_title, job_work_type, job_work_location, job_tags, 
 VALUES
 -- job_work_type: 0 = office, 1 = remote
 -- method: 0 = auto, 1 = manual
-(1, 'Phiên dịch', 1, 'Online', 'abstudio studio online english translate commission', 3, 0, 'AB Studio cần tuyển 3 bạn phiên dịch tài liệu sang tiếng Anh, không dịch máy.', 'nguyenan1999@abstudio.vn hoặc 0357924816'),
-(1, 'Người mẫu', 0, 'AB Studio, số 123, 69 Luis St., Quận XX, Hà Nội', 'model fashion abstudio studio office', 1, 1, 'AB Studio tuyển 1 người mẫu ảnh nữ.', 'nguyenan1999@abstudio.vn hoặc 0357924816'),
-(2, 'Nhà quảng cáo', 1, 'Online', 'marketing DeNhatQuocSu advertisement', 1, 1, 'Đệ Nhất Quốc Sư tuyển gấp 1 nhà quảng cáo.', 'tigertran@xmail.com')
+(1, 'Phiên dịch', 1, 'Online', 'abstudio studio online english translate commission', 100, 0, 'AB Studio cần tuyển 3 bạn phiên dịch tài liệu sang tiếng Anh, không dịch máy.', 'nguyenan1999@abstudio.vn hoặc 0357924816'),
+(1, 'Người mẫu', 0, 'AB Studio, số 123, 69 Luis St., Quận XX, Hà Nội', 'model fashion abstudio studio office', 100, 1, 'AB Studio tuyển 1 người mẫu ảnh nữ.', 'nguyenan1999@abstudio.vn hoặc 0357924816'),
+(2, 'Nhà quảng cáo', 1, 'Online', 'marketing DeNhatQuocSu advertisement', 100, 1, 'Đệ Nhất Quốc Sư tuyển gấp 1 nhà quảng cáo.', 'tigertran@xmail.com')
 GO
+
+-- INSERT INTO job_compensation(job_id, job_compensation_platform, job_compensation_type, job_compensation_amount, job_compensation_currency, job_compensation_period)
+
+INSERT INTO job_recruitment (job_id, job_recruitment_number, job_recruitment_deadline)
+VALUES
+(1, 3, '20240731'),
+(2, 1, '20240731'),
+(3, 1, '20241231');
+GO
+
+INSERT INTO compensation_type (compensation_type)
+VALUES
+('HOURLY'),
+('MONTHLY'),
+('ONETIME');
+GO
+

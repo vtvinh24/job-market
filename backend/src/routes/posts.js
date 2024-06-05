@@ -4,11 +4,11 @@ const db = require("../models/DBContext");
 const router = express.Router();
 
 const SELECT_POSTS_BY_DATE_DESC =
-  "SELECT post_id, post_title, post_content, Posts.user_id AS user_id, Users.username AS author, post_created_date FROM Posts JOIN Users ON Posts.user_id = Users.user_id ORDER BY post_created_date DESC";
+  "SELECT post_id, post_title, post_content, auth.username AS author, post_created_date FROM post JOIN auth ON post.user_id = auth.user_id ORDER BY post_created_date DESC";
 const SELECT_POST_BY_ID =
-  "SELECT post_id, post_title, post_content, Posts.user_id AS user_id, Users.username AS author, post_created_date FROM Posts JOIN Users ON Posts.user_id = Users.user_id WHERE Posts.post_id = @id";
+  "SELECT post_id, post_title, post_content, auth.username AS author, post_created_date FROM post JOIN auth ON post.user_id = auth.user_id WHERE post_id = @id";
 const INSERT_POST =
-  "INSERT INTO Posts (post_title, post_content, user_id, post_status) VALUES (@post_title, @post_content, @user_id, 'published')";
+  "INSERT INTO post (post_title, post_content, user_id, post_status) VALUES (@post_title, @post_content, @user_id, 'published')";
 
 router.get("/:id", async (req, res) => {
   try {
