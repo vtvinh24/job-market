@@ -8,7 +8,8 @@ const port = 8000;
 // CORS rule
 app.use(
   cors({
-    origin: config.cors.origin,
+    // origin: config.cors.origin,
+    origin: "http://localhost:5173",
   })
 );
 

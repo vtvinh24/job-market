@@ -5,7 +5,7 @@ import { Button, Row } from "react-bootstrap";
 const Forum = () => {
   return (
     <div className="forum-body">
-      <Button className="forum-button" href="/add-post">
+      <Button className="forum-button" href="/forum/add">
         Create
       </Button>
 
