@@ -5,7 +5,7 @@ import useCountUser from '../../hooks/useCountUser.js';
 
 const AdminDashboard = () => {
 
-  const { count, loading, error } = useCountUser();
+  const { count: countUsers , loading, error } = useCountUser();
 
   return (
     <>
@@ -42,15 +42,15 @@ const AdminDashboard = () => {
               <Col md={4}>
                 <Card className="text-white bg-success text-center p-4">
                   <Card.Body>
-                    <Card.Title></Card.Title>
-                    <Card.Text>Total Jobs</Card.Text>
+                    <Card.Title>{countUsers}</Card.Title>
+                    <Card.Text>Total Users</Card.Text>
                   </Card.Body>
                 </Card>
               </Col>
               <Col md={4}>
                 <Card className="text-white bg-success text-center p-4">
                   <Card.Body>
-                    <Card.Title>80</Card.Title>
+                    <Card.Title>123</Card.Title>
                     <Card.Text>Active Users</Card.Text>
                   </Card.Body>
                 </Card>
