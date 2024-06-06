@@ -1,8 +1,6 @@
 {
-
     "user": "sa",
-    "password": "123",
-
+    "password": "1400",
     "server": "localhost",
     "database": "mJOB",
     "encrypt": false
