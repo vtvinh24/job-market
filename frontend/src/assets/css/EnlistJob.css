@@ -1,3 +1,24 @@
+.circle-button {
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  font-size: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  background-color: white; /* Bootstrap primary color */
+  color: white;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  
+}
+
+.circle-button:hover {
+  background-color: black; /* Darker shade of Bootstrap primary color */
+}
+
 .container{
   margin-bottom: 20px;
 }
@@ -18,7 +39,6 @@
 
 .form{
   display: block; /* Hidden by default */
-  background-color: ;
   z-index: 1; /* Sit on top */
   left: 0;
   top: 0;
@@ -26,7 +46,7 @@
   height: 100%; /* Full height */
   padding-bottom: 40px; 
   background-color:whitesmoke;
-  padding-top: 20px;
+  padding-top: 5px;
 }
 
 .header1{
@@ -73,23 +93,38 @@ input, select, textarea {
   margin-left: 8px;
   border-radius: 10px;
 }
-.circle-button {
-  border-radius: 50%;
-  width: 40px;
-  height: 40px;
-  font-size: 24px;
+
+.mt-3{
+  margin-right: 50%;
+}
+.additional-requirement-wrapper {
   display: flex;
   align-items: center;
-  justify-content: center;
-  padding: 0;
-  background-color: #007bff; /* Bootstrap primary color */
-  color: white;
-  border: none;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-  margin-right: 95%;
+  margin-top: 10px;
 }
 
+.additional-requirement-input {
+  flex: 1;
+  margin-right: 5px;
+  width: 200px; /* Adjust the width as needed */
+}
+
+.remove-button {
+  background-color: #dc3545; /* Bootstrap danger color */
+  color: white;
+  border: none;
+  padding: 5px 10px;
+}
+
+.remove-button:hover {
+  background-color: #c82333; /* Darker shade of Bootstrap danger color */
+}
+.contactinfo{
+  margin-top: 3px;
+}
+.headinfo{
+  margin-top: 20px;
+}
 
 
 .enlistbutton {

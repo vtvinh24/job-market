@@ -6,15 +6,32 @@ import backgroundImg from '../../assets/img/Stole.jpg'; // Assuming your image i
 import HomeNavbar from '../../components/HomeNavbar.jsx';
 import Footer from '../../components/HomeFooter.jsx';
 const EnlistJob = () => {
-  const [showAdditionalRequirements, setShowAdditionalRequirements] = useState(false);
+  const [additionalRequirements, setAdditionalRequirements] = useState([]);
 
-  const toggleAdditionalRequirements = () => {
-    setShowAdditionalRequirements(!showAdditionalRequirements);
+  const handleAddRequirement = () => {
+    setAdditionalRequirements([...additionalRequirements, ""]);
   };
+  
+  const [isChecked, setIsChecked] = useState(false);
+
+  const handleCheckboxChange = () => {
+    setIsChecked(!isChecked);
+  };
+  const handleRemoveRequirement = (indexToRemove) => {
+    setAdditionalRequirements(additionalRequirements.filter((_, index) => index !== indexToRemove));
+  };
+  const handleRequirementChange = (index, value) => {
+    const updatedRequirements = additionalRequirements.map((req, i) => 
+      i === index ? value : req
+    );
+    setAdditionalRequirements(updatedRequirements);
+  };
+
+  
 /* 
 
        COL 1 | COL 2 | COL 3
-ROW 1  TITLE 
+ROW 1  TITLE  
 ROW 2  WORK TYPE | LOCATION
 ROW 3  TAGS
 
@@ -33,13 +50,16 @@ ROW 3  TAGS
           <Button href="/" className='back-button'>Back</Button>
         <Row><h1 className='header1'>Enlist a Job</h1></Row>
           <Row><h3 className='header2'>General Information</h3></Row>
-          <Row><Form.Group controlId="title">
+          <Row className="m-auto align-self-center w-100">
+          <Col md={{ span: 6, offset: 3 }}>
+            <Form.Group controlId="title">
             <Form.Label>Job Title</Form.Label>
-            <Form.Control type="text" placeholder="Enter job title" className='input' />
+            <Form.Control type="text" placeholder="Enter job title" className='input' ></Form.Control>
           </Form.Group>
+          </Col>
           </Row>
-          <Row>
-            <Col md={3}>
+          <Row  className="m-auto align-self-center w-100">
+            <Col md={6}>
               <Form.Group controlId="workType">
                 <Form.Label>Work Type</Form.Label>
                 <Form.Control as="select">
@@ -48,7 +68,7 @@ ROW 3  TAGS
                 </Form.Control>
               </Form.Group>
             </Col>
-            <Col>
+            <Col md={6}>
               <Form.Group controlId="location">
                 <Form.Label>Location</Form.Label>
                 <Form.Control type="text" placeholder="Enter location">
@@ -56,8 +76,8 @@ ROW 3  TAGS
               </Form.Group>
             </Col>
           </Row>
-          <Row>
-          <Col>
+          <Row className="m-auto align-self-center w-100">
+          <Col md={{ span: 6, offset: 3 }}>
              <Form.Group controlId="tags">
               <Form.Label>Tags</Form.Label>
               <Form.Control type="text" placeholder="Enter tags">
@@ -67,14 +87,14 @@ ROW 3  TAGS
         </Row>
         <Row><h3 className='header2'>Recruitment Settings</h3></Row>
         <Row>
-            <Col md={3}>
+            <Col md={4}>
               <Form.Group controlId="maxApplications">
                 <Form.Label>Max applications</Form.Label>
                 <Form.Control type="text" placeholder='Max Applications'>
                   </Form.Control>
               </Form.Group>
             </Col>
-            <Col md={3}>
+            <Col md={4}>
               <Form.Group controlId="approvalmethod">
                 <Form.Label>Approval method</Form.Label>
                 <Form.Control as="select" placeholder='Approval method'>
@@ -83,7 +103,7 @@ ROW 3  TAGS
                   </Form.Control>
               </Form.Group>
             </Col>
-            <Col md={3}>
+            <Col md={4}>
               <Form.Group controlId="numberofrecruits">
                 <Form.Label>Number of recruits</Form.Label>
                 <Form.Control type="text" placeholder='Number of recruits'>
@@ -92,14 +112,14 @@ ROW 3  TAGS
             </Col>
             </Row>
             <Row>
-            <Col md={3}>
+            <Col md={6}>
               <Form.Group controlId="startdate">
                 <Form.Label>Start date</Form.Label>
                 <Form.Control type="date" placeholder='Start date'>
                   </Form.Control>
               </Form.Group>
             </Col>
-            <Col md={3}>
+            <Col md={6}>
               <Form.Group controlId="enddate">
                 <Form.Label>End date</Form.Label>
                 <Form.Control type="date" placeholder='End date'>
@@ -107,38 +127,35 @@ ROW 3  TAGS
               </Form.Group>
             </Col>
             <Row><h3 className='header2'>Requirements</h3></Row>
-            <Row>
-            <Col md={3}>
-              <Form.Group controlId="CV">
-                <Form.Label>Document: CV</Form.Label>
-                <Form.Control as="type"  placeholder='Document: CV'>
-               </Form.Control>
-              </Form.Group>
-            </Col>
-            <Col>
-            <Button  className="circle-button" onClick={toggleAdditionalRequirements}>+</Button>
-            </Col>
-            </Row>
-            {showAdditionalRequirements && (
-            <Row>
-              <Col md={3}>
-                <Form.Group controlId="additionalRequirement1">
-                  <Form.Label>Age</Form.Label>
-                  <Form.Control type="text" placeholder="Enter age requirement" />
+             <Col>
+              <Row>
+                <Form.Group controlId="CV">
+                  <Form.Label>Document: CV</Form.Label>
                 </Form.Group>
-              </Col>
-              <Col md={3}>
-                <Form.Group controlId="additionalRequirement2">
-                  <Form.Label>Gender</Form.Label>
-                  <Form.Control type="text" placeholder="Enter gender requirement" />
-                </Form.Group>
-              </Col>
-              {/* Add more additional requirements here if needed */}
-            </Row>
-          )}
+                <Col>
+                  <Button className="circle-button" onClick={handleAddRequirement}>+</Button>
+                  {additionalRequirements.map((requirement, index) => (
+                    <div key={index} className="additional-requirement-wrapper">
+                    <Form.Control 
+                      as="textarea"
+                      rows={1}
+                      className="additional-requirement-input"
+                      value={requirement}
+                      onChange={(e) => handleRequirementChange(index, e.target.value)}
+                      placeholder="Enter requirement"
+                    />
+                    <Button className="remove-button" onClick={() => handleRemoveRequirement(index)}>x</Button>
+                  </div>
+                  ))}
+                </Col>
+              </Row>
+              
+            </Col>
+            
+           
             <Row><h3 className='header2'>Compensation</h3></Row>
             <Row>
-            <Col md={3}>
+            <Col md={6}>
               <Form.Group controlId="compensationType">
                 <Form.Label>Compensation type</Form.Label>
                 <Form.Control as="select" placeholder='Compensation type'>
@@ -147,6 +164,18 @@ ROW 3  TAGS
                   <option>Other</option>
                   </Form.Control>
               </Form.Group>
+              </Col>
+              <Col>
+              <Form.Group controlId="radioOptions" className="mt-3" >
+              <Form.Check 
+                type="checkbox" 
+                label="Pay with mJOB balance" 
+                name="compensationOptions" 
+                id="compensationOption1" 
+                checked={isChecked}
+                onChange={handleCheckboxChange}
+              />
+            </Form.Group>
             </Col>
             </Row>
             <Row>
@@ -178,7 +207,7 @@ ROW 3  TAGS
                   <option>custom</option>
                   </Form.Control>
             </Col>
-            <Col md={5}>
+            <Col md={6}>
             <Form.Label>Custom Iteration</Form.Label>
             <Form.Control type="text" placeholder='Custom Iteration/hours per day'>
                   </Form.Control>
@@ -187,20 +216,17 @@ ROW 3  TAGS
             <Row><h3 className='header2'>Additional Information</h3></Row>
             <Col>
             <Form.Label>Description</Form.Label>
-            <Form.Control type="text" placeholder='Enter Description'>
+            <Form.Control as='textarea' rows={5} type="text" placeholder='Enter Description'>
                   </Form.Control>
             </Col>
             <Row>
             <Col>
-            <Form.Label>Contact Info</Form.Label>
-            <Form.Control type="text" placeholder='Contact Info*'>
+            <Form.Label className='headinfo'>Contact Info</Form.Label>
+            <Form.Control as='textarea' rows={1} type="text" placeholder='Contact Info*' className='contactinfo'>
                   </Form.Control>
             </Col>
             </Row>
-            
-           
-            
-          </Row>   
+            </Row>   
           <Button type="submit" className='enlistbutton'>Enlist</Button>
        </Form>
        
