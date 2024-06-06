@@ -5,7 +5,7 @@ import useCountUser from '../../hooks/useCountUser.js';
 
 const AdminDashboard = () => {
 
-  const { count: countUsers , loading, error } = useCountUser();
+  const { count: countUsers } = useCountUser();
 
   return (
     <>

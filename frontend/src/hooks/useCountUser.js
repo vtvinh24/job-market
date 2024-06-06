@@ -13,7 +13,7 @@ const useCountUser = () => {
       try {
         const url = `${API_URL}/userCount`;
         const response = await axios.get(url);
-        setCount(response.data.userCount);
+        setCount(response.data);
         setLoading(false);
       } catch (error) {
         setError(error);
