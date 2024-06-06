@@ -1,8 +1,12 @@
 import React from 'react';
 import { Container, Row, Col, Card, Navbar, Nav, Button } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import useCountUser from '../../hooks/useCountUser.js';
 
 const AdminDashboard = () => {
+
+  const { count, loading, error } = useCountUser();
+
   return (
     <>
       <header className="bg-dark text-white text-center py-3">
@@ -38,7 +42,7 @@ const AdminDashboard = () => {
               <Col md={4}>
                 <Card className="text-white bg-success text-center p-4">
                   <Card.Body>
-                    <Card.Title>120</Card.Title>
+                    <Card.Title></Card.Title>
                     <Card.Text>Total Jobs</Card.Text>
                   </Card.Body>
                 </Card>
