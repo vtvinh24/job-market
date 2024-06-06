@@ -16,17 +16,23 @@ app.use(
 app.use(express.json());
 
 // Import and define routes
-const getPostsRoute = require("./src/routes/posts");
-app.use("/api/posts", getPostsRoute);
+const postsRoute = require("./src/routes/posts");
+app.use("/api/posts", postsRoute);
 
-const getAuthRoute = require("./src/routes/auth");
-app.use("/api/auth", getAuthRoute);
+const authRoute = require("./src/routes/auth");
+app.use("/api/auth", authRoute);
 
-const getMarketingRoute = require("./src/routes/marketing");
-app.use("/api/marketing", getMarketingRoute);
+const marketingRoute = require("./src/routes/marketing");
+app.use("/api/marketing", marketingRoute);
 
-const getDataPostRoute = require("./src/routes/datapost");
-app.use("/api/datapost", getDataPostRoute);
+const dataPostRoute = require("./src/routes/datapost");
+app.use("/api/datapost", dataPostRoute);
+
+// TEMPLATE FOR ADDING ROUTES
+// const ____Route = require("./src/routes/____");
+// app.use("/api/____", ____Route);
+
+// Remember to implement the route in the ____Route.js file
 
 
 

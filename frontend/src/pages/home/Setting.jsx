@@ -17,7 +17,7 @@ const Setting = () => {
             </header>
             <Navbar bg="dark" variant="dark" expand="lg" className="mb-3">
                 <Container>
-                    <Navbar.Brand href="#dashboard">Dashboard</Navbar.Brand>
+                    <Navbar.Brand href="/dashboard">Dashboard</Navbar.Brand>
                     <Nav className="ml-auto">
                         <Nav.Link href="/jobs">Jobs</Nav.Link>
                         <Nav.Link href="/users">Users</Nav.Link>
