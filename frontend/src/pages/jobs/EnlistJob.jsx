@@ -126,11 +126,11 @@ ROW 3  TAGS
                   </Form.Control>
               </Form.Group>
             </Col>
-            <Row><h3 className='header2'>Requirements</h3></Row>
+            <Row><h3 className='header4'>Requirements</h3></Row>
              <Col>
               <Row>
                 <Form.Group controlId="CV">
-                  <Form.Label>Document: CV</Form.Label>
+                  <Form.Label className='header3'>Document: CV</Form.Label>
                 </Form.Group>
                 <Col>
                   <Button className="circle-button" onClick={handleAddRequirement}>+</Button>
@@ -153,7 +153,7 @@ ROW 3  TAGS
             </Col>
             
            
-            <Row><h3 className='header2'>Compensation</h3></Row>
+            <Row><h3 className='header4'>Compensation</h3></Row>
             <Row>
             <Col md={6}>
               <Form.Group controlId="compensationType">
