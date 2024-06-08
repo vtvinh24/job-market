@@ -27,7 +27,7 @@ const PostDetail = () => {
         <div className="d-flex gap-2">
           <div className="post-author">
             <div><img className="avatar" src={avatar} alt="Default Avatar" /></div>
-            <div><Link to={`/users/${post.author}`}>{post.author}</Link></div>
+            <div><Link to={`/users/${post.username}`}>{post.username}</Link></div>
             <div><p>{getMoment(post.post_created_date)}</p></div>
           </div>
           <div className="post-content flex-grow">
