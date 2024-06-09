@@ -15,6 +15,11 @@ const SELECT_POST_BY_ID = `
 const INSERT_POST =
   "INSERT INTO post (post_title, post_content, user_id, post_status) VALUES (@post_title, @post_content, @user_id, 'PUBLISHED')";
 
+const UPDATE_POST = `
+  UPDATE post SET post_title = @post_title, post_content = @post_content
+  WHERE post_id = @post_id;
+  `;
+
 router.get("/:id", async (req, res) => {
   try {
     const { id } = req.params;
@@ -57,6 +62,25 @@ router.post("/", async (req, res) => {
       .input("user_id", db.sql.Int, user_id)
       .query(INSERT_POST);
     res.status(201).json({ message: "Post inserted successfully" });
+  } catch (err) {
+    res.status(500).json({ message: "Error occurred", error: err });
+  }
+});
+
+router.put("/update/:id", async (req, res) => {
+  try {
+    const { title, content, user_id } = req.body;
+    if (!title || !content) {
+      res.status(400).json({ message: "Title and content must not be empty" });
+      return;
+    }
+    const pool = await db.poolPromise;
+    const result = await pool
+      .request()
+      .input("post_title", db.sql.NVarChar, title)
+      .input("post_content", db.sql.NVarChar, content)
+      .query(UPDATE_POST);
+    res.status(201).json({ message: "Post updated successfully" });
   } catch (err) {
     res.status(500).json({ message: "Error occurred", error: err });
   }
