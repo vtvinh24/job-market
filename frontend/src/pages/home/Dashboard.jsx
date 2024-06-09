@@ -32,7 +32,7 @@ const AdminDashboard = () => {
               <Nav.Link href="/settings" className="text-white">Settings</Nav.Link>
               <Row>
                 <Col><Button variant="primary" href="/home">Home</Button></Col>
-                <Col><Button variant="outline-light" href="/logout">Logout</Button></Col>
+                <Col><Button variant="danger" href="/logout">Logout</Button></Col>
               </Row>
 
             </Nav>
@@ -59,7 +59,7 @@ const AdminDashboard = () => {
                 <Card className="text-white bg-success text-center p-4">
                   <Card.Body>
                     <Card.Title>15</Card.Title>
-                    <Card.Text>New Applications</Card.Text>
+                    <Card.Text>Guests</Card.Text>
                   </Card.Body>
                 </Card>
               </Col>
