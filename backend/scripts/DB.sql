@@ -12,8 +12,17 @@ CREATE TABLE auth (
 	username VARCHAR(50) UNIQUE,
 	hash CHAR(64) NOT NULL,
 	salt CHAR(32) NOT NULL,
+	is_active BIT NOT NULL DEFAULT 0,
 );
 GO
+
+CREATE TABLE daily_activity (
+	activity_date DATE PRIMARY KEY,
+	max_active_user INT NOT NULL DEFAULT 0,
+	new_user INT NOT NULL DEFAULT 0,
+	unique_visitor INT NOT NULL DEFAULT 0,
+	post_created INT NOT NULL DEFAULT 0,
+);
 
 CREATE TABLE auth_log (
 	auth_log_id INT IDENTITY(1,1) PRIMARY KEY,
