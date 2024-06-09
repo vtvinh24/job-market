@@ -10,9 +10,19 @@ GO
 CREATE TABLE auth (
 	user_id INT IDENTITY(1,1) PRIMARY KEY,
 	username VARCHAR(50) UNIQUE,
-	hash VARCHAR(255) NOT NULL
+	hash CHAR(64) NOT NULL,
+	salt CHAR(32) NOT NULL,
+	is_active BIT NOT NULL DEFAULT 0,
 );
 GO
+
+CREATE TABLE daily_activity (
+	activity_date DATE PRIMARY KEY,
+	max_active_user INT NOT NULL DEFAULT 0,
+	new_user INT NOT NULL DEFAULT 0,
+	unique_visitor INT NOT NULL DEFAULT 0,
+	post_created INT NOT NULL DEFAULT 0,
+);
 
 CREATE TABLE auth_log (
 	auth_log_id INT IDENTITY(1,1) PRIMARY KEY,
@@ -69,7 +79,6 @@ CREATE TABLE job (
 	job_id INT IDENTITY(1,1) PRIMARY KEY,
 	user_id INT NOT NULL FOREIGN KEY REFERENCES auth(user_id),
 	job_title NVARCHAR(MAX) NOT NULL,
-	job_work_type BIT NOT NULL,
 	job_work_location NVARCHAR(MAX),
 	job_tags VARCHAR(MAX),
 	job_max_applications INT DEFAULT 0,

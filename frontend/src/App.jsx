@@ -17,6 +17,7 @@ import AddPost from "./pages/forum/AddPost";
 // Jobs
 import Market from "./pages/jobs/Market";
 import Jobs from "./pages/home/Jobs";
+import AddJob from "./pages/jobs/EnlistJob";
 
 // Technical
 import PageNotFound from "./pages/technical/PageNotFound";
@@ -41,24 +42,26 @@ function App() {
       <HomeNavbar />
       <div className="content">
         <Routes>
+          
           {/* HOME ROUTES */}
           <Route exact path="/" element={<HomeGuest />} />
           <Route exact path="/home" element={<HomePage />} />
 
           {/* AUTH ROUTES */}
           <Route exact path="/login" element={<Login />} />
-          <Route exact path="/signup" element={<Register />} />
+          <Route exact path="/register" element={<Register />} />
           <Route exact path="/reset-password" element={<ResetPassword />} />
 
           {/* FORUM ROUTES */}
           <Route exact path="/forum" element={<Forum />} />
           <Route exact path="/posts/:id" element={<PostDetail />} />
           <Route exact path="/forum/add" element={<AddPost />} />
-          <Route exact path="/forum/edit" element={<EditPost />} />
+          <Route exact path="/forum/edit/:id" element={<EditPost />} />
 
           {/* JOBS ROUTES */}
           <Route exact path="/market" element={<Market />} />
-          <Route path="/jobs" element={<Jobs />} />
+          <Route exact path="/jobs" element={<Jobs />} />
+          <Route exact path="/jobs/add" element={<AddJob />} />
 
           {/* TECHNICAL ROUTES */}
           <Route path="*" element={<PageNotFound />} />
