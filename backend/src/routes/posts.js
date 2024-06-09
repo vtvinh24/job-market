@@ -17,7 +17,7 @@ const INSERT_POST =
 
 const UPDATE_POST = `
   UPDATE post SET post_title = @post_title, post_content = @post_content
-  WHERE post_id = @post_id;
+  WHERE post_id = @post_id AND user_id = @user_id;
   `;
 
 router.get("/:id", async (req, res) => {
@@ -67,22 +67,36 @@ router.post("/", async (req, res) => {
   }
 });
 
-router.put("/update/:id", async (req, res) => {
+router.put("/update", async (req, res) => {
   try {
-    const { title, content, user_id } = req.body;
+    const { title, content, user_id, post_id } = req.body;
+
     if (!title || !content) {
-      res.status(400).json({ message: "Title and content must not be empty" });
-      return;
+      return res.status(400).json({ message: "Title and content must not be empty" });
     }
+    if (isNaN(user_id) || user_id <= 0) {
+      return res.status(400).json({ message: "Invalid user id" });
+    }
+    if (isNaN(post_id) || post_id <= 0) {
+      return res.status(400).json({ message: "Invalid post id" });
+    }
+
     const pool = await db.poolPromise;
     const result = await pool
       .request()
+      .input("post_id", db.sql.Int, post_id)
       .input("post_title", db.sql.NVarChar, title)
       .input("post_content", db.sql.NVarChar, content)
+      .input("user_id", db.sql.Int, user_id)
       .query(UPDATE_POST);
-    res.status(201).json({ message: "Post updated successfully" });
+
+    if (result.rowsAffected[0] === 0) {
+      return res.status(404).json({ message: "Invalid post update" });
+    } else {
+      return res.status(200).json({ message: "Post updated successfully" });
+    }
   } catch (err) {
-    res.status(500).json({ message: "Error occurred", error: err });
+    return res.status(500).json({ message: "Error occurred", error: err });
   }
 });
 
