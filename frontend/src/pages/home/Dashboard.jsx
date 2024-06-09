@@ -1,11 +1,55 @@
 import React from 'react';
 import { Container, Row, Col, Card, Navbar, Nav, Button } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { Bar } from 'react-chartjs-2';
+import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend } from 'chart.js';
 import useCountUser from '../../hooks/useCountUser.js';
+
+ChartJS.register(
+  CategoryScale,
+  LinearScale,
+  BarElement,
+  Title,
+  Tooltip,
+  Legend
+);
 
 const AdminDashboard = () => {
 
   const { count: countUsers } = useCountUser();
+  const activeUsers = 5;
+  const guests = 15;
+
+  const data = {
+    labels: ['Total Users', 'Active Users', 'Guests'],
+    datasets: [
+      {
+        label: 'User Statistics',
+        data: [countUsers, activeUsers, guests],
+        backgroundColor: ['rgba(75, 192, 192, 0.2)'],
+        borderColor: ['rgba(75, 192, 192, 1)'],
+        borderWidth: 1,
+      },
+    ],
+  };
+
+  const options = {
+    responsive: true,
+    plugins: {
+      legend: {
+        position: 'top',
+      },
+      title: {
+        display: true,
+        text: 'User Statistics',
+      },
+    },
+    scales: {
+      y: {
+        beginAtZero: true,
+      },
+    },
+  };
 
   return (
     <>
@@ -19,7 +63,6 @@ const AdminDashboard = () => {
           <Nav.Link href="/users">Users</Nav.Link>
           <Nav.Link href="/settings">Settings</Nav.Link>
         </Nav>
-
       </Navbar>
       <Container fluid className="mt-3">
         <Row>
@@ -31,10 +74,8 @@ const AdminDashboard = () => {
               <Nav.Link href="/users" className="text-white">Users</Nav.Link>
               <Nav.Link href="/settings" className="text-white">Settings</Nav.Link>
               <Row>
-                <Col><Button variant="primary" href="/home">Home</Button></Col>
                 <Col><Button variant="danger" href="/logout">Logout</Button></Col>
               </Row>
-
             </Nav>
           </Col>
           <Col md={9} className="p-4">
@@ -50,7 +91,7 @@ const AdminDashboard = () => {
               <Col md={4}>
                 <Card className="text-white bg-success text-center p-4">
                   <Card.Body>
-                    <Card.Title>123</Card.Title>
+                    <Card.Title>5</Card.Title>
                     <Card.Text>Active Users</Card.Text>
                   </Card.Body>
                 </Card>
@@ -66,40 +107,7 @@ const AdminDashboard = () => {
             </Row>
             <Card className="mb-4">
               <Card.Body>
-                <Card.Title>Recent Job Postings</Card.Title>
-                <Card.Text>
-                  <Row className="border-bottom py-2">
-                    <Col>Software Engineer</Col>
-                    <Col className="text-end">2 days ago</Col>
-                  </Row>
-                  <Row className="border-bottom py-2">
-                    <Col>Product Manager</Col>
-                    <Col className="text-end">3 days ago</Col>
-                  </Row>
-                  <Row className="border-bottom py-2">
-                    <Col>Data Analyst</Col>
-                    <Col className="text-end">4 days ago</Col>
-                  </Row>
-                </Card.Text>
-              </Card.Body>
-            </Card>
-            <Card>
-              <Card.Body>
-                <Card.Title>Recent Activities</Card.Title>
-                <Card.Text>
-                  <Row className="border-bottom py-2">
-                    <Col>Duc for Software Engineer</Col>
-                    <Col className="text-end">2 hours ago</Col>
-                  </Row>
-                  <Row className="border-bottom py-2">
-                    <Col>Vinh registered</Col>
-                    <Col className="text-end">5 hours ago</Col>
-                  </Row>
-                  <Row className="border-bottom py-2">
-                    <Col>Minh posted a new job</Col>
-                    <Col className="text-end">1 day ago</Col>
-                  </Row>
-                </Card.Text>
+                <Bar data={data} options={options} />
               </Card.Body>
             </Card>
           </Col>
