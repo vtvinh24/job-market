@@ -17,7 +17,7 @@ import AddPost from "./pages/forum/AddPost";
 // Jobs
 import Market from "./pages/jobs/Market";
 import Jobs from "./pages/home/Jobs";
-import AddJob from "./pages/jobs/AddJob";
+import AddJob from "./pages/jobs/Addjob";
 
 // Technical
 import PageNotFound from "./pages/technical/PageNotFound";
