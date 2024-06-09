@@ -1,24 +1,29 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
+import axios from 'axios';
 
-const useLoginQuery = (username, password) => {
-    const [data, setData] = useState(null);
-    const [error, setError] = useState(null);
+export const useLoginQuery = () => {
+  const [data, setData] = useState(null);
+  const [error, setError] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
 
-    useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const response = await fetch(`/api/posts?username=${username}&password=${password}`);
-                const jsonData = await response.json();
-                setData(jsonData);
-            } catch (error) {
-                setError(error);
-            }
-        };
+  const login = async (username, password) => {
+    setIsLoading(true);
+    setError(null);
+    setData(null);
 
-        fetchData();
-    }, [username, password]);
+    try {
+      const response = await axios.post('http://localhost:8000/api/auth/login', { username, password });
+      setData(response.data);
+    } catch (err) {
+      if (err.response) {
+        setError(err.response.data);
+      } else {
+        setError({ message: 'An error occurred' });
+      }
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
-    return { data, error };
+  return { login, data, error, isLoading };
 };
-
-export default useLoginQuery;
