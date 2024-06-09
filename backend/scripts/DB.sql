@@ -10,7 +10,8 @@ GO
 CREATE TABLE auth (
 	user_id INT IDENTITY(1,1) PRIMARY KEY,
 	username VARCHAR(50) UNIQUE,
-	hash CHAR(64) NOT NULL
+	hash CHAR(64) NOT NULL,
+	salt CHAR(32) NOT NULL,
 );
 GO
 
