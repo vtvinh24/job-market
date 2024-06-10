@@ -12,5 +12,7 @@
     "requestPropertyName": "rateLimit",
     "skipFailedRequests": false,
     "skipSuccessfulRequests": false
-  }
+  },
+  "token_secret": "secret",
+  "auth_salt": "salt19573"
 }

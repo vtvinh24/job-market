@@ -10,9 +10,19 @@ GO
 CREATE TABLE auth (
 	user_id INT IDENTITY(1,1) PRIMARY KEY,
 	username VARCHAR(50) UNIQUE,
-	hash VARCHAR(255) NOT NULL
+	hash CHAR(64) NOT NULL,
+	salt CHAR(32) NOT NULL,
+	is_active BIT NOT NULL DEFAULT 0,
 );
 GO
+
+CREATE TABLE daily_activity (
+	activity_date DATE PRIMARY KEY,
+	max_active_user INT NOT NULL DEFAULT 0,
+	new_user INT NOT NULL DEFAULT 0,
+	unique_visitor INT NOT NULL DEFAULT 0,
+	post_created INT NOT NULL DEFAULT 0,
+);
 
 CREATE TABLE auth_log (
 	auth_log_id INT IDENTITY(1,1) PRIMARY KEY,
@@ -69,7 +79,6 @@ CREATE TABLE job (
 	job_id INT IDENTITY(1,1) PRIMARY KEY,
 	user_id INT NOT NULL FOREIGN KEY REFERENCES auth(user_id),
 	job_title NVARCHAR(MAX) NOT NULL,
-	job_work_type BIT NOT NULL,
 	job_work_location NVARCHAR(MAX),
 	job_tags VARCHAR(MAX),
 	job_max_applications INT DEFAULT 0,
@@ -79,13 +88,20 @@ CREATE TABLE job (
 );
 GO
 
+-- Job payment type: HOURLY MONTHLY ONETIME
+CREATE TABLE compensation_type (
+	compensation_id INT IDENTITY(1,1) PRIMARY KEY,
+	compensation_type VARCHAR(16)
+);
+GO
+
 CREATE TABLE job_compensation (
 	job_id INT FOREIGN KEY REFERENCES job(job_id) PRIMARY KEY,
 	job_compensation_platform BIT NOT NULL DEFAULT 0,
 	job_compensation_type VARCHAR(12),
 	job_compensation_amount DECIMAL(10, 2),
 	job_compensation_currency VARCHAR(4),
-	job_compensation_period VARCHAR(6),
+	job_compensation_period VARCHAR(8),
 	job_custom_iteration VARCHAR(24),
 	job_hours_per_day INT
 );
@@ -93,9 +109,10 @@ GO
 
 CREATE TABLE job_recruitment (
 	job_id INT FOREIGN KEY REFERENCES job(job_id) PRIMARY KEY,
-	job_recruits_number INT NOT NULL,
-	job_recruits_deadline DATE,
+	job_recruitment_number INT NOT NULL,
+	job_recruitment_deadline DATE,
 	job_recruitment_status BIT NOT NULL DEFAULT 1
+	-- 1: still hire; 0: done hiring
 );
 GO
 
@@ -110,9 +127,14 @@ GO
 CREATE TABLE job_requirement (
 	requirement_id INT IDENTITY(1,1) PRIMARY KEY,
 	job_id INT NOT NULL FOREIGN KEY REFERENCES job(job_id),
-	requirement_type CHAR(32) NOT NULL,
-	requirement_value INT,
-	requirement NVARCHAR(MAX)
+	job_requirement NVARCHAR(MAX) -- JSON
+);
+GO
+
+CREATE TABLE job_application (
+	job_id INT NOT NULL FOREIGN KEY REFERENCES job(job_id),
+	user_id INT NOT NULL FOREIGN KEY REFERENCES auth(user_id),
+	job_requirement_data NVARCHAR(MAX) -- JSON
 );
 GO
 
