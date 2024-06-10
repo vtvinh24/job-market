@@ -9,78 +9,39 @@ const poolPromise = new sql.ConnectionPool(dbConfig).connect().then(pool => {
   return pool;
 }).catch(err => {
   console.error('Database Connection Failed!', err);
-  process.exit(1);
 });
 
 // POST route to insert a job
 router.post('/', async (req, res) => {
   const {
-    title,
-    workType,
-    location,
-    tags,
-    maxApplications,
-    approvalMethod,
-    numberOfRecruits,
-    startDate,
-    endDate,
-    compensationType,
-    isChecked,
-    amount,
-    currency,
-    per,
-    customIteration,
-    description,
-    contactInfo,
-    additionalRequirements
+    user_id, 
+    job_title, 
+    job_work_type, 
+    job_work_location, 
+    job_tags, 
+    job_max_applications, 
+    job_approval_method,
+    job_description, 
+    job_contact_info
+   
   } = req.body;
 
   try {
     const pool = await poolPromise;
     const result = await pool.request()
-      .input('title', sql.NVarChar, title)
-      .input('work_type', sql.NVarChar, workType)
-      .input('location', sql.NVarChar, location)
-      .input('tags', sql.NVarChar, tags)
-      .input('max_applications', sql.Int, maxApplications)
-      .input('approval_method', sql.NVarChar, approvalMethod)
-      .input('number_of_recruits', sql.Int, numberOfRecruits)
-      .input('start_date', sql.Date, startDate)
-      .input('end_date', sql.Date, endDate)
-      .input('compensation_type', sql.NVarChar, compensationType)
-      .input('pay_with_balance', sql.Bit, isChecked)
-      .input('amount', sql.Decimal, amount)
-      .input('currency', sql.NVarChar, currency)
-      .input('per', sql.NVarChar, per)
-      .input('custom_iteration', sql.NVarChar, customIteration)
-      .input('description', sql.NVarChar, description)
-      .input('contact_info', sql.NVarChar, contactInfo)
-      .input('additional_requirements', sql.NVarChar, JSON.stringify(additionalRequirements))
-      .query(`
-        INSERT INTO jobs (
-            title,
-            work_type,
-            location,
-            tags,
-            max_applications,
-            approval_method,
-            number_of_recruits,
-            start_date,
-            end_date,
-            compensation_type,
-            pay_with_balance,
-            amount,
-            currency,
-            per,
-            custom_iteration,
-            description,
-            contact_info,
-            additional_requirements
-        ) VALUES (
-            @title, @work_type, @location, @tags, @max_applications, @approval_method, @number_of_recruits
-             @start_date, @end_date, @compensation_type, @pay_with_balance, @amount, @currency, @per, @custom_iteration, @description, @contact_info, @additional_requirements
-        );
-      `);
+    .input('user_id', sql.Int, 1)
+    .input('job_title', sql.NVarChar, job_title)
+    .input('job_work_type', sql.Bit, job_work_type)
+    .input('job_work_location', sql.NVarChar, job_work_location)
+    .input('job_tags', sql.NVarChar, job_tags)
+    .input('job_max_applications', sql.Int, job_max_applications)
+    .input('job_approval_method', sql.Bit, job_approval_method)
+    .input('job_description', sql.NVarChar, job_description)
+    .input('job_contact_info', sql.NVarChar, job_contact_info)
+    .query(`
+      INSERT INTO job (user_id, job_title, job_work_type, job_work_location, job_tags, job_max_applications, job_approval_method, job_description, job_contact_info)
+      VALUES (@user_id, @job_title, @job_work_type, @job_work_location, @job_tags, @job_max_applications, @job_approval_method, @job_description, @job_contact_info);
+    `)
 
     res.status(201).send({ message: 'Job successfully inserted' });
   } catch (error) {
@@ -90,70 +51,40 @@ router.post('/', async (req, res) => {
 });
 router.post('/update', async (req, res) => {
   const {
-    id,
-    title,
-    workType,
-    location,
-    tags,
-    maxApplications,
-    approvalMethod,
-    numberOfRecruits,
-    startDate,
-    endDate,
-    compensationType,
-    isChecked,
-    amount,
-    currency,
-    per,
-    customIteration,
-    description,
-    contactInfo,
-    additionalRequirements
+    user_id, 
+    job_title, 
+    job_work_type, 
+    job_work_location, 
+    job_tags, 
+    job_max_applications, 
+    job_approval_method,
+    job_description, 
+    job_contact_info
   } = req.body;
 
   try {
     const pool = await poolPromise;
     const result = await pool.request()
-      .input('id', sql.Int, id)
-      .input('title', sql.NVarChar, title)
-      .input('work_type', sql.NVarChar, workType)
-      .input('location', sql.NVarChar, location)
-      .input('tags', sql.NVarChar, tags)
-      .input('max_applications', sql.Int, maxApplications)
-      .input('approval_method', sql.NVarChar, approvalMethod)
-      .input('number_of_recruits', sql.Int, numberOfRecruits)
-      .input('start_date', sql.Date, startDate)
-      .input('end_date', sql.Date, endDate)
-      .input('compensation_type', sql.NVarChar, compensationType)
-      .input('pay_with_balance', sql.Bit, isChecked)
-      .input('amount', sql.Decimal, amount)
-      .input('currency', sql.NVarChar, currency)
-      .input('per', sql.NVarChar, per)
-      .input('custom_iteration', sql.NVarChar, customIteration)
-      .input('description', sql.NVarChar, description)
-      .input('contact_info', sql.NVarChar, contactInfo)
-      .input('additional_requirements', sql.NVarChar, JSON.stringify(additionalRequirements))
+    .input('user_id', sql.Int, user_id)
+    .input('job_title', sql.NVarChar, job_title)
+    .input('job_work_type', sql.Bit, job_work_type)
+    .input('job_work_location', sql.NVarChar, job_work_location)
+    .input('job_tags', sql.NVarChar, job_tags)
+    .input('job_max_applications', sql.Int, job_max_applications)
+    .input('job_approval_method', sql.Bit, job_approval_method)
+    .input('job_description', sql.NVarChar, job_description)
+    .input('job_contact_info', sql.NVarChar, job_contact_info)
       .query(`
-        UPDATE jobs SET
-            title = @title,
-            work_type = @work_type,
-            location = @location,
-            tags = @tags,
-            max_applications = @max_applications,
-            approval_method = @approval_method,
-            number_of_recruits = @number_of_recruits,
-            start_date = @start_date,
-            end_date = @end_date,
-            compensation_type = @compensation_type,
-            pay_with_balance = @pay_with_balance,
-            amount = @amount,
-            currency = @currency,
-            per = @per,
-            custom_iteration = @custom_iteration,
-            description = @description,
-            contact_info = @contact_info,
-            additional_requirements = @additional_requirements
-        WHERE id = @id;
+        UPDATE job SET
+        job_title = @job_title,
+        job_work_type = @job_work_type,
+        job_work_location = @job_work_location,
+        job_tags = @job_tags,
+        job_max_applications = @job_max_applications,
+        job_approval_method = @job_approval_method,
+        job_description = @job_description,
+        job_contact_info = @job_contact_info
+        WHERE user_id = @user_id;  
       `);
 
     res.status(200).send({ message: 'Job successfully updated' });
