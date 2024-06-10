@@ -37,11 +37,12 @@ const AdminDashboard = () => {
     responsive: true,
     plugins: {
       legend: {
+        display: false,
         position: 'top',
       },
       title: {
         display: true,
-        text: 'User Statistics',
+        text: 'User Statistics:',
       },
     },
     scales: {
@@ -56,14 +57,7 @@ const AdminDashboard = () => {
       <header className="bg-dark text-white text-center py-3">
         <h1>Admin Dashboard - Job Market</h1>
       </header>
-      <Navbar bg="dark" variant="dark" expand="lg" className="justify-content-around">
-        <Nav>
-          <Nav.Link href="/dashboard">Dashboard</Nav.Link>
-          <Nav.Link href="/jobs">Jobs</Nav.Link>
-          <Nav.Link href="/users">Users</Nav.Link>
-          <Nav.Link href="/settings">Settings</Nav.Link>
-        </Nav>
-      </Navbar>
+      
       <Container fluid className="mt-3">
         <Row>
           <Col md={3} className="bg-dark text-white p-4">

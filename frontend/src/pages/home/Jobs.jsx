@@ -1,10 +1,8 @@
 import React from 'react';
-import { Container, Navbar, Nav, Button, Card } from 'react-bootstrap';
+import { Container, Navbar, Nav, Button, Card, Row, Col } from 'react-bootstrap';
 
 const Jobs = () => {
-    const handleAddJob = () => {
-        alert('Add Job function not implemented.');
-    };
+    
 
     const handleEditJob = () => {
         alert('Edit Job function not implemented.');
@@ -19,47 +17,50 @@ const Jobs = () => {
             <header className="bg-dark text-white text-center py-3">
                 <h1>Admin Dashboard - Job Management</h1>
             </header>
-            <Navbar bg="dark" variant="dark" expand="lg" className="mb-3">
-                <Container>
-                    <Navbar.Brand href="/dashboard">Dashboard</Navbar.Brand>
-                    <Nav className="ml-auto">
-                        <Nav.Link href="/jobs">Jobs</Nav.Link>
-                        <Nav.Link href="/users">Users</Nav.Link>
-                        <Nav.Link href="/settings">Settings</Nav.Link>
-                        
-                    </Nav>
-                </Container>
-            </Navbar>
-            <Container>
-                <div className="mb-3">
-                    <Button variant="success" onClick={handleAddJob}>
-                        Add New Job
-                    </Button>
-                </div>
-                <JobCard
-                    title="Software Engineer"
-                    company="Tech Corp"
-                    location="Da Nang"
-                    posted="2 days ago"
-                    onEdit={handleEditJob}
-                    onDelete={handleDeleteJob}
-                />
-                <JobCard
-                    title="Product Manager"
-                    company="Innovate Ltd"
-                    location="HCM city"
-                    posted="3 days ago"
-                    onEdit={handleEditJob}
-                    onDelete={handleDeleteJob}
-                />
-                <JobCard
-                    title="Data Analyst"
-                    company="Data Insights"
-                    location="Ha Noi"
-                    posted="4 days ago"
-                    onEdit={handleEditJob}
-                    onDelete={handleDeleteJob}
-                />
+            <Container fluid className="mt-3">
+                <Row>
+                    <Col md={3} className="bg-dark text-white p-4">
+                        <h2>Navigation</h2>
+                        <Nav className="flex-column">
+                            <Nav.Link href="/dashboard" className="text-white">Dashboard</Nav.Link>
+                            <Nav.Link href="/jobs" className="text-white">Jobs</Nav.Link>
+                            <Nav.Link href="/users" className="text-white">Users</Nav.Link>
+                            <Nav.Link href="/settings" className="text-white">Settings</Nav.Link>
+                            <Row>
+                                <Col><Button variant="danger" href="/logout">Logout</Button></Col>
+                            </Row>
+                        </Nav>
+                    </Col>
+                    <Col md={9} className="p-4">
+                        <Navbar bg="dark" variant="dark" expand="lg" className="mb-3">
+                            
+                        </Navbar>
+                        <JobCard
+                            title="Software Engineer"
+                            company="Tech Corp"
+                            location="Da Nang"
+                            posted="2 days ago"
+                            onEdit={handleEditJob}
+                            onDelete={handleDeleteJob}
+                        />
+                        <JobCard
+                            title="Product Manager"
+                            company="Innovate Ltd"
+                            location="HCM city"
+                            posted="3 days ago"
+                            onEdit={handleEditJob}
+                            onDelete={handleDeleteJob}
+                        />
+                        <JobCard
+                            title="Data Analyst"
+                            company="Data Insights"
+                            location="Ha Noi"
+                            posted="4 days ago"
+                            onEdit={handleEditJob}
+                            onDelete={handleDeleteJob}
+                        />
+                    </Col>
+                </Row>
             </Container>
         </div>
     );

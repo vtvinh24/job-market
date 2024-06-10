@@ -1,10 +1,8 @@
 import React from 'react';
-import { Container, Navbar, Nav, Button, Card } from 'react-bootstrap';
+import { Container, Navbar, Nav, Button, Card, Row, Col } from 'react-bootstrap';
 
 const Users = () => {
-    const handleAddUser = () => {
-        alert('Add User function not implemented.');
-    };
+    
 
     const handleEditUser = () => {
         alert('Edit User function not implemented.');
@@ -19,42 +17,50 @@ const Users = () => {
             <header className="bg-dark text-white text-center py-3">
                 <h1>Admin Dashboard - User Management</h1>
             </header>
-            <Navbar bg="dark" variant="dark" expand="lg" className="mb-3">
-                <Container>
-                    <Navbar.Brand href="/dashboard">Dashboard</Navbar.Brand>
-                    <Nav className="ml-auto">
-                        <Nav.Link href="/jobs">Jobs</Nav.Link>
-                        <Nav.Link href="/users">Users</Nav.Link>
-                        <Nav.Link href="/settings">Settings</Nav.Link>
-                        
-                    </Nav>
-                </Container>
-            </Navbar>
-            <Container>
-                <UserCard
-                    name="Pham Duc Minh"
-                    email="minh@gmail.com"
-                    role="Admin"
-                    registered="2 days ago"
-                    onEdit={handleEditUser}
-                    onDelete={handleDeleteUser}
-                />
-                <UserCard
-                    name="Truong Tuan Vinh"
-                    email="vinh@gmail.com"
-                    role="User"
-                    registered="3 days ago"
-                    onEdit={handleEditUser}
-                    onDelete={handleDeleteUser}
-                />
-                <UserCard
-                    name="Do Minh Duc"
-                    email="duc@gmail.com"
-                    role="User"
-                    registered="4 days ago"
-                    onEdit={handleEditUser}
-                    onDelete={handleDeleteUser}
-                />
+            <Container fluid className="mt-3">
+                <Row>
+                    <Col md={3} className="bg-dark text-white p-4">
+                        <h2>Navigation</h2>
+                        <Nav className="flex-column">
+                            <Nav.Link href="/dashboard" className="text-white">Dashboard</Nav.Link>
+                            <Nav.Link href="/jobs" className="text-white">Jobs</Nav.Link>
+                            <Nav.Link href="/users" className="text-white">Users</Nav.Link>
+                            <Nav.Link href="/settings" className="text-white">Settings</Nav.Link>
+                            <Row>
+                                <Col><Button variant="danger" href="/logout">Logout</Button></Col>
+                            </Row>
+                        </Nav>
+                    </Col>
+                    <Col md={9} className="p-4">
+                        <Navbar bg="dark" variant="dark" expand="lg" className="mb-3">
+                            
+                        </Navbar>
+                        <UserCard
+                            name="Pham Duc Minh"
+                            email="minh@gmail.com"
+                            role="Admin"
+                            registered="2 days ago"
+                            onEdit={handleEditUser}
+                            onDelete={handleDeleteUser}
+                        />
+                        <UserCard
+                            name="Truong Tuan Vinh"
+                            email="vinh@gmail.com"
+                            role="User"
+                            registered="3 days ago"
+                            onEdit={handleEditUser}
+                            onDelete={handleDeleteUser}
+                        />
+                        <UserCard
+                            name="Do Minh Duc"
+                            email="duc@gmail.com"
+                            role="User"
+                            registered="4 days ago"
+                            onEdit={handleEditUser}
+                            onDelete={handleDeleteUser}
+                        />
+                    </Col>
+                </Row>
             </Container>
         </div>
     );
