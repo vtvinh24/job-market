@@ -288,3 +288,26 @@ GO
 INSERT INTO system_log (system_log_type, system_log_data)
 VALUES ('INFO', 'Created database.');
 GO
+
+INSERT INTO jobs (
+    title,
+    work_type,
+    location,
+    tags,
+    max_applications,
+    approval_method,
+    number_of_recruits,
+    start_date,
+    end_date,
+    compensation_type,
+    pay_with_balance,
+    amount,
+    currency,
+    per,
+    custom_iteration,
+    description,
+    contact_info,
+    additional_requirements
+) VALUES (
+    @title, @work_type, @location, @tags, @max_applications, @approval_method, @number_of_recruits, @start_date, @end_date, @compensation_type, @pay_with_balance, @amount, @currency, @per, @custom_iteration, @description, @contact_info, @additional_requirements
+);
