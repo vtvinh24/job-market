@@ -15,6 +15,11 @@ const SELECT_POST_BY_ID = `
 const INSERT_POST =
   "INSERT INTO post (post_title, post_content, user_id, post_status) VALUES (@post_title, @post_content, @user_id, 'PUBLISHED')";
 
+const UPDATE_POST = `
+  UPDATE post SET post_title = @post_title, post_content = @post_content
+  WHERE post_id = @post_id AND user_id = @user_id;
+  `;
+
 router.get("/:id", async (req, res) => {
   try {
     const { id } = req.params;
@@ -59,6 +64,39 @@ router.post("/", async (req, res) => {
     res.status(201).json({ message: "Post inserted successfully" });
   } catch (err) {
     res.status(500).json({ message: "Error occurred", error: err });
+  }
+});
+
+router.put("/update", async (req, res) => {
+  try {
+    const { title, content, user_id, post_id } = req.body;
+
+    if (!title || !content) {
+      return res.status(400).json({ message: "Title and content must not be empty" });
+    }
+    if (isNaN(user_id) || user_id <= 0) {
+      return res.status(400).json({ message: "Invalid user id" });
+    }
+    if (isNaN(post_id) || post_id <= 0) {
+      return res.status(400).json({ message: "Invalid post id" });
+    }
+
+    const pool = await db.poolPromise;
+    const result = await pool
+      .request()
+      .input("post_id", db.sql.Int, post_id)
+      .input("post_title", db.sql.NVarChar, title)
+      .input("post_content", db.sql.NVarChar, content)
+      .input("user_id", db.sql.Int, user_id)
+      .query(UPDATE_POST);
+
+    if (result.rowsAffected[0] === 0) {
+      return res.status(404).json({ message: "Invalid post update" });
+    } else {
+      return res.status(200).json({ message: "Post updated successfully" });
+    }
+  } catch (err) {
+    return res.status(500).json({ message: "Error occurred", error: err });
   }
 });
 
