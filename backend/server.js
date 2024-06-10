@@ -28,8 +28,11 @@ app.use("/api/marketing", marketingRoute);
 const dataPostRoute = require("./src/routes/datapost");
 app.use("/api/datapost", dataPostRoute);
 
-const countUserRoute = require("./src/routes/userCount");
-app.use("/api/userCount", countUserRoute);
+const countTotalUserRoute = require("./src/routes/dashboard/countTotalUser");
+app.use("/api/dashboard/count/user/total", countTotalUserRoute);
+
+const countTotalUserRoute = require("./src/routes/dashboard/countActiveUser");
+app.use("/api/dashboard/count/user/active", countTotalUserRoute);
 
 // TEMPLATE FOR ADDING ROUTES
 // const ____Route = require("./src/routes/____");

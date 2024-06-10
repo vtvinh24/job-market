@@ -11,7 +11,7 @@ const useCountUser = () => {
   useEffect(() => {
     const fetchCount = async () => {
       try {
-        const url = `${API_URL}/userCount`;
+        const url = `${API_URL}/dashboard/count/user/total`;
         const response = await axios.get(url);
         setCount(response.data);
         setLoading(false);
