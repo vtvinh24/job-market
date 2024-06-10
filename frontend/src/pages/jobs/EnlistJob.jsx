@@ -11,12 +11,12 @@ const EnlistJob = () => {
   const { insertJob, loading, error, success } = useJobInsert();
 
   const [formValues, setFormValues] = useState({
-    title: '',
-    workType: 'Office',
-    location: '',
-    tags: '',
-    maxApplications: '',
-    approvalMethod: 'Auto',
+    job_title: '',
+    job_work_type: true,
+    job_work_location: '',
+    job_tags: '',
+    job_max_applications: '',
+    job_approval_method: true,
     numberOfRecruits: '',
     startDate: '',
     endDate: '',
@@ -26,8 +26,8 @@ const EnlistJob = () => {
     currency: 'VND',
     per: 'month',
     customIteration: '',
-    description: '',
-    contactInfo: ''
+    job_description: '',
+    job_contact_info: ''
   });
   const handleAddRequirement = () => {
     setAdditionalRequirements([...additionalRequirements, ""]);
@@ -93,8 +93,8 @@ return (
                 type="text" 
                 placeholder="Enter job title" 
                 className='input'
-                name="title"
-                value={formValues.title}
+                name="job_title"
+                value={formValues.job_title}
                 onChange={handleChange}
               />
             </Form.Group>
@@ -106,8 +106,8 @@ return (
               <Form.Label>Work Type</Form.Label>
               <Form.Control 
                 as="select" 
-                name="workType"
-                value={formValues.workType}
+                name="job_work_type"
+                value={formValues.job_work_type}
                 onChange={handleChange}
               >
                 <option>Office</option>
@@ -121,8 +121,8 @@ return (
               <Form.Control 
                 type="text" 
                 placeholder="Enter location" 
-                name="location"
-                value={formValues.location}
+                name="job_work_location"
+                value={formValues.job_work_location}
                 onChange={handleChange}
               />
             </Form.Group>
@@ -135,8 +135,8 @@ return (
               <Form.Control 
                 type="text" 
                 placeholder="Enter tags" 
-                name="tags"
-                value={formValues.tags}
+                name="job_tags"
+                value={formValues.job_tags}
                 onChange={handleChange}
               />
             </Form.Group>
@@ -148,10 +148,10 @@ return (
             <Form.Group controlId="maxApplications">
               <Form.Label>Max applications</Form.Label>
               <Form.Control 
-                type="text" 
+                type="number" 
                 placeholder='Max Applications'
-                name="maxApplications"
-                value={formValues.maxApplications}
+                name="job_max_applications"
+                value={formValues.job_max_applications}
                 onChange={handleChange}
               />
             </Form.Group>
@@ -161,8 +161,8 @@ return (
               <Form.Label>Approval method</Form.Label>
               <Form.Control 
                 as="select" 
-                name="approvalMethod"
-                value={formValues.approvalMethod}
+                name="job_approval_method"
+                value={formValues.job_approval_method}
                 onChange={handleChange}
               >
                 <option>Auto</option>
@@ -174,10 +174,10 @@ return (
             <Form.Group controlId="numberOfRecruits">
               <Form.Label>Number of recruits</Form.Label>
               <Form.Control 
-                type="text" 
+                type="number" 
                 placeholder='Number of recruits'
-                name="numberOfRecruits"
-                value={formValues.numberOfRecruits}
+                name="job_max_applications"
+                value={formValues.job_max_applications}
                 onChange={handleChange}
               />
             </Form.Group>
@@ -268,7 +268,7 @@ return (
             <Form.Group controlId="amount">
               <Form.Label>Amount</Form.Label>
               <Form.Control 
-                type="text" 
+                type="number" 
                 placeholder='Amount'
                 name="amount"
                 value={formValues.amount}
@@ -326,8 +326,8 @@ return (
             rows={5} 
             type="text" 
             placeholder='Enter Description'
-            name="description"
-            value={formValues.description}
+            name="job_description"
+            value={formValues.job_description}
             onChange={handleChange}
           />
         </Col>
@@ -340,8 +340,8 @@ return (
               type="text" 
               placeholder='Contact Info*' 
               className='contactinfo'
-              name="contactInfo"
-              value={formValues.contactInfo}
+              name="job_contact_info"
+              value={formValues.job_contact_info}
               onChange={handleChange}
             />
           </Col>
@@ -349,7 +349,7 @@ return (
         <Button type="submit" className='enlistbutton' disabled={loading}>
           {loading ? 'Enlisting...' : 'Enlist'}
         </Button>
-        {error && <p className="error-message">{error}</p>}
+        {/* {error && <p className="error-message">{error}</p>} */}
         {success && <p className="success-message">Job successfully enlisted!</p>}
       </Form>
     </Container>
