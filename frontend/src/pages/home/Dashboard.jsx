@@ -17,8 +17,8 @@ ChartJS.register(
 const AdminDashboard = () => {
 
   const { count: countUsers } = useCountUser();
-  const activeUsers = 5;
-  const guests = 15;
+  const activeUsers = 0;
+  const guests = 0;
 
   const data = {
     labels: ['Total Users', 'Active Users', 'Guests'],
@@ -85,7 +85,7 @@ const AdminDashboard = () => {
               <Col md={4}>
                 <Card className="text-white bg-success text-center p-4">
                   <Card.Body>
-                    <Card.Title>5</Card.Title>
+                    <Card.Title>0</Card.Title>
                     <Card.Text>Active Users</Card.Text>
                   </Card.Body>
                 </Card>
@@ -93,7 +93,7 @@ const AdminDashboard = () => {
               <Col md={4}>
                 <Card className="text-white bg-success text-center p-4">
                   <Card.Body>
-                    <Card.Title>15</Card.Title>
+                    <Card.Title>0</Card.Title>
                     <Card.Text>Guests</Card.Text>
                   </Card.Body>
                 </Card>
