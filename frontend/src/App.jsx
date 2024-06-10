@@ -21,7 +21,7 @@ import AddJob from "./pages/jobs/EnlistJob";
 
 // Technical
 import PageNotFound from "./pages/technical/PageNotFound";
-import AdminDashboard from "./pages/technical/AdminDashboard";
+import Dashboard from "./pages/home/Dashboard";
 
 
 // Users
@@ -65,7 +65,7 @@ function App() {
 
           {/* TECHNICAL ROUTES */}
           <Route path="*" element={<PageNotFound />} />
-          <Route path="/dashboard" element={<AdminDashboard />} />
+          <Route path="/dashboard" element={<Dashboard />} />
           
 
           {/* USERS ROUTES */}

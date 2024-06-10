@@ -2,27 +2,27 @@ USE mJOB;
 GO
 
 -- Add 10 random users
-INSERT INTO auth (username, hash)
+INSERT INTO auth (username, hash, salt)
 VALUES 
-('andz1207', 'a6f63a5fb10b3bba180a79f2fc565b1db2101040ce71ea80692d671857fe2117'),
+('andz1207', 'a6f63a5fb10b3bba180a79f2fc565b1db2101040ce71ea80692d671857fe2117', ''),
 -- andz1207 | passWord
-('DeNhatQuocSu', 'ea6cecea0bafcc1b93a80230e42cde46710c4212787453beced211ebbd342326'),
+('DeNhatQuocSu', 'ea6cecea0bafcc1b93a80230e42cde46710c4212787453beced211ebbd342326', ''),
 -- passWord2
-('trannam29', '97b9f0055e1e2ddde718eb79d5ba18c2cc4af174c29ff2a49869dfce4b334342'),
+('trannam29', '97b9f0055e1e2ddde718eb79d5ba18c2cc4af174c29ff2a49869dfce4b334342', ''),
 -- passWord3
-('__OwO__', '4cde37e3789f19ed189b1f81f8cd36ba8420ebe505d79ebc9803ae579073de7a'),
+('__OwO__', '4cde37e3789f19ed189b1f81f8cd36ba8420ebe505d79ebc9803ae579073de7a', ''),
 -- passWord4
-('TheRealAdmin', 'b912027fd35321538ec00c1a3e7a1d7e565d9a05af17697179f3ebff238fb581'),
+('TheRealAdmin', 'b912027fd35321538ec00c1a3e7a1d7e565d9a05af17697179f3ebff238fb581', ''),
 -- passWord5
-('admin01', 'b20e740845579ac8b50edb08f61dea0f0a573f3f5f2a3d6337c824193a59627f'),
+('admin01', 'b20e740845579ac8b50edb08f61dea0f0a573f3f5f2a3d6337c824193a59627f', ''),
 -- passWord6
-('he250178', 'd12d9f42c6caf07537a1fb0c43ccab990f4883d73d05c7612de9bb93d8e33f3f'),
+('he250178', 'd12d9f42c6caf07537a1fb0c43ccab990f4883d73d05c7612de9bb93d8e33f3f', ''),
 -- passWord7
-('hoang_tuna', '3f36c04a18c1d77e273404ca9ccfbeb508611cecc514ac0961b46f0fb28d2bf1'),
+('hoang_tuna', '3f36c04a18c1d77e273404ca9ccfbeb508611cecc514ac0961b46f0fb28d2bf1', ''),
 -- passWord8
-('NguyenKhanh', '6e038144402f05839a8e2491ee89a455bed0acec6379a622a6b0ad3c2c4e1108'),
+('NguyenKhanh', '6e038144402f05839a8e2491ee89a455bed0acec6379a622a6b0ad3c2c4e1108', ''),
 -- passWord9
-('TrumBacKi', 'a70cc00b99169c648c41762aa456f89099eb7236dfb8cf6b5c1f57c946b19d5d');
+('TrumBacKi', 'a70cc00b99169c648c41762aa456f89099eb7236dfb8cf6b5c1f57c946b19d5d', '');
 -- passWord10
 GO
 
@@ -128,16 +128,16 @@ VALUES
 ('ONETIME');
 GO
 
-INSERT INTO daily_activity (activity_date, max_active_user, new_user, unique_visitor, post_created)
+INSERT INTO daily_activity (activity_date, total_user, max_active_user, new_user, unique_visitor, post_created)
 VALUES
-(20240609, 4, 1, 15, 2),
-(20240608, 7, 2, 25, 3),
-(20240607, 5, 0, 30, 1),
-(20240606, 6, 1, 20, 2),
-(20240605, 3, 0, 10, 1),
-(20240604, 4, 1, 15, 2),
-(20240603, 7, 2, 25, 3),
-(20240602, 5, 0, 30, 1),
-(20240601, 6, 1, 20, 2),
-(20240531, 3, 0, 10, 1);
+(20240609, 4, 4, 1, 15, 2),
+(20240608, 11, 7, 2, 25, 3),
+(20240607, 16, 5, 0, 30, 1),
+(20240606, 22, 6, 1, 20, 2),
+(20240605, 25, 3, 0, 10, 1),
+(20240604, 29, 4, 1, 15, 2),
+(20240603, 36, 7, 2, 25, 3),
+(20240602, 41, 5, 0, 30, 1),
+(20240601, 47, 6, 1, 20, 2),
+(20240531, 50, 3, 0, 10, 1);
 GO

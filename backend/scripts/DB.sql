@@ -18,6 +18,7 @@ GO
 
 CREATE TABLE daily_activity (
 	activity_date DATE PRIMARY KEY,
+	total_user INT NOT NULL DEFAULT 0,
 	max_active_user INT NOT NULL DEFAULT 0,
 	new_user INT NOT NULL DEFAULT 0,
 	unique_visitor INT NOT NULL DEFAULT 0,
