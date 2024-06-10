@@ -12,7 +12,7 @@ const useJobInsert = () => {
     setSuccess(false);
     try {
       // Replace the URL with your actual API endpoint
-      const response = await axios.post('https://yourapiendpoint.com/jobs', jobData);
+      const response = await axios.post('http://localhost:8000/api/jobs', jobData);
       if (response.status === 200) {
         setSuccess(true);
       } else {
