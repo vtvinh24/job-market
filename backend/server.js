@@ -28,6 +28,10 @@ app.use("/api/marketing", marketingRoute);
 const dataPostRoute = require("./src/routes/datapost");
 app.use("/api/datapost", dataPostRoute);
 
+// Add jobs route
+const jobsRoute = require("./src/routes/jobs");
+app.use("/api/jobs", jobsRoute);
+
 // TEMPLATE FOR ADDING ROUTES
 // const ____Route = require("./src/routes/____");
 // app.use("/api/____", ____Route);

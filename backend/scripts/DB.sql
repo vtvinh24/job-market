@@ -288,3 +288,4 @@ GO
 INSERT INTO system_log (system_log_type, system_log_data)
 VALUES ('INFO', 'Created database.');
 GO
+
