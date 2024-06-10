@@ -22,6 +22,8 @@ const SELECT_USER_HASH = "SELECT hash FROM Users WHERE username = @username";
 const SELECT_MARKETING_CONTENT = "Select m.id,m.topic,m.content from Marketing m";
 //Select Post Content
 const SELECT_POSTS_CONTENT = "Select p.post_id,p.topic,p.content from post p";
+//Select JobList Content
+const SELECT_JOBLIST_CONTENT = "select j.job_id,j.job_title,j.job_description,j.job_work_location,j.job_contact_info from job j;";
 
 // Define CORS rule
 app.use(
@@ -140,6 +142,18 @@ app.get("/api/datapost", async (req, res) => {
   }
 });
 
+
+//Select Job list content
+app.get("/api/joblist", async (req, res) => {
+  try {
+    const pool = await db.poolPromise;
+    const result = await pool.request().query(SELECT_JOBLIST_CONTENT);
+    res.json(result.recordset);
+  } catch (err) {
+    console.log(err);
+    res.status(500).json({ message: "Error occurred", error: err });
+  }
+});
 
 
 app.listen(port, () => {

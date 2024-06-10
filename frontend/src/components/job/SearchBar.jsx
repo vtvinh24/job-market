@@ -12,7 +12,7 @@ const SearchBar = ({ onSearch }) => {
   // console.log(query);
 
   return (    
-      <input
+      <input 
         type="text"
         placeholder="Search..."
         value={query}

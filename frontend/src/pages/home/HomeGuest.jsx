@@ -17,7 +17,7 @@ function HomeGuest() {
         <HotNew />
         <Footer />
         
-        {/* <TestData /> */}
+        <TestData />
       </div>
     );
 }
