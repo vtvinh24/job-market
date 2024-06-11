@@ -65,7 +65,7 @@ function App() {
 
           {/* TECHNICAL ROUTES */}
           <Route path="*" element={<PageNotFound />} />
-          <Route path="/dashboard" element={<Dashboard />} />
+          <Route exact path="/dashboard" element={<Dashboard />} />
           
 
           {/* USERS ROUTES */}
