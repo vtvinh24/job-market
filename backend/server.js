@@ -31,7 +31,7 @@ app.use("/api/datapost", dataPostRoute);
 const countTotalUserRoute = require("./src/routes/dashboard/countTotalUser");
 app.use("/api/dashboard/count/user/total", countTotalUserRoute);
 
-const countTotalUserRoute = require("./src/routes/dashboard/countActiveUser");
+const countActiveUserRoute = require("./src/routes/dashboard/countActiveUser");
 app.use("/api/dashboard/count/user/active", countTotalUserRoute);
 
 // TEMPLATE FOR ADDING ROUTES
