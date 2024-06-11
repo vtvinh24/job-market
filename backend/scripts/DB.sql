@@ -80,7 +80,6 @@ CREATE TABLE job (
 	job_id INT IDENTITY(1,1) PRIMARY KEY,
 	user_id INT NOT NULL FOREIGN KEY REFERENCES auth(user_id),
 	job_title NVARCHAR(MAX) NOT NULL,
-	job_work_type BIT NOT NULL,
 	job_work_location NVARCHAR(MAX),
 	job_tags VARCHAR(MAX),
 	job_max_applications INT DEFAULT 0,

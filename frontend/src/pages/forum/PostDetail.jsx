@@ -1,5 +1,5 @@
 import React from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import usePostDetail from "../../hooks/usePostDetail.js";
 import { Button, Row, Col } from "react-bootstrap";
 import "../../assets/css/Forum.css";
@@ -10,6 +10,11 @@ import avatar from "../../assets/img/default_avatar.webp";
 const PostDetail = () => {
   const { id } = useParams();
   const { post, loading, error } = usePostDetail(id);
+  const user_id = 1;
+  const username = "andz1207";
+
+
+  const navigate = useNavigate();
 
   if (loading) return <div>Loading...</div>;
   if (error) return <div>Error: {error.message}</div>;
@@ -22,12 +27,13 @@ const PostDetail = () => {
 
       <div className="post">
         <div className="post-title">
-          <h1>{post.post_title}</h1>
+          <h1>{post.post_title} </h1>
+          {post.username == username && <Button onClick={() => navigate(`/forum/edit/${id}`)}>Edit</Button>}
         </div>
         <div className="d-flex gap-2">
           <div className="post-author">
             <div><img className="avatar" src={avatar} alt="Default Avatar" /></div>
-            <div><Link to={`/users/${post.author}`}>{post.author}</Link></div>
+            <div><Link to={`/users/${post.username}`}>{post.username}</Link></div>
             <div><p>{getMoment(post.post_created_date)}</p></div>
           </div>
           <div className="post-content flex-grow">
