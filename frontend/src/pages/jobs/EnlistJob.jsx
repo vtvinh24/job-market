@@ -12,11 +12,12 @@ const EnlistJob = () => {
 
   const [formValues, setFormValues] = useState({
     job_title: '',
-    job_work_type: true,
+    job_work_type: '',
     job_work_location: '',
     job_tags: '',
     job_max_applications: '',
     job_approval_method: true,
+    job_requirement: '',
     numberOfRecruits: '',
     startDate: '',
     endDate: '',
@@ -223,6 +224,7 @@ return (
                     as="textarea"
                     rows={1}
                     className="additional-requirement-input"
+                    name="job_requirement"
                     value={requirement}
                     onChange={(e) => handleRequirementChange(index, e.target.value)}
                     placeholder="Enter requirement"
