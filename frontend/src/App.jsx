@@ -23,6 +23,8 @@ import AddJob from "./pages/jobs/EnlistJob";
 import PageNotFound from "./pages/technical/PageNotFound";
 import Dashboard from "./pages/home/Dashboard";
 
+// Payment
+import BalanceDashboard from "./pages/payment/BalanceDashboard";
 
 // Users
 import Setting from "./pages/home/Setting";
@@ -62,6 +64,9 @@ function App() {
           <Route exact path="/market" element={<Market />} />
           <Route exact path="/jobs" element={<Jobs />} />
           <Route exact path="/jobs/add" element={<AddJob />} />
+
+          {/* PAYMENT ROUTES */}
+          <Route exact path="/balance" element={<BalanceDashboard />} />
 
           {/* TECHNICAL ROUTES */}
           <Route path="*" element={<PageNotFound />} />
