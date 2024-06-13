@@ -10,26 +10,25 @@ function MyComponent() {
           <Col md={12} lg={8} xl={6}>
             <div className="text-center">
               <h1 className="text-9xl font-bold text-white md:text-4xl">
-                ERROR!
-                <br />
+                <span className="text-white">NO PERMISSION</span> <br />
                 <span className="text-4xl text-white ">
-                  Something unexpected happens.
+                  Sorry, you don’t have permission to view this page.
                 </span>
                 <br />
                 <span className="text-4xl text-white ">
-                  We are on the way fixing this.
+                  If you believe this is an error, please contact our staff.
                 </span>
               </h1>
             </div>
           </Col>
         </Row>
         <Row className="justify-content-center mt-5">
-          <Col md={6}>
+          <Col md={5}>
             <Button variant="primary" className="w-100 py-4 text-4xl">
               Homepage
             </Button>
           </Col>
-          <Col md={6} className="mt-3 mt-md-0">
+          <Col md={5} className="mt-3 mt-md-0">
             <Button variant="success" className="w-100 py-4 text-4xl">
               Go to Help page
             </Button>
