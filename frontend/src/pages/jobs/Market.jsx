@@ -1,12 +1,13 @@
 // Marketplace.js
 import React, { useState } from 'react';
-import { Container, Row, Col, Form, Button, Dropdown } from 'react-bootstrap';
+import { Container, Row, Col, Form, Button, Dropdown, Card } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import HomeNavbar from '../../components/HomeNavbar.jsx';
 import HelpCenter from '../../components/HelpCenter.jsx';
 import Footer from '../../components/HomeFooter.jsx';
 import SearchBar from '../../components/job/SearchBar.jsx';
 import FilterPrice from '../../components/job/FilterPrice.jsx';
+import  useJobList  from "../../hooks/useJobList";
 
 // import './Marketplace.css'; // Custom styles (optional)
 
@@ -15,6 +16,15 @@ function JobMarket() {
   const [priceStart, setPriceStart] = useState('');
   const [priceEnd, setPriceEnd] = useState('');
 
+  const {contents, loading, error } = useJobList();
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
+  if (error) {
+    return <div>Error: {error.message}</div>;
+  }
   // const items = [
   //   'Apple',
   //   'Banana',
@@ -27,6 +37,9 @@ function JobMarket() {
   // const filteredItems = items.filter(item =>
   //   item.toLowerCase().includes(searchQuery.toLowerCase())
   // );
+  const filteredContents = contents.filter(content =>
+    content.job_title.toLowerCase().includes(searchQuery.toLowerCase())
+  );
 
   return (
     <>
@@ -76,7 +89,35 @@ function JobMarket() {
             ))}
           </ul>
         </div> */}
-        <Row>
+        {filteredContents.map((content) => (
+        <Card style={{ margin: "10px" }}>
+        <ul>
+          <li>{content.job_title}</li>
+          <li>{content.job_description}</li>
+          <li>{content.job_contact_info}</li>
+          <li>{content.job_work_location}</li>
+        </ul>
+        </Card>
+        // <Card className="post-card" key={content.job_id}>
+        //   <Card.Body>
+        //     <Card.Title as="h2" style={{ color: "blue" }}>
+        //       {content.job_title}
+        //     </Card.Title>
+        //     <Card.Text className="post-card-content">
+        //       {content.job_description}
+        //     </Card.Text>
+        //     {/* <Card.Link
+        //       href={`/users/${content.author}`}
+        //       className="card-author"
+        //       data-toggle="tooltip"
+        //     >
+        //       {content.author}
+        //     </Card.Link> */}
+        //   <Card.Test> {content.job_contact_info}</Card.Test>
+        //   </Card.Body>
+        // </Card>
+      ))}
+        {/* <Row>
         <div className="p-3 border bg-light">Content Box</div>
         </Row>     
         <Row>
@@ -111,7 +152,7 @@ function JobMarket() {
         </Row>      
         <Row>
         <div className="p-3 border bg-light">Content Box</div>
-        </Row>     
+        </Row>      */}
       </Container>
       <HelpCenter />
 
