@@ -1,6 +1,8 @@
 USE mJOB;
 GO
 
+
+-- old table: SHA-256
 CREATE TABLE auth (
 	user_id INT IDENTITY(1,1) PRIMARY KEY,
 	username VARCHAR(50) UNIQUE,
@@ -9,6 +11,15 @@ CREATE TABLE auth (
 	is_active BIT NOT NULL DEFAULT 0,
 );
 GO
+
+-- new table: bcrypt; if implemented should also modify the sample data
+-- CREATE TABLE auth (
+-- 	user_id INT IDENTITY(1,1) PRIMARY KEY,
+-- 	username VARCHAR(50) UNIQUE,
+-- 	hash VARBINARY(60) NOT NULL, -- Adjust length based on hash algorithm
+-- 	salt VARBINARY(16) NOT NULL, -- Adjust length based on salt length used
+-- 	is_active BIT NOT NULL DEFAULT 0
+-- );
 
 INSERT INTO system_log (system_log_type, system_log_data)
 VALUES ('INFO', 'Created table: auth');
