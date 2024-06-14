@@ -1,7 +1,7 @@
 {
-    "user": "sa",
-    "password": "minhpdhe181302",
-    "server": "localhost",
+    "user": "new_user",
+    "password": "123",
+    "server": "LAPTOP-RI23J8UM",
     "database": "mJOB",
     "encrypt": false
 }

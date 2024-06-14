@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Form, FormGroup } from "react-bootstrap";
 import axios from "axios";
+import { useNavigate } from "react-router";
 
 // Regular expressions for validation
 const REGEX_USERNAME = /^[A-Za-z][A-Za-z0-9_]{8,29}$/;
@@ -9,6 +10,7 @@ const REGISTER_API = "http://localhost:8000/api/auth/register";
 
 const Register = () => {
   const [user, setUser] = useState("");
+  const navigate = useNavigate();
   const [pwd, setPwd] = useState("");
   const [matchPwd, setMatchPwd] = useState("");
   const [validName, setValidName] = useState(false);
@@ -54,9 +56,16 @@ const Register = () => {
       setPwd("");
       setMatchPwd("");
     } catch (err) {
+      navigate("/error", {
+        state: {
+          message: error.response
+            ? error.response.data.message
+            : "An error occurred",
+        },
+      });
       if (!err?.response) {
         setErrMsg("No Server Response");
-      } else if (err.response?.status === 409) {
+      } else if (error?.status === 409) {
         setErrMsg("Username Taken");
       } else {
         setErrMsg("Registration Failed");

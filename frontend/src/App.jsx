@@ -35,14 +35,14 @@ import HomeNavbar from "./components/HomeNavbar";
 // Misc
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "./App.css";
+import ErrorPage from "./pages/error/ErrorPage";
 
 function App() {
   return (
     <BrowserRouter>
       <HomeNavbar />
-      <div className="content">
+      <div className="content" style={{ minHeight: "60vh" }}>
         <Routes>
-          
           {/* HOME ROUTES */}
           <Route exact path="/" element={<HomeGuest />} />
           <Route exact path="/home" element={<HomePage />} />
@@ -51,6 +51,7 @@ function App() {
           <Route exact path="/login" element={<Login />} />
           <Route exact path="/register" element={<Register />} />
           <Route exact path="/reset-password" element={<ResetPassword />} />
+          <Route exact path="/error" element={<ErrorPage />} />
 
           {/* FORUM ROUTES */}
           <Route exact path="/forum" element={<Forum />} />
@@ -66,7 +67,6 @@ function App() {
           {/* TECHNICAL ROUTES */}
           <Route path="*" element={<PageNotFound />} />
           <Route exact path="/dashboard" element={<Dashboard />} />
-          
 
           {/* USERS ROUTES */}
           <Route path="/users" element={<Users />} />
