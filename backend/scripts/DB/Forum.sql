@@ -16,6 +16,7 @@ GO
 
 CREATE TABLE comment (
 	comment_id INT IDENTITY(1, 1) PRIMARY KEY,
+	user_id INT NOT NULL FOREIGN KEY REFERENCES auth(user_id),
 	post_id INT NOT NULL FOREIGN KEY REFERENCES post(post_id),
 	comment_content NVARCHAR(MAX),
 	comment_status VARCHAR(16) NOT NULL
@@ -40,6 +41,7 @@ GO
 
 CREATE TABLE forum_log (
 	forum_log_id INT IDENTITY(1,1) PRIMARY KEY,
+	content_type BIT NOT NULL, -- 0 if Post, 1 if Comment
 	content_id INT NOT NULL,
 	content_history_id INT NOT NULL FOREIGN KEY REFERENCES content_history(content_history_id),
 	forum_log_type VARCHAR(16) NOT NULL, -- create, edit, delete, archive, ...
