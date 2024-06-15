@@ -21,9 +21,28 @@ const SELECT_USER_HASH = "SELECT hash FROM Users WHERE username = @username";
 //Select Marketing content
 const SELECT_MARKETING_CONTENT = "Select m.id,m.topic,m.content from Marketing m";
 //Select Post Content
-const SELECT_POSTS_CONTENT = "Select p.post_id,p.topic,p.content from post p";
+const SELECT_POSTS_CONTENT = "SELECT TOP 3 p.post_id, p.post_title, p.post_content, u.username FROM post p JOIN auth u ON p.user_id = u.user_id";
 //Select JobList Content
-const SELECT_JOBLIST_CONTENT = "select j.job_id,j.job_title,j.job_description,j.job_work_location,j.job_contact_info from job j;";
+const SELECT_JOBLIST_CONTENT = `SELECT j.job_id,u.username,j.job_title,j.job_description,j.job_tags,j.job_work_location,j.job_description,jv.job_view,jl.job_log_time
+FROM job j
+INNER JOIN auth u ON j.user_id = u.user_id  -- Use INNER JOIN for required data
+INNER JOIN job_view jv ON j.job_id = jv.job_id
+INNER JOIN job_log jl ON j.job_id = jl.job_id
+ORDER BY j.job_id;`;
+
+const SELECT_JOBLIST_CONTENT_BY_VIEW=`SELECT j.job_id,u.username,j.job_title,j.job_description,j.job_tags,j.job_work_location,j.job_description,jv.job_view,jl.job_log_time
+FROM job j
+INNER JOIN auth u ON j.user_id = u.user_id  -- Use INNER JOIN for required data
+INNER JOIN job_view jv ON j.job_id = jv.job_id
+INNER JOIN job_log jl ON j.job_id = jl.job_id
+ORDER BY jv.job_view DESC;`;
+
+const SELECT_JOBLIST_CONTENT_BY_TIME=`SELECT j.job_id,u.username,j.job_title,j.job_description,j.job_tags,j.job_work_location,j.job_description,jv.job_view,jl.job_log_time
+FROM job j
+INNER JOIN auth u ON j.user_id = u.user_id  -- Use INNER JOIN for required data
+INNER JOIN job_view jv ON j.job_id = jv.job_id
+INNER JOIN job_log jl ON j.job_id = jl.job_id
+ORDER BY jl.job_log_time DESC;`;
 
 // Define CORS rule
 app.use(
@@ -143,7 +162,7 @@ app.get("/api/datapost", async (req, res) => {
 });
 
 
-//Select Job list content
+//Select Job list content by default  
 app.get("/api/joblist", async (req, res) => {
   try {
     const pool = await db.poolPromise;
@@ -154,6 +173,31 @@ app.get("/api/joblist", async (req, res) => {
     res.status(500).json({ message: "Error occurred", error: err });
   }
 });
+
+//Select Job list content by view
+app.get("/api/joblistbyview", async (req, res) => {
+  try {
+    const pool = await db.poolPromise;
+    const result = await pool.request().query(SELECT_JOBLIST_CONTENT_BY_VIEW);
+    res.json(result.recordset);
+  } catch (err) {
+    console.log(err);
+    res.status(500).json({ message: "Error occurred", error: err });
+  }
+});
+
+//Select Job list content by time
+app.get("/api/joblistbytime", async (req, res) => {
+  try {
+    const pool = await db.poolPromise;
+    const result = await pool.request().query(SELECT_JOBLIST_CONTENT_BY_TIME);
+    res.json(result.recordset);
+  } catch (err) {
+    console.log(err);
+    res.status(500).json({ message: "Error occurred", error: err });
+  }
+});
+
 
 
 app.listen(port, () => {

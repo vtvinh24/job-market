@@ -6,7 +6,7 @@ import HomeNavbar from '../../components/HomeNavbar.jsx';
 import CarouselComponent from '../../components/home/HomeCarousel.jsx';
 import HotNew from '../../components/home/HotNew.jsx';
 import Footer from '../../components/HomeFooter.jsx';
-import TestData from '../../components/TestData.jsx';
+// import TestData from '../../components/TestData.jsx';
 
 function HomeGuest() {
     return (
@@ -17,7 +17,7 @@ function HomeGuest() {
         <HotNew />
         <Footer />
         
-        <TestData />
+        {/* <TestData /> */}
       </div>
     );
 }

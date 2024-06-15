@@ -25,11 +25,11 @@ const FilterPrice = ({onStartPrice, onEndPrice }) => {
       <input className="price-bar" type="number" value={priceEnd} onChange={handlePriceEndChange} />
       <button onClick={handleFilter}>Filter</button> */}
     
-      Price From:
+      Salary From:
       <input className="price-bar" type="number" value={priceStart} onChange={handlePriceStartChange} />
       To:
       <input className="price-bar" type="number" value={priceEnd} onChange={handlePriceEndChange} />
-      
+      {/* <button onClick={handleFilter}>Filter</button>  */}
 
       
     </>
