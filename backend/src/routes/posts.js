@@ -4,21 +4,24 @@ const db = require("../models/DBContext");
 const router = express.Router();
 
 const SELECT_POSTS_BY_ID_DESC = `
-  SELECT post_id, post_title, post_content, username FROM post JOIN auth ON post.user_id = auth.user_id
-  WHERE post_status = 'PUBLISHED'
-  ORDER BY post_id DESC;
+SELECT post_id, post_title, post_content, username, content_updated_time
+FROM post 
+	JOIN auth ON post.user_id = auth.user_id
+	JOIN content_history ON (content_id = post_id AND content_type = 0)
+WHERE post_status = 'PUBLISHED'
+ORDER BY post_id DESC;
   `;
 const SELECT_POST_BY_ID = `
-  SELECT post_id, post_title, post_content, username FROM post JOIN auth ON post.user_id = auth.user_id
-  WHERE post_status = 'PUBLISHED' AND post_id = @id
-  ORDER BY post_id DESC;`;
+SELECT post_id, post_title, post_content, username FROM post JOIN auth ON post.user_id = auth.user_id
+WHERE post_status = 'PUBLISHED' AND post_id = @id
+ORDER BY post_id DESC;`;
 const INSERT_POST =
   "INSERT INTO post (post_title, post_content, user_id, post_status) VALUES (@post_title, @post_content, @user_id, 'PUBLISHED')";
 
 const UPDATE_POST = `
-  UPDATE post SET post_title = @post_title, post_content = @post_content
-  WHERE post_id = @post_id AND user_id = @user_id;
-  `;
+UPDATE post SET post_title = @post_title, post_content = @post_content
+WHERE post_id = @post_id AND user_id = @user_id;
+`;
 
 router.get("/:id", async (req, res) => {
   try {
@@ -72,7 +75,9 @@ router.put("/update", async (req, res) => {
     const { title, content, user_id, post_id } = req.body;
 
     if (!title || !content) {
-      return res.status(400).json({ message: "Title and content must not be empty" });
+      return res
+        .status(400)
+        .json({ message: "Title and content must not be empty" });
     }
     if (isNaN(user_id) || user_id <= 0) {
       return res.status(400).json({ message: "Invalid user id" });
