@@ -21,25 +21,24 @@ const checkUserIdExists = async (user_id) => {
     return result.recordset[0].count > 0;
   } catch (error) {
     console.error('Error checking user_id:', error);
-    throw error;
   }
 };
 // POST route to insert a job
 router.post('/', async (req, res) => {
   const {
-    user_id, 
+    // user_id, 
     job_title, 
     job_work_type, 
     job_work_location, 
     job_tags, 
     job_max_applications, 
     job_approval_method,
-    job_requirement,
+    // job_requirement,
     job_description, 
     job_contact_info
    
   } = req.body;
-
+  const user_id = 1;
   try {
     const userExists = await checkUserIdExists(user_id);
     if (!userExists) {
@@ -55,12 +54,12 @@ router.post('/', async (req, res) => {
     .input('job_tags', sql.NVarChar, job_tags)
     .input('job_max_applications', sql.Int, job_max_applications)
     .input('job_approval_method', sql.Bit, job_approval_method)
-    .input('job_requirement', sql.NVarChar, job_requirement)
+    // .input('job_requirement', sql.NVarChar, job_requirement)
     .input('job_description', sql.NVarChar, job_description)
     .input('job_contact_info', sql.NVarChar, job_contact_info)
     .query(`
-      INSERT INTO job (user_id, job_title, job_work_type, job_work_location, job_tags, job_max_applications, job_approval_method, job_requirement, job_description, job_contact_info)
-      VALUES (@user_id, @job_title, @job_work_type, @job_work_location, @job_tags, @job_max_applications, @job_approval_method, @job_requirement, @job_description, @job_contact_info);
+      INSERT INTO job (user_id, job_title, job_work_type, job_work_location, job_tags, job_max_applications, job_approval_method, job_description, job_contact_info)
+      VALUES (@user_id, @job_title, @job_work_type, @job_work_location, @job_tags, @job_max_applications, @job_approval_method,  @job_description, @job_contact_info);
     `)
 
     res.status(201).send({ message: 'Job successfully inserted' });
@@ -71,7 +70,7 @@ router.post('/', async (req, res) => {
 });
 router.post('/update', async (req, res) => {
   const {
-    user_id, 
+    // user_id, 
     job_title, 
     job_work_type, 
     job_work_location, 
@@ -120,5 +119,26 @@ router.post('/update', async (req, res) => {
     res.status(500).send({ error: 'An error occurred while updating the job' });
   }
 });
+
+router.get("/:id", async (req, res) => {
+
+  
+    try {
+      const { id } = req.params;
+      const pool = await poolPromise;
+      const result = await pool.request()
+        .input('id', sql.Int, id)
+        .query('SELECT * FROM job WHERE job_id = @id');
+  
+      if (result.recordset.length === 0) {
+        return res.status(404).send({ message: 'Job not found' });
+      }
+  
+      res.send(result.recordset[0]);
+    } catch (error) {
+      console.error('Error fetching job details:', error);
+      res.status(500).send({ error: 'An error occurred while fetching job details' });
+    }
+  });
 
 module.exports = router;
