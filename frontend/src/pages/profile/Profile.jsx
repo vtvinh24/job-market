@@ -1,12 +1,30 @@
-import React from 'react';
+import React, { useRef, useState } from 'react';
 import { Container, Row, Col, Form, Button, Card, Nav } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 const Profile = () => {
+  const [selectedImage, setSelectedImage] = useState(null);
+  const [fullName, setFullName] = useState('');
+  const [username, setUsername] = useState('User Name');
+  const fileInputRef = useRef(null);
+
+  const handleImageChange = (e) => {
+    if (e.target.files && e.target.files[0]) {
+      setSelectedImage(URL.createObjectURL(e.target.files[0]));
+    }
+  };
+
+  const handleImageClick = () => {
+    fileInputRef.current.click();
+  };
+
+  const handleNameSubmit = (e) => {
+    e.preventDefault();
+    setUsername(fullName);
+  };
+
   return (
     <>
-      
-
       <Container fluid className="mt-3">
         <Row>
           <Col md={3} className="bg-dark text-white p-4">
@@ -24,14 +42,32 @@ const Profile = () => {
             <Card className="mb-4">
               <Card.Body>
                 <div className="profile-header text-center mb-4">
-                  <img src="https://via.placeholder.com/150" alt="Profile Image" className="rounded-circle" style={{ width: '150px', height: '150px' }} />
-                  <h2>User Name</h2>
+                  <img 
+                    src={selectedImage || "https://via.placeholder.com/150"} 
+                    alt="Profile Image" 
+                    className="rounded-circle" 
+                    style={{ width: '150px', height: '150px', cursor: 'pointer' }} 
+                    onClick={handleImageClick}
+                  />
+                  <input
+                    type="file"
+                    accept="image/*"
+                    ref={fileInputRef}
+                    onChange={handleImageChange}
+                    style={{ display: 'none' }}
+                  />
+                  <h2>{username}</h2>
                 </div>
-                <Form>
+                <Form onSubmit={handleNameSubmit}>
                   <Form.Group as={Row} controlId="fullName">
                     <Form.Label column sm={2}>Full Name</Form.Label>
                     <Col sm={10}>
-                      <Form.Control type="text" placeholder="Full Name" />
+                      <Form.Control 
+                        type="text" 
+                        placeholder="Full Name" 
+                        value={fullName}
+                        onChange={(e) => setFullName(e.target.value)} 
+                      />
                     </Col>
                   </Form.Group>
 
