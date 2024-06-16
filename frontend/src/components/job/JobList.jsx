@@ -3,15 +3,19 @@ import { Container, Row, Col, Form, Button, Dropdown, Card } from 'react-bootstr
 import 'bootstrap/dist/css/bootstrap.min.css';
 import SearchBar from '../../components/job/SearchBar.jsx';
 import FilterPrice from '../../components/job/FilterPrice.jsx';
+import JobPagination from '../../components/job/JobPagination.jsx';
 import  useJobList  from "../../hooks/useJobList";
 import  useJobListbyview  from "../../hooks/useJobListbyView.js";
 import  useJobListbytime  from "../../hooks/useJobListbyTime.js";
 import '../../assets/css/JobList.css'
+
 function JobList() {
     const [searchQuery, setSearchQuery] = useState('');
     const [filter, setFilter] = useState('default');
     const [minSalary, setMinSalary] = useState('');
     const [maxSalary, setMaxSalary] = useState('');
+    const [currentPage, setCurrentPage] = useState(1);
+    const jobsPerPage = 10;
   
     const { contents: defaultContents, loading: defaultLoading, error: defaultError } = useJobList();
     const { contents: viewContents, loading: viewLoading, error: viewError } = useJobListbyview();
@@ -73,7 +77,15 @@ function JobList() {
       }
     };
 
-    console.log(contents);
+      // Get current jobs
+  const indexOfLastJob = currentPage * jobsPerPage;
+  const indexOfFirstJob = indexOfLastJob - jobsPerPage;
+  const currentJobs = filteredContents.slice(indexOfFirstJob, indexOfLastJob);
+
+  // Change page
+  const paginate = (pageNumber) => setCurrentPage(pageNumber);
+
+
   
     return (
       <Container>
@@ -102,6 +114,7 @@ function JobList() {
 
         <Row>
           <Col>
+          <JobPagination jobsPerPage={jobsPerPage} totalJobs={filteredContents.length} paginate={paginate} currentPage={currentPage} />
             <div>
               {filteredContents.map(content => (
               <div className="job-card" key={content.job_id}>
@@ -125,6 +138,7 @@ function JobList() {
                 </div>
             </div>
             ))}
+            <JobPagination jobsPerPage={jobsPerPage} totalJobs={filteredContents.length} paginate={paginate} currentPage={currentPage}/>
             </div>
           </Col>
         </Row>
