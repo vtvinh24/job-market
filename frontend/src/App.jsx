@@ -28,6 +28,9 @@ import Dashboard from "./pages/home/Dashboard";
 import Setting from "./pages/home/Setting";
 import Users from "./pages/home/Users";
 
+//Profile
+import Profile from "./pages/profile/Profile";
+
 // Components
 import HomeFooter from "./components/HomeFooter";
 import HomeNavbar from "./components/HomeNavbar";
@@ -35,6 +38,7 @@ import HomeNavbar from "./components/HomeNavbar";
 // Misc
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "./App.css";
+
 
 function App() {
   return (
@@ -67,6 +71,8 @@ function App() {
           <Route path="*" element={<PageNotFound />} />
           <Route exact path="/dashboard" element={<Dashboard />} />
           
+          {/* PROFILE */}
+          <Route exact path="/profile" element={<Profile />} />
 
           {/* USERS ROUTES */}
           <Route path="/users" element={<Users />} />

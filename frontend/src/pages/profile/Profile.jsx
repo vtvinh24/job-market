@@ -14,10 +14,10 @@ const Profile = () => {
         position: 'fixed'
       }}>
         <h2>UserName</h2>
-        <a href="#profile" style={linkStyle}>Profile</a>
-        <a href="#information" style={linkStyle}>Information</a>
-        <a href="#security" style={linkStyle}>Security</a>
-        <a href="#logout" style={linkStyle}>Log Out</a>
+        <a href="/profile" style={linkStyle}>Profile</a>
+        <a href="/information" style={linkStyle}>Information</a>
+        <a href="/security" style={linkStyle}>Security</a>
+        <a href="/logout" style={linkStyle}>Log Out</a>
       </div>
 
       <div style={{ marginLeft: '220px', padding: '20px', width: '100%' }}>
@@ -41,6 +41,13 @@ const Profile = () => {
               </Col>
             </Form.Group>
 
+            <Form.Group as={Row} controlId="citizenid">
+              <Form.Label column sm={2}>Citizen ID</Form.Label>
+              <Col sm={10}>
+                <Form.Control type="text" placeholder="Citizen ID" />
+              </Col>
+            </Form.Group>
+
             <Form.Group as={Row} controlId="email">
               <Form.Label column sm={2}>Email</Form.Label>
               <Col sm={10}>
@@ -55,12 +62,7 @@ const Profile = () => {
               </Col>
             </Form.Group>
 
-            <Form.Group as={Row} controlId="citizenid">
-              <Form.Label column sm={2}>Citizen ID</Form.Label>
-              <Col sm={10}>
-                <Form.Control type="text" placeholder="Citizen ID" />
-              </Col>
-            </Form.Group>
+            
 
             <Form.Group as={Row}>
               <Col sm={{ span: 10, offset: 2 }}>
