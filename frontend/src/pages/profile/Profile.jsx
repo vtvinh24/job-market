@@ -42,6 +42,13 @@ const Profile = () => {
                     </Col>
                   </Form.Group>
 
+                  <Form.Group as={Row} controlId="address">
+                    <Form.Label column sm={2}>Address</Form.Label>
+                    <Col sm={10}>
+                      <Form.Control type="text" placeholder="Address" />
+                    </Col>
+                  </Form.Group>
+
                   <Form.Group as={Row} controlId="citizenid">
                     <Form.Label column sm={2}>Citizen ID</Form.Label>
                     <Col sm={10}>
