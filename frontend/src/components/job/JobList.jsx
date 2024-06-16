@@ -1,18 +1,17 @@
 import React, { useState } from 'react';
 import { Container, Row, Col, Form, Button, Dropdown, Card } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import HomeNavbar from '../../components/HomeNavbar.jsx';
-import HelpCenter from '../../components/HelpCenter.jsx';
-import Footer from '../../components/HomeFooter.jsx';
 import SearchBar from '../../components/job/SearchBar.jsx';
 import FilterPrice from '../../components/job/FilterPrice.jsx';
 import  useJobList  from "../../hooks/useJobList";
 import  useJobListbyview  from "../../hooks/useJobListbyView.js";
 import  useJobListbytime  from "../../hooks/useJobListbyTime.js";
-
+import '../../assets/css/JobList.css'
 function JobList() {
     const [searchQuery, setSearchQuery] = useState('');
     const [filter, setFilter] = useState('default');
+    const [minSalary, setMinSalary] = useState('');
+    const [maxSalary, setMaxSalary] = useState('');
   
     const { contents: defaultContents, loading: defaultLoading, error: defaultError } = useJobList();
     const { contents: viewContents, loading: viewLoading, error: viewError } = useJobListbyview();
@@ -47,13 +46,35 @@ function JobList() {
       return <div>Error: {error.message}</div>;
     }
   
-    const filteredContents = contents.filter(content =>
-      content.job_title.toLowerCase().includes(searchQuery.toLowerCase())
-    );
+    const handleStartPriceChange = (value) => {
+      setMinSalary(value);
+    };
+  
+    const handleEndPriceChange = (value) => {
+      setMaxSalary(value);
+    };
+  
+    const filteredContents = contents.filter(content => {
+      const salary = parseFloat(content.job_compensation_amount);
+      const isWithinSalaryRange = (!minSalary || salary >= parseFloat(minSalary)) && (!maxSalary || salary <= parseFloat(maxSalary));
+      return content.job_title.toLowerCase().includes(searchQuery.toLowerCase()) && isWithinSalaryRange;
+    });
+
+    const formatSalary = (type, amount,currency) => {
+      switch (type) {
+        case 'ONETIME':
+          return `${amount} ${currency}`;
+        case 'HOURLY':
+          return `${amount} ${currency}/hour`;
+        case 'MONTHLY':
+          return `${amount} ${currency} per month`;
+        default:
+          return amount;
+      }
+    };
+
     console.log(contents);
-    console.log(searchQuery);
-    console.log(filteredContents);
-    
+  
     return (
       <Container>
         <Row style={{alignItems: 'center'}}>
@@ -61,7 +82,7 @@ function JobList() {
             <SearchBar onSearch={setSearchQuery} />
           </Col>
           <Col md={5}>
-            <FilterPrice />
+          <FilterPrice onStartPrice={handleStartPriceChange} onEndPrice={handleEndPriceChange} />
           </Col>
           <Col md={4}>
             <Form style={{width: '50%'}}>
@@ -78,17 +99,32 @@ function JobList() {
           </Form>
           </Col>
         </Row>
+
         <Row>
           <Col>
             <div>
               {filteredContents.map(content => (
-                <Card key={content.job_id}>
-                  <Card.Body>
-                    <Card.Title>{content.job_title}</Card.Title>
-                    <Card.Text>{content.job_description}</Card.Text>
-                  </Card.Body>
-                </Card>
-              ))}
+              <div className="job-card" key={content.job_id}>
+                <div className="job-card-img">IMG Background</div>
+                <div className="job-card-content">
+                  <div className="job-card-header">
+                    <h2 className="job-title">{content.job_title}</h2>
+                    <a href="#" className="job-detail-link">Detail</a>
+                  </div>
+                  <div className="job-card-body">
+                    <div className="job-info">
+                      <p>Creator: {content.username}</p>
+                      <p>Job Tag: {content.job_tags}</p>
+                      <p>Location: {content.job_work_location}</p>
+                    </div>
+                     <div className="job-info-right">
+                      <p>{formatSalary(content.job_compensation_type, content.job_compensation_amount,content.job_compensation_currency)}</p>
+                      <p>{content.timeleft} days left</p>
+                    </div> 
+                  </div>
+                </div>
+            </div>
+            ))}
             </div>
           </Col>
         </Row>

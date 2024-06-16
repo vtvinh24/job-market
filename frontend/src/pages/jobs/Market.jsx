@@ -5,8 +5,6 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import HomeNavbar from '../../components/HomeNavbar.jsx';
 import HelpCenter from '../../components/HelpCenter.jsx';
 import Footer from '../../components/HomeFooter.jsx';
-import SearchBar from '../../components/job/SearchBar.jsx';
-import FilterPrice from '../../components/job/FilterPrice.jsx';
 import  useJobList  from "../../hooks/useJobList";
 import JobList from '../../components/job/JobList.jsx';
 

@@ -22,26 +22,87 @@ const SELECT_USER_HASH = "SELECT hash FROM Users WHERE username = @username";
 const SELECT_MARKETING_CONTENT = "Select m.id,m.topic,m.content from Marketing m";
 //Select Post Content
 const SELECT_POSTS_CONTENT = "SELECT TOP 3 p.post_id, p.post_title, p.post_content, u.username FROM post p JOIN auth u ON p.user_id = u.user_id";
-//Select JobList Content
-const SELECT_JOBLIST_CONTENT = `SELECT j.job_id,u.username,j.job_title,j.job_description,j.job_tags,j.job_work_location,j.job_description,jv.job_view,jl.job_log_time
-FROM job j
-INNER JOIN auth u ON j.user_id = u.user_id  -- Use INNER JOIN for required data
-INNER JOIN job_view jv ON j.job_id = jv.job_id
-INNER JOIN job_log jl ON j.job_id = jl.job_id
-ORDER BY j.job_id;`;
 
-const SELECT_JOBLIST_CONTENT_BY_VIEW=`SELECT j.job_id,u.username,j.job_title,j.job_description,j.job_tags,j.job_work_location,j.job_description,jv.job_view,jl.job_log_time
-FROM job j
-INNER JOIN auth u ON j.user_id = u.user_id  -- Use INNER JOIN for required data
-INNER JOIN job_view jv ON j.job_id = jv.job_id
-INNER JOIN job_log jl ON j.job_id = jl.job_id
+
+
+//Select JobList Content
+const SELECT_JOBLIST_CONTENT = `SELECT 
+    j.job_id,
+    u.username,
+    j.job_title,
+    j.job_tags,
+    j.job_work_location,
+    jc.job_compensation_amount,
+    jc.job_compensation_currency,
+    jc.job_compensation_type,
+    DATEDIFF(DAY, GETDATE(), jr.job_recruitment_deadline) AS timeleft
+FROM 
+    job j
+INNER JOIN 
+    auth u ON j.user_id = u.user_id  -- Use INNER JOIN for required data
+INNER JOIN 
+    job_view jv ON j.job_id = jv.job_id
+INNER JOIN 
+    job_log jl ON j.job_id = jl.job_id
+INNER JOIN 
+    job_compensation jc ON j.job_id = jc.job_id
+INNER JOIN 
+    job_recruitment jr ON j.job_id = jr.job_id
+WHERE 
+    jl.job_log_type = 'create'
+ORDER BY 
+    j.job_id;`;
+
+const SELECT_JOBLIST_CONTENT_BY_VIEW=`SELECT 
+    j.job_id,
+    u.username,
+    j.job_title,
+    j.job_tags,
+    j.job_work_location,
+    jc.job_compensation_amount,
+    jc.job_compensation_currency,
+    jc.job_compensation_type,
+    DATEDIFF(DAY, GETDATE(), jr.job_recruitment_deadline) AS timeleft
+FROM 
+    job j
+INNER JOIN 
+    auth u ON j.user_id = u.user_id  -- Use INNER JOIN for required data
+INNER JOIN 
+    job_view jv ON j.job_id = jv.job_id
+INNER JOIN 
+    job_log jl ON j.job_id = jl.job_id
+INNER JOIN 
+    job_compensation jc ON j.job_id = jc.job_id
+INNER JOIN 
+    job_recruitment jr ON j.job_id = jr.job_id
+WHERE 
+    jl.job_log_type = 'create'
 ORDER BY jv.job_view DESC;`;
 
-const SELECT_JOBLIST_CONTENT_BY_TIME=`SELECT j.job_id,u.username,j.job_title,j.job_description,j.job_tags,j.job_work_location,j.job_description,jv.job_view,jl.job_log_time
-FROM job j
-INNER JOIN auth u ON j.user_id = u.user_id  -- Use INNER JOIN for required data
-INNER JOIN job_view jv ON j.job_id = jv.job_id
-INNER JOIN job_log jl ON j.job_id = jl.job_id
+const SELECT_JOBLIST_CONTENT_BY_TIME=`SELECT 
+    j.job_id,
+    u.username,
+    j.job_title,
+    j.job_tags,
+    j.job_work_location,
+    jc.job_compensation_amount,
+    jc.job_compensation_currency,
+    jc.job_compensation_type,
+    DATEDIFF(DAY, GETDATE(), jr.job_recruitment_deadline) AS timeleft
+FROM 
+    job j
+INNER JOIN 
+    auth u ON j.user_id = u.user_id  -- Use INNER JOIN for required data
+INNER JOIN 
+    job_view jv ON j.job_id = jv.job_id
+INNER JOIN 
+    job_log jl ON j.job_id = jl.job_id
+INNER JOIN 
+    job_compensation jc ON j.job_id = jc.job_id
+INNER JOIN 
+    job_recruitment jr ON j.job_id = jr.job_id
+WHERE 
+    jl.job_log_type = 'create'
 ORDER BY jl.job_log_time DESC;`;
 
 // Define CORS rule
