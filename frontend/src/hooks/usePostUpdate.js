@@ -6,21 +6,21 @@ const usePostUpdate = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  const insertPost = async (title, content, user_id) => {
+  const updatePost = async (title, content, user_id, post_id) => {
     setLoading(true);
     setError(null);
 
     try {
-      const response = await axios.post(`${API_URL}/posts/update`, { title, content, user_id, post_id });
+      const response = await axios.put(`${API_URL}/posts/update`, { title, content, user_id, post_id });
       setLoading(false);
       return response.data;
     } catch (err) {
-      setError(err.message || 'Error occurred');
+      console.log(err);
       setLoading(false);
     }
   };
 
-  return { insertPost, loading, error };
+  return { updatePost, loading, error };
 };
 
 export default usePostUpdate;
