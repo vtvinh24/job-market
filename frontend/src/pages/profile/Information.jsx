@@ -14,10 +14,10 @@ const Information = () => {
         position: 'fixed'
       }}>
         <h2>UserName</h2>
-        <a href="#profile" style={linkStyle}>Profile</a>
-        <a href="#information" style={linkStyle}>Information</a>
-        <a href="#security" style={linkStyle}>Security</a>
-        <a href="#logout" style={linkStyle}>Log Out</a>
+        <a href="/profile" style={linkStyle}>Profile</a>
+        <a href="/information" style={linkStyle}>Information</a>
+        <a href="/security" style={linkStyle}>Security</a>
+        <a href="/logout" style={linkStyle}>Log Out</a>
       </div>
 
       <div style={{ marginLeft: '220px', padding: '20px', width: '100%' }}>

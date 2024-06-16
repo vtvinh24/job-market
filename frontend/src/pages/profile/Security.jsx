@@ -6,10 +6,10 @@ const Security = () => {
     <div>
       <div className="sidebar">
         <h2>UserName</h2>
-        <a href="#profile">Profile</a>
-        <a href="#information">Information</a>
-        <a href="#security">Security</a>
-        <a href="#logout">Log Out</a>
+        <a href="/profile">Profile</a>
+        <a href="/information">Information</a>
+        <a href="/security">Security</a>
+        <a href="/logout">Log Out</a>
       </div>
       <div className="main-content">
         <Container className="mt-5">
