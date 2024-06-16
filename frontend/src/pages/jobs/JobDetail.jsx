@@ -69,13 +69,13 @@ const ApplyButton = styled.button`
 
 const JobDetail = () => {
   const [job, setJob] = useState(null);
-  const { jobId } = useParams();
+  const  jobId  = 8;
   const navigate = useNavigate();
 
   useEffect(() => {
     const fetchJobDetails = async () => {
       try {
-        const response = await axios.get(`/api/jobs/${jobId}`);
+        const response = await axios.get(`http://localhost:8000/api/jobs/${jobId}`);
         setJob(response.data);
       } catch (error) {
         console.error('Error fetching job details:', error);
