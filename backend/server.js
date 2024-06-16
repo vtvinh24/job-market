@@ -34,6 +34,9 @@ app.use("/api/dashboard/count/user/total", countTotalUserRoute);
 const countActiveUserRoute = require("./src/routes/dashboard/countActiveUser");
 app.use("/api/dashboard/count/user/active", countTotalUserRoute);
 
+const jobsRoute = require("./src/routes/jobs");
+app.use("/api/jobs", jobsRoute);
+
 // TEMPLATE FOR ADDING ROUTES
 // const ____Route = require("./src/routes/____");
 // app.use("/api/____", ____Route);
