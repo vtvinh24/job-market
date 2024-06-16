@@ -5,6 +5,11 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 const Profile = () => {
   const [selectedImage, setSelectedImage] = useState(null);
   const [fullName, setFullName] = useState('');
+  const [dob, setDob] = useState('');
+  const [address, setAddress] = useState('');
+  const [citizenId, setCitizenId] = useState('');
+  const [email, setEmail] = useState('');
+  const [contactNumber, setContactNumber] = useState('');
   const [username, setUsername] = useState('User Name');
   const fileInputRef = useRef(null);
 
@@ -18,9 +23,25 @@ const Profile = () => {
     fileInputRef.current.click();
   };
 
-  const handleNameSubmit = (e) => {
+  const handleFormSubmit = (e) => {
     e.preventDefault();
     setUsername(fullName);
+    
+    // Create a user object with all the form data
+    const userData = {
+      fullName,
+      dob,
+      address,
+      citizenId,
+      email,
+      contactNumber,
+      profileImage: selectedImage,
+    };
+
+    // Log the user data to the console (replace this with an API call to save data)
+    console.log('User Data:', userData);
+
+    // Optionally, show a success message or handle form submission state here
   };
 
   return (
@@ -58,7 +79,7 @@ const Profile = () => {
                   />
                   <h2>{username}</h2>
                 </div>
-                <Form onSubmit={handleNameSubmit}>
+                <Form onSubmit={handleFormSubmit}>
                   <Form.Group as={Row} controlId="fullName">
                     <Form.Label column sm={2}>Full Name</Form.Label>
                     <Col sm={10}>
@@ -74,35 +95,59 @@ const Profile = () => {
                   <Form.Group as={Row} controlId="dob">
                     <Form.Label column sm={2}>Date of Birth</Form.Label>
                     <Col sm={10}>
-                      <Form.Control type="date" />
+                      <Form.Control 
+                        type="date" 
+                        value={dob}
+                        onChange={(e) => setDob(e.target.value)} 
+                      />
                     </Col>
                   </Form.Group>
 
                   <Form.Group as={Row} controlId="address">
                     <Form.Label column sm={2}>Address</Form.Label>
                     <Col sm={10}>
-                      <Form.Control type="text" placeholder="Address" />
+                      <Form.Control 
+                        type="text" 
+                        placeholder="Address" 
+                        value={address}
+                        onChange={(e) => setAddress(e.target.value)} 
+                      />
                     </Col>
                   </Form.Group>
 
                   <Form.Group as={Row} controlId="citizenid">
                     <Form.Label column sm={2}>Citizen ID</Form.Label>
                     <Col sm={10}>
-                      <Form.Control type="text" placeholder="Citizen ID" />
+                      <Form.Control 
+                        type="text" 
+                        placeholder="Citizen ID" 
+                        value={citizenId}
+                        onChange={(e) => setCitizenId(e.target.value)} 
+                      />
                     </Col>
                   </Form.Group>
 
                   <Form.Group as={Row} controlId="email">
                     <Form.Label column sm={2}>Email</Form.Label>
                     <Col sm={10}>
-                      <Form.Control type="email" placeholder="Email" />
+                      <Form.Control 
+                        type="email" 
+                        placeholder="Email" 
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)} 
+                      />
                     </Col>
                   </Form.Group>
 
                   <Form.Group as={Row} controlId="contactNumber">
                     <Form.Label column sm={2}>Contact Number</Form.Label>
                     <Col sm={10}>
-                      <Form.Control type="text" placeholder="Contact Number" />
+                      <Form.Control 
+                        type="text" 
+                        placeholder="Contact Number" 
+                        value={contactNumber}
+                        onChange={(e) => setContactNumber(e.target.value)} 
+                      />
                     </Col>
                   </Form.Group>
 

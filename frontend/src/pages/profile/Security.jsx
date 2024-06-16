@@ -51,6 +51,31 @@ const SecurityPage = () => {
                   </Form.Group>
                 </Form>
               </Card.Body>
+              <Card.Body>
+                <Form>
+                  <Form.Group as={Row} controlId="currentEmail">
+                    <Form.Label column sm={2}>Current Email</Form.Label>
+                    <Col sm={10}>
+                      <Form.Control type="email" placeholder="Current Email" />
+                    </Col>
+                  </Form.Group>
+
+                  <Form.Group as={Row} controlId="newEmail">
+                    <Form.Label column sm={2}>New Password</Form.Label>
+                    <Col sm={10}>
+                      <Form.Control type="email" placeholder="New Email" />
+                    </Col>
+                  </Form.Group>
+
+                  
+
+                  <Form.Group as={Row}>
+                    <Col sm={{ span: 10, offset: 2 }}>
+                      <Button type="submit">Save Changes</Button>
+                    </Col>
+                  </Form.Group>
+                </Form>
+              </Card.Body>
             </Card>
           </Col>
         </Row>
