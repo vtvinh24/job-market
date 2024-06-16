@@ -1,58 +1,61 @@
 import React from 'react';
-import { Container, Row, Col, Form, Button } from 'react-bootstrap';
+import { Container, Row, Col, Form, Button, Card, Nav } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 const Information = () => {
   return (
-    <div style={{ display: 'flex' }}>
-      <div style={{
-        height: '100vh',
-        backgroundColor: '#343a40',
-        color: 'white',
-        padding: '20px',
-        width: '220px',
-        position: 'fixed'
-      }}>
-        <h2>UserName</h2>
-        <a href="/profile" style={linkStyle}>Profile</a>
-        <a href="/information" style={linkStyle}>Information</a>
-        <a href="/security" style={linkStyle}>Security</a>
-        <a href="/logout" style={linkStyle}>Log Out</a>
-      </div>
+    <>
+      
+      <Container fluid className="mt-3">
+        <Row>
+          <Col md={3} className="bg-dark text-white p-4">
+            <h2>UserName</h2>
+            <Nav className="flex-column">
+              <Nav.Link href="/profile" className="text-white">Profile</Nav.Link>
+              <Nav.Link href="/information" className="text-white">Information</Nav.Link>
+              <Nav.Link href="/security" className="text-white">Security</Nav.Link>
+              <Row>
+                <Col><Button variant="danger" href="/logout">Log Out</Button></Col>
+              </Row>
+            </Nav>
+          </Col>
+          <Col md={9} className="p-4">
+            <Card className="mb-4">
+              <Card.Body>
+                <Form>
+                  <Form.Group as={Row} controlId="strengths">
+                    <Form.Label column sm={2}>Strengths</Form.Label>
+                    <Col sm={10}>
+                      <Form.Control as="textarea" rows={3} placeholder="List your strengths" />
+                    </Col>
+                  </Form.Group>
 
-      <div style={{ marginLeft: '220px', padding: '20px', width: '100%' }}>
-        <Container className="mt-5">
-          <Form>
-            <Form.Group as={Row} controlId="strengths">
-              <Form.Label column sm={2}>Strengths</Form.Label>
-              <Col sm={10}>
-                <Form.Control as="textarea" rows={3} placeholder="List your strengths" />
-              </Col>
-            </Form.Group>
+                  <Form.Group as={Row} controlId="weaknesses">
+                    <Form.Label column sm={2}>Weaknesses</Form.Label>
+                    <Col sm={10}>
+                      <Form.Control as="textarea" rows={3} placeholder="List your weaknesses" />
+                    </Col>
+                  </Form.Group>
 
-            <Form.Group as={Row} controlId="weaknesses">
-              <Form.Label column sm={2}>Weaknesses</Form.Label>
-              <Col sm={10}>
-                <Form.Control as="textarea" rows={3} placeholder="List your weaknesses" />
-              </Col>
-            </Form.Group>
+                  <Form.Group as={Row} controlId="shortbio">
+                    <Form.Label column sm={2}>Short Bio</Form.Label>
+                    <Col sm={10}>
+                      <Form.Control as="textarea" rows={3} placeholder="Bio" />
+                    </Col>
+                  </Form.Group>
 
-            <Form.Group as={Row} controlId="shortbio">
-              <Form.Label column sm={2}>Short Bio</Form.Label>
-              <Col sm={10}>
-                <Form.Control as="textarea" rows={3} placeholder="Bio" />
-              </Col>
-            </Form.Group>
-
-            <Form.Group as={Row}>
-              <Col sm={{ span: 10, offset: 2 }}>
-                <Button type="submit">Save</Button>
-              </Col>
-            </Form.Group>
-          </Form>
-        </Container>
-      </div>
-    </div>
+                  <Form.Group as={Row}>
+                    <Col sm={{ span: 10, offset: 2 }}>
+                      <Button type="submit">Save</Button>
+                    </Col>
+                  </Form.Group>
+                </Form>
+              </Card.Body>
+            </Card>
+          </Col>
+        </Row>
+      </Container>
+    </>
   );
 };
 

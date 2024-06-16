@@ -1,48 +1,62 @@
 import React from 'react';
-import { Container, Form, FormGroup, Col, Button } from 'react-bootstrap';
+import { Container, Row, Col, Card, Nav, Form, Button } from 'react-bootstrap';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
-const Security = () => {
+const SecurityPage = () => {
   return (
-    <div>
-      <div className="sidebar">
-        <h2>UserName</h2>
-        <a href="/profile">Profile</a>
-        <a href="/information">Information</a>
-        <a href="/security">Security</a>
-        <a href="/logout">Log Out</a>
-      </div>
-      <div className="main-content">
-        <Container className="mt-5">
-          <h2>Security Settings</h2>
-          <Form>
-            <FormGroup as={Row}>
-              <Form.Label column sm={2}>Current Password</Form.Label>
-              <Col sm={10}>
-                <Form.Control type="password" id="currentPassword" placeholder="Current Password" />
-              </Col>
-            </FormGroup>
-            <FormGroup as={Row}>
-              <Form.Label column sm={2}>New Password</Form.Label>
-              <Col sm={10}>
-                <Form.Control type="password" id="newPassword" placeholder="New Password" />
-              </Col>
-            </FormGroup>
-            <FormGroup as={Row}>
-              <Form.Label column sm={2}>Confirm New Password</Form.Label>
-              <Col sm={10}>
-                <Form.Control type="password" id="confirmPassword" placeholder="Confirm New Password" />
-              </Col>
-            </FormGroup>
-            <FormGroup as={Row}>
-              <Col sm={{ span: 10, offset: 2 }}>
-                <Button type="submit" variant="primary">Save Changes</Button>
-              </Col>
-            </FormGroup>
-          </Form>
-        </Container>
-      </div>
-    </div>
-  );
-}
+    <>
+      
+      <Container fluid className="mt-3">
+        <Row>
+          <Col md={3} className="bg-dark text-white p-4">
+            <h2>Navigation</h2>
+            <Nav className="flex-column">
+              <Nav.Link href="/profile" className="text-white">Profile</Nav.Link>
+              <Nav.Link href="/information" className="text-white">Information</Nav.Link>
+              <Nav.Link href="/security" className="text-white">Security</Nav.Link>
+              <Row>
+                <Col><Button variant="danger" href="/logout">Logout</Button></Col>
+              </Row>
+            </Nav>
+          </Col>
+          <Col md={9} className="p-4">
+            <Card className="mb-4">
+              <Card.Body>
+                <Form>
+                  <Form.Group as={Row} controlId="currentPassword">
+                    <Form.Label column sm={2}>Current Password</Form.Label>
+                    <Col sm={10}>
+                      <Form.Control type="password" placeholder="Current Password" />
+                    </Col>
+                  </Form.Group>
 
-export default Security;
+                  <Form.Group as={Row} controlId="newPassword">
+                    <Form.Label column sm={2}>New Password</Form.Label>
+                    <Col sm={10}>
+                      <Form.Control type="password" placeholder="New Password" />
+                    </Col>
+                  </Form.Group>
+
+                  <Form.Group as={Row} controlId="confirmPassword">
+                    <Form.Label column sm={2}>Confirm New Password</Form.Label>
+                    <Col sm={10}>
+                      <Form.Control type="password" placeholder="Confirm New Password" />
+                    </Col>
+                  </Form.Group>
+
+                  <Form.Group as={Row}>
+                    <Col sm={{ span: 10, offset: 2 }}>
+                      <Button type="submit">Save Changes</Button>
+                    </Col>
+                  </Form.Group>
+                </Form>
+              </Card.Body>
+            </Card>
+          </Col>
+        </Row>
+      </Container>
+    </>
+  );
+};
+
+export default SecurityPage;
