@@ -13,13 +13,11 @@ router.get("/", async (req, res) => {
     const pool = await db.poolPromise;
     const result = await pool
       .request()
-      .input("user_id", db.sql.Int, req.body.user_id)
+      .input("user_id", db.sql.Int, req.query.user_id)
       .query(SELECT_USER_BALANCE);
     res.json(result.recordset[0].balance);
   } catch (err) {
     res.status(500).json({ message: "Error occurred", error: err });
-    console.log(req);
-    console.log(err);
   }
 });
 
