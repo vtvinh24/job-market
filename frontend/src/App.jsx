@@ -40,7 +40,7 @@ import HomeNavbar from "./components/HomeNavbar";
 // Misc
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "./App.css";
-import Security from "./pages/profile/Security";
+
 
 
 function App() {
