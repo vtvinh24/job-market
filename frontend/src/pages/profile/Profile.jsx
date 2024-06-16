@@ -4,7 +4,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 const Profile = () => {
   return (
-    <div style={{ display: 'flex' }}>
+    <Container fluid style={{ display: 'flex', padding: 0 }}>
       <div style={{
         height: '100vh',
         backgroundColor: '#343a40',
@@ -62,8 +62,6 @@ const Profile = () => {
               </Col>
             </Form.Group>
 
-            
-
             <Form.Group as={Row}>
               <Col sm={{ span: 10, offset: 2 }}>
                 <Button type="submit">Save</Button>
@@ -72,7 +70,7 @@ const Profile = () => {
           </Form>
         </Container>
       </div>
-    </div>
+    </Container>
   );
 };
 
