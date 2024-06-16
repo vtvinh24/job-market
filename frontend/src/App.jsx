@@ -30,6 +30,8 @@ import Users from "./pages/home/Users";
 
 //Profile
 import Profile from "./pages/profile/Profile";
+import Information from "./pages/profile/Information";
+import Security from "./pages/profile/Security";
 
 // Components
 import HomeFooter from "./components/HomeFooter";
@@ -38,6 +40,7 @@ import HomeNavbar from "./components/HomeNavbar";
 // Misc
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "./App.css";
+import Security from "./pages/profile/Security";
 
 
 function App() {
@@ -73,6 +76,8 @@ function App() {
           
           {/* PROFILE */}
           <Route exact path="/profile" element={<Profile />} />
+          <Route exact path="/information" element={<Information />} />
+          <Route exact path="/security" element={<Security />} />
 
           {/* USERS ROUTES */}
           <Route path="/users" element={<Users />} />
