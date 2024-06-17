@@ -16,9 +16,9 @@ app.use(
 
 sql
   .connect({
-    user: "new_user",
-    password: "123",
-    server: "LAPTOP-RI23J8UM",
+    user: "sa",
+    password: "sa",
+    server: "localhost",
     database: "mJOB",
     encrypt: false,
   })
