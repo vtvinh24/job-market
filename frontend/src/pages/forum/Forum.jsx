@@ -1,20 +1,18 @@
+import React from "react";
 import ListPost from "../../components/forum/ListPost";
-import { Row, Container } from "react-bootstrap";
-import NavigateButton from "../../components/buttons/NavigateButton";
+import { Button, Row } from "react-bootstrap";
 
 const Forum = () => {
   return (
-    <Container className="forum-body">
-      <NavigateButton
-        path="/forum/add"
-        text="Create Post"
-        variant="primary"
-      />
+    <div className="forum-body">
+      <Button className="forum-button" href="/forum/add">
+        Create
+      </Button>
 
       <Row>
         <ListPost />
       </Row>
-    </Container>
+    </div>
   );
 };
 
