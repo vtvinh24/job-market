@@ -11,11 +11,11 @@ import TestData from '../../components/TestData.jsx';
 function HomeGuest() {
     return (
       <div className="App">
-        <HomeNavbar />
+        {/* <HomeNavbar /> */}
         <CarouselComponent />        
         <HelpCenter />
         <HotNew />
-        <Footer />
+        {/* <Footer /> */}
         
         {/* <TestData /> */}
       </div>
