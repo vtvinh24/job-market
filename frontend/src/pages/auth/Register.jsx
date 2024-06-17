@@ -1,146 +1,80 @@
-import React, { useState, useEffect, useRef } from "react";
-import { Form, FormGroup } from "react-bootstrap";
+// src/components/RegisterForm.js
+import React, { useState } from "react";
+import { Form, Button, Container, Card, Alert } from "react-bootstrap";
 import axios from "axios";
 
-// Regular expressions for validation
-const REGEX_USERNAME = /^[A-Za-z][A-Za-z0-9_]{8,29}$/;
-const REGEX_PASSWORD = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/;
-const REGISTER_API = "http://localhost:8000/api/auth/register";
+const RegisterForm = () => {
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [message, setMessage] = useState(null);
+  const [error, setError] = useState(null);
 
-const Register = () => {
-  const [user, setUser] = useState("");
-  const [pwd, setPwd] = useState("");
-  const [matchPwd, setMatchPwd] = useState("");
-  const [validName, setValidName] = useState(false);
-  const [validPwd, setValidPwd] = useState(false);
-  const [validMatch, setValidMatch] = useState(false);
-  const [errMsg, setErrMsg] = useState("");
-  const [success, setSuccess] = useState(false);
-  const errRef = useRef();
-
-  // Effect to validate username
-  useEffect(() => {
-    setValidName(REGEX_USERNAME.test(user));
-  }, [user]);
-
-  // Effect to validate password and match
-  useEffect(() => {
-    setValidPwd(REGEX_PASSWORD.test(pwd));
-    setValidMatch(pwd === matchPwd);
-  }, [pwd, matchPwd]);
-
-  // Effect to clear error message on input change
-  useEffect(() => {
-    setErrMsg("");
-  }, [user, pwd, matchPwd]);
-
-  const handleSubmit = async (e) => {
+  const handleRegister = async (e) => {
     e.preventDefault();
-    // Client-side validation
-    const v1 = REGEX_USERNAME.test(user);
-    const v2 = REGEX_PASSWORD.test(pwd);
-    if (!v1 || !v2) {
-      setErrMsg("Invalid Entry");
+    if (password !== confirmPassword) {
+      setError("Passwords do not match!");
       return;
     }
     try {
-      const response = await axios.post(
-        REGISTER_API,
-        JSON.stringify({ username: user, password: pwd }),
-        { headers: { "Content-Type": "application/json" } }
-      );
-      setSuccess(true);
-      setUser("");
-      setPwd("");
-      setMatchPwd("");
+      const response = await axios.post("/api/register", {
+        username,
+        password,
+      });
+      setMessage("Registration successful!");
+      setError(null);
     } catch (err) {
-      if (!err?.response) {
-        setErrMsg("No Server Response");
-      } else if (err.response?.status === 409) {
-        setErrMsg("Username Taken");
-      } else {
-        setErrMsg("Registration Failed");
-      }
-      errRef.current.focus();
+      setError("Registration failed! Please try again.");
+      setMessage(null);
     }
   };
 
   return (
-    <>
-      {success ? (
-        <section>
-          <h1>Registration Successful!</h1>
-          <p>
-            <a href="/login">Sign In</a>
-          </p>
-        </section>
-      ) : (
-        <section>
-          <p
-            ref={errRef}
-            className={errMsg ? "errmsg" : "offscreen"}
-            aria-live="assertive"
-          >
-            {errMsg}
-          </p>
-          <h1>Register</h1>
-          <Form onSubmit={handleSubmit}>
-            <FormGroup>
+    <Container className="d-flex justify-content-center mt-5">
+      <Card style={{ width: "30rem" }}>
+        <Card.Body>
+          <Card.Title>Register</Card.Title>
+          {message && <Alert variant="success">{message}</Alert>}
+          {error && <Alert variant="danger">{error}</Alert>}
+          <Form onSubmit={handleRegister} className="mt-3">
+            <Form.Group controlId="formUsername">
               <Form.Label>Username</Form.Label>
               <Form.Control
                 type="text"
-                name="user"
-                value={user}
-                onChange={(e) => setUser(e.target.value)}
+                placeholder="Enter username"
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
                 required
-                isInvalid={!validName}
               />
-              <Form.Control.Feedback type="invalid">
-                Invalid username. Must be 8-29 characters long and start with a
-                letter.
-              </Form.Control.Feedback>
-            </FormGroup>
-            <FormGroup>
+            </Form.Group>
+            <Form.Group controlId="formPassword" className="mt-2">
               <Form.Label>Password</Form.Label>
               <Form.Control
                 type="password"
-                name="pwd"
-                value={pwd}
-                onChange={(e) => setPwd(e.target.value)}
+                placeholder="Password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
                 required
-                isInvalid={!validPwd}
               />
-              <Form.Control.Feedback type="invalid">
-                Invalid password. Must be at least 8 characters long, contain at
-                least one uppercase letter, one lowercase letter, and one
-                number.
-              </Form.Control.Feedback>
-            </FormGroup>
-            <FormGroup>
+            </Form.Group>
+            <Form.Group controlId="formConfirmPassword" className="mt-2">
               <Form.Label>Confirm Password</Form.Label>
               <Form.Control
                 type="password"
-                name="matchPwd"
-                value={matchPwd}
-                onChange={(e) => setMatchPwd(e.target.value)}
+                placeholder="Confirm Password"
+                value={confirmPassword}
+                onChange={(e) => setConfirmPassword(e.target.value)}
                 required
-                isInvalid={!validMatch}
               />
-              <Form.Control.Feedback type="invalid">
-                Passwords do not match.
-              </Form.Control.Feedback>
-            </FormGroup>
-            <button
-              type="submit"
-              disabled={!validName || !validPwd || !validMatch}
-            >
+            </Form.Group>
+            <Button variant="primary" type="submit" className="mt-3">
               Register
-            </button>
+            </Button>
           </Form>
-        </section>
-      )}
-    </>
+        </Card.Body>
+      </Card>
+    </Container>
   );
 };
 
-export default Register;
+export default RegisterForm;
