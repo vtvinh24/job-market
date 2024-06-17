@@ -120,4 +120,25 @@ router.post('/update', async (req, res) => {
   }
 });
 
+router.get("/:id", async (req, res) => {
+
+  
+    try {
+      const { id } = req.params;
+      const pool = await poolPromise;
+      const result = await pool.request()
+        .input('id', sql.Int, id)
+        .query('SELECT * FROM job WHERE job_id = @id');
+  
+      if (result.recordset.length === 0) {
+        return res.status(404).send({ message: 'Job not found' });
+      }
+  
+      res.send(result.recordset[0]);
+    } catch (error) {
+      console.error('Error fetching job details:', error);
+      res.status(500).send({ error: 'An error occurred while fetching job details' });
+    }
+  });
+
 module.exports = router;
