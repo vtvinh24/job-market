@@ -11,7 +11,7 @@ const useJobList = () => {
   useEffect(() => {
     const fetchContents = async () => {
       try {
-        const url = `${API_URL}/joblistbyview`;
+        const url = `${API_URL}/joblist/byView`;
         const response = await axios.get(url);
         setContents(response.data);
         setLoading(false);

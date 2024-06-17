@@ -16,7 +16,7 @@ const HomeNavbar = ({ user }) => {
                 </Nav> */}
                 <Nav className="mr-auto container" style={{ justifyContent: 'space-evenly' }}>
                         <Nav.Link href="/home" className={location.pathname === '/' || location.pathname === '/home' ? 'active' : ''}>Home</Nav.Link>
-                        <Nav.Link href="/jobs" className={location.pathname === '/jobs' ? 'active' : ''}>Jobs</Nav.Link>
+                        <Nav.Link href="/market" className={location.pathname === '/market' ? 'active' : ''}>Jobs</Nav.Link>
                         <Nav.Link href="/forum" className={location.pathname === '/forum' ? 'active' : ''}>Forum</Nav.Link>
                 </Nav>
                 {user ? (

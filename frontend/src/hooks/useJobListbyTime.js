@@ -11,7 +11,7 @@ const useJobList = () => {
   useEffect(() => {
     const fetchContents = async () => {
       try {
-        const url = `${API_URL}/joblistbytime`;
+        const url = `${API_URL}/joblist/byDayCreated`;
         const response = await axios.get(url);
         setContents(response.data);
         setLoading(false);
