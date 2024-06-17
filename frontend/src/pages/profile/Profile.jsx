@@ -165,7 +165,10 @@ const Profile = () => {
     </>
   );
 };
+<<<<<<< Updated upstream
 
 
 
+=======
+>>>>>>> Stashed changes
 export default Profile;
