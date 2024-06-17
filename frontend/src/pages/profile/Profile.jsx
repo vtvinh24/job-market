@@ -166,12 +166,6 @@ const Profile = () => {
   );
 };
 
-const linkStyle = {
-  color: 'white',
-  textDecoration: 'none',
-  display: 'block',
-  padding: '10px',
-  margin: '10px 0',
-};
+
 
 export default Profile;
