@@ -1,0 +1,71 @@
+.dashboard {
+    padding: 20px;
+    background-color: #e2e2e2;
+    border-radius: 10px;
+  }
+  
+  .dashboard-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  
+  .dashboard-header h2 {
+    margin: 0;
+  }
+  
+  .create-job-button {
+    padding: 10px 20px;
+    background-color: #6c757d;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+  }
+  
+  .create-job-button:hover {
+    background-color: #5a6268;
+  }
+  
+  .stats-container {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+  }
+  
+  .stat-box {
+    background-color: white;
+    border-radius: 10px;
+    padding: 20px;
+    text-align: center;
+    flex: 1;
+    margin: 0 10px;
+  }
+  
+  .stat-box h3 {
+    margin: 0;
+    font-size: 24px;
+  }
+  
+  .stat-box p {
+    margin: 5px 0 0;
+    color: gray;
+  }
+  
+  .job-section {
+    margin-bottom: 20px;
+  }
+  
+  .job-section h4 {
+    margin-bottom: 10px;
+    color: gray;
+  }
+  
+  .job-list {
+    background-color: white;
+    border-radius: 10px;
+    padding: 20px;
+    min-height: 100px;
+  }
+  
