@@ -23,6 +23,10 @@ import AddJob from "./pages/jobs/EnlistJob";
 import PageNotFound from "./pages/technical/PageNotFound";
 import Dashboard from "./pages/home/Dashboard";
 
+// Profile
+import Profile from "./pages/profile/Profile";
+import Security from "./pages/profile/Security";
+
 // Users
 import Setting from "./pages/home/Setting";
 import Users from "./pages/home/Users";
@@ -67,6 +71,10 @@ function App() {
           {/* TECHNICAL ROUTES */}
           <Route path="*" element={<PageNotFound />} />
           <Route exact path="/dashboard" element={<Dashboard />} />
+
+          {/* PROFILE */}
+          <Route exact path="/profile" element={<Profile />} />
+          <Route exact path="/security" element={<Security />} />
 
           {/* USERS ROUTES */}
           <Route path="/users" element={<Users />} />
