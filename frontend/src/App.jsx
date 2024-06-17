@@ -10,6 +10,7 @@ import PostDetail from "./pages/forum/PostDetail";
 import AddJob from './pages/jobs/Addjob';
 import Login from './pages/auth/Login';
 import Register from './pages/auth/Register';
+import MyJobs from './pages/jobs/MyJobs';
 function App() {
   return (
     <BrowserRouter>
@@ -25,6 +26,7 @@ function App() {
           <Route exact path="/jobs" element={<Market />} />
           <Route exact path="/login" element={<Login />} />
           <Route exact path="/signup" element={<Register />} />
+          <Route exact path="/jobdashboard" element={<MyJobs />} />
           <Route path="*" element={<PageNotFound />} />
         </Routes>
       </div>
