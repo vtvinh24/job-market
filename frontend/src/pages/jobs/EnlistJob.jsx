@@ -102,21 +102,7 @@ const EnlistJob = () => {
             </Col>
           </Row>
           <Row className="m-auto align-self-center w-100">
-            <Col md={6}>
-              <Form.Group controlId="workType">
-                <Form.Label>Work Type</Form.Label>
-                <Form.Control
-                  as="select"
-                  name="job_work_type"
-                  value={formValues.job_work_type}
-                  onChange={handleChange}
-                >
-                  <option>Office</option>
-                  <option>Remote</option>
-                </Form.Control>
-              </Form.Group>
-            </Col>
-            <Col md={6}>
+            <Col md={{ span: 6, offset: 3 }}>
               <Form.Group controlId="location">
                 <Form.Label>Location</Form.Label>
                 <Form.Control
@@ -128,7 +114,7 @@ const EnlistJob = () => {
                 />
               </Form.Group>
             </Col>
-          </Row>
+         </Row>
           <Row className="m-auto align-self-center w-100">
             <Col md={{ span: 6, offset: 3 }}>
               <Form.Group controlId="tags">
