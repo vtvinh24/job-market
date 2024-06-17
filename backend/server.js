@@ -1,266 +1,51 @@
 const express = require("express");
-const db = require("./src/model/db");
 const cors = require("cors");
+const config = require("./config/server.json");
 
 const app = express();
 const port = 8000;
 
-// Queries
-// INSERT
-const INSERT_POST =
-  "INSERT INTO Posts (post_title, post_content, user_id, post_status) VALUES (@post_title, @post_content, @user_id, 'published')";
-
-// SELECT
-const SELECT_POSTS_BY_DATE_DESC =
-  "SELECT post_id, post_title, post_content, Posts.user_id AS user_id, Users.username AS author, post_created_date FROM Posts JOIN Users ON Posts.user_id = Users.user_id ORDER BY post_created_date DESC";
-const SELECT_POST_BY_ID =
-  "SELECT post_id, post_title, post_content, Posts.user_id AS user_id, Users.username AS author, post_created_date FROM Posts JOIN Users ON Posts.user_id = Users.user_id WHERE Posts.post_id = @id";
-const SELECT_USER_HASH = "SELECT hash FROM Users WHERE username = @username";
-
-
-//Select Marketing content
-const SELECT_MARKETING_CONTENT = "Select m.id,m.topic,m.content from Marketing m";
-//Select Post Content
-const SELECT_POSTS_CONTENT = "SELECT TOP 3 p.post_id, p.post_title, p.post_content, u.username FROM post p JOIN auth u ON p.user_id = u.user_id";
-
-
-
-//Select JobList Content
-const SELECT_JOBLIST_CONTENT = `SELECT 
-    j.job_id,
-    u.username,
-    j.job_title,
-    j.job_tags,
-    j.job_work_location,
-    jc.job_compensation_amount,
-    jc.job_compensation_currency,
-    jc.job_compensation_type,
-    DATEDIFF(DAY, GETDATE(), jr.job_recruitment_deadline) AS timeleft
-FROM 
-    job j
-INNER JOIN 
-    auth u ON j.user_id = u.user_id  -- Use INNER JOIN for required data
-INNER JOIN 
-    job_view jv ON j.job_id = jv.job_id
-INNER JOIN 
-    job_log jl ON j.job_id = jl.job_id
-INNER JOIN 
-    job_compensation jc ON j.job_id = jc.job_id
-INNER JOIN 
-    job_recruitment jr ON j.job_id = jr.job_id
-WHERE 
-    jl.job_log_type = 'create'
-ORDER BY 
-    j.job_id;`;
-
-const SELECT_JOBLIST_CONTENT_BY_VIEW=`SELECT 
-    j.job_id,
-    u.username,
-    j.job_title,
-    j.job_tags,
-    j.job_work_location,
-    jc.job_compensation_amount,
-    jc.job_compensation_currency,
-    jc.job_compensation_type,
-    DATEDIFF(DAY, GETDATE(), jr.job_recruitment_deadline) AS timeleft
-FROM 
-    job j
-INNER JOIN 
-    auth u ON j.user_id = u.user_id  -- Use INNER JOIN for required data
-INNER JOIN 
-    job_view jv ON j.job_id = jv.job_id
-INNER JOIN 
-    job_log jl ON j.job_id = jl.job_id
-INNER JOIN 
-    job_compensation jc ON j.job_id = jc.job_id
-INNER JOIN 
-    job_recruitment jr ON j.job_id = jr.job_id
-WHERE 
-    jl.job_log_type = 'create'
-ORDER BY jv.job_view DESC;`;
-
-const SELECT_JOBLIST_CONTENT_BY_TIME=`SELECT 
-    j.job_id,
-    u.username,
-    j.job_title,
-    j.job_tags,
-    j.job_work_location,
-    jc.job_compensation_amount,
-    jc.job_compensation_currency,
-    jc.job_compensation_type,
-    DATEDIFF(DAY, GETDATE(), jr.job_recruitment_deadline) AS timeleft
-FROM 
-    job j
-INNER JOIN 
-    auth u ON j.user_id = u.user_id  -- Use INNER JOIN for required data
-INNER JOIN 
-    job_view jv ON j.job_id = jv.job_id
-INNER JOIN 
-    job_log jl ON j.job_id = jl.job_id
-INNER JOIN 
-    job_compensation jc ON j.job_id = jc.job_id
-INNER JOIN 
-    job_recruitment jr ON j.job_id = jr.job_id
-WHERE 
-    jl.job_log_type = 'create'
-ORDER BY jl.job_log_time DESC;`;
-
-// Define CORS rule
+// CORS rule
 app.use(
   cors({
+    // origin: config.cors.origin,
     origin: "http://localhost:5173",
   })
 );
 
 app.use(express.json());
 
-// Debug
-app.use((req, res, next) => {
-  console.log("-------------------------");
-  console.log(`Request Method: ${req.method}`);
-  console.log(`Request Body: ${JSON.stringify(req.body)}`);
-  console.log(`Request Origin: ${req.headers.origin}`);
-  console.log(`Request URL: ${req.url}`);
-  console.log(`Request Params: ${JSON.stringify(req.params)}`);
-  console.log("----");
-  console.log("Request Error: ", req.error);
-  next();
-});
+// Import and define routes
+const postsRoute = require("./src/routes/posts");
+app.use("/api/posts", postsRoute);
 
-// Define your routes here
+const authRoute = require("./src/routes/auth");
+app.use("/api/auth", authRoute);
 
-app.get("/api/posts/:id", async (req, res) => {
-  try {
-    const { id } = req.params;
+const marketingRoute = require("./src/routes/marketing");
+app.use("/api/marketing", marketingRoute);
 
-    const pool = await db.poolPromise;
-    const result = await pool
-      .request()
-      .input("id", db.sql.Int, id)
-      .query(SELECT_POST_BY_ID);
+const dataPostRoute = require("./src/routes/datapost");
+app.use("/api/datapost", dataPostRoute);
 
-    if (result.recordset.length === 0) {
-      res.status(404).json({ message: "Post not found" });
-    } else {
-      res.json(result.recordset[0]);
-    }
-  } catch (err) {
-    console.log(err);
-    res.status(500).json({ message: "Error occurred", error: err });
-  }
-});
+const countTotalUserRoute = require("./src/routes/dashboard/countTotalUser");
+app.use("/api/dashboard/count/user/total", countTotalUserRoute);
 
-app.get("/api/posts", async (req, res) => {
-  try {
-    const pool = await db.poolPromise;
-    const result = await pool.request().query(SELECT_POSTS_BY_DATE_DESC);
-    res.json(result.recordset);
-  } catch (err) {
-    console.log(err);
-    res.status(500).json({ message: "Error occurred", error: err });
-  }
-});
+const countActiveUserRoute = require("./src/routes/dashboard/countActiveUser");
+app.use("/api/dashboard/count/user/active", countTotalUserRoute);
 
-app.post("/api/posts", async (req, res) => {
-  try {
-    const { title, content, user_id } = req.body;
+const jobsRoute = require("./src/routes/jobs");
+app.use("/api/jobs", jobsRoute);
 
-    const pool = await db.poolPromise;
-    const result = await pool
-      .request()
-      .input("post_title", db.sql.NVarChar, title)
-      .input("post_content", db.sql.NVarChar, content)
-      .input("user_id", db.sql.Int, user_id)
-      .query(INSERT_POST);
-    res.status(201).json({ message: "Post inserted successfully" });
-  } catch (err) {
-    res.status(500).json({ message: "Error occurred", error: err });
-  }
-});
+// TEMPLATE FOR ADDING ROUTES
+// const ____Route = require("./src/routes/____");
+// app.use("/api/____", ____Route);
 
-
-app.get("/api/auth", (req, res) => {
-  try {
-    const { username, password } = req.query;
-
-    // Perform authentication logic here
-    // ...
-    
-
-    // If authentication is successful
-    res.json({ authenticated: true, message: "Authentication successful" });
-
-    // If authentication fails
-    // res.json({ authenticated: false, message: "Authentication failed" });
-  } catch (err) {
-    console.log(err);
-    res.status(500).json({ message: "Error occurred", error: err });
-  }
-});
-
-//Select Marketing content
-app.get("/api/marketing", async (req, res) => {
-  try {
-    const pool = await db.poolPromise;
-    const result = await pool.request().query(SELECT_MARKETING_CONTENT);
-    res.json(result.recordset);
-  } catch (err) {
-    console.log(err);
-    res.status(500).json({ message: "Error occurred", error: err });
-  }
-});
-
-//Select Post content
-app.get("/api/datapost", async (req, res) => {
-  try {
-    const pool = await db.poolPromise;
-    const result = await pool.request().query(SELECT_POSTS_CONTENT);
-    res.json(result.recordset);
-  } catch (err) {
-    console.log(err);
-    res.status(500).json({ message: "Error occurred", error: err });
-  }
-});
-
-
-//Select Job list content by default  
-app.get("/api/joblist", async (req, res) => {
-  try {
-    const pool = await db.poolPromise;
-    const result = await pool.request().query(SELECT_JOBLIST_CONTENT);
-    res.json(result.recordset);
-  } catch (err) {
-    console.log(err);
-    res.status(500).json({ message: "Error occurred", error: err });
-  }
-});
-
-//Select Job list content by view
-app.get("/api/joblistbyview", async (req, res) => {
-  try {
-    const pool = await db.poolPromise;
-    const result = await pool.request().query(SELECT_JOBLIST_CONTENT_BY_VIEW);
-    res.json(result.recordset);
-  } catch (err) {
-    console.log(err);
-    res.status(500).json({ message: "Error occurred", error: err });
-  }
-});
-
-//Select Job list content by time
-app.get("/api/joblistbytime", async (req, res) => {
-  try {
-    const pool = await db.poolPromise;
-    const result = await pool.request().query(SELECT_JOBLIST_CONTENT_BY_TIME);
-    res.json(result.recordset);
-  } catch (err) {
-    console.log(err);
-    res.status(500).json({ message: "Error occurred", error: err });
-  }
-});
+// Remember to implement the route in the ____Route.js file
 
 
 
+// Start the server
 app.listen(port, () => {
   console.log(`(server.js) Server is running on port ${port}`);
 });
