@@ -27,7 +27,7 @@ const Profile = () => {
     e.preventDefault();
     setUsername(fullName);
     
-    // Create a user object with all the form data
+    
     const userData = {
       fullName,
       dob,
@@ -38,10 +38,10 @@ const Profile = () => {
       profileImage: selectedImage,
     };
 
-    // Log the user data to the console (replace this with an API call to save data)
+    
     console.log('User Data:', userData);
 
-    // Optionally, show a success message or handle form submission state here
+    
   };
 
   return (
