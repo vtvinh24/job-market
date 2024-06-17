@@ -25,6 +25,7 @@ import Dashboard from "./pages/home/Dashboard";
 
 // Profile
 import Profile from "./pages/profile/Profile";
+import Security from "./pages/profile/Security";
 
 // Users
 import Setting from "./pages/home/Setting";
@@ -73,6 +74,7 @@ function App() {
 
           {/* PROFILE */}
           <Route exact path="/profile" element={<Profile />} />
+          <Route exact path="/security" element={<Security />} />
 
           {/* USERS ROUTES */}
           <Route path="/users" element={<Users />} />
