@@ -4,14 +4,29 @@ const db = require("../models/DBContext");
 const router = express.Router();
 
 const SELECT_POSTS_BY_ID_DESC = `
-SELECT post_id, post_title, post_content, username, content_updated_time
+SELECT post_id, post_title, post_content, username
 FROM post 
 	JOIN auth ON post.user_id = auth.user_id
-	JOIN content_history ON (content_id = post_id AND content_type = 0)
 WHERE post_status = 'PUBLISHED'
 ORDER BY post_id DESC;
 `;
+// const SELECT_POSTS_BY_ID_DESC = `
+// SELECT post_id, post_title, post_content, username, content_updated_time
+// FROM post 
+// 	JOIN auth ON post.user_id = auth.user_id
+// 	JOIN content_history ON (content_id = post_id AND content_type = 0)
+// WHERE post_status = 'PUBLISHED'
+// ORDER BY post_id DESC;
+// `;
 
+// const SELECT_POST_BY_ID = `
+// SELECT post_id, post_title, post_content, username, content_updated_time
+// FROM post 
+// 	JOIN auth ON post.user_id = auth.user_id
+// 	JOIN content_history ON (content_id = post_id AND content_type = 0)
+// WHERE post_status = 'PUBLISHED' AND post_id = @id
+// ORDER BY post_id DESC;
+// `;
 const SELECT_POST_BY_ID = `
 SELECT post_id, post_title, post_content, username, content_updated_time
 FROM post 
@@ -81,24 +96,14 @@ router.post("/", async (req, res) => {
     const { title, content, user_id } = req.body;
 
     const pool = await db.poolPromise;
-    const result = await pool
+
+    // First query: Insert into post
+    let result = await pool
       .request()
       .input("post_title", db.sql.NVarChar, title)
       .input("post_content", db.sql.NVarChar, content)
       .input("user_id", db.sql.Int, user_id)
       .query(INSERT_POST);
-    const result2 = await pool
-      .request()
-      .input("content_type", db.sql.Int, 0)
-      .input("content_id", db.sql.Int, result.recordset[0].post_id)
-      .input("content", db.sql.NVarChar, content)
-      .query(INSERT_CONTENT_HISTORY);
-    const result3 = await pool
-      .request()
-      .input("content_type", db.sql.Int, 0)
-      .input("content_id", db.sql.Int, result.recordset[0].post_id)
-      .input("content_history_id", db.sql.Int, result2.recordset[0].content_id)
-      .query(INSERT_FORUM_LOG);
     res.status(201).json({ message: "Post inserted successfully" });
   } catch (err) {
     res.status(500).json({ message: "Error occurred", error: err });
@@ -136,7 +141,12 @@ router.put("/update", async (req, res) => {
       return res.status(200).json({ message: "Post updated successfully" });
     }
   } catch (err) {
-    return res.status(500).json({ message: "Error occurred", error: `${post_id}, ${user_id}, ${title}, ${content}` });
+    return res
+      .status(500)
+      .json({
+        message: "Error occurred",
+        error: `${post_id}, ${user_id}, ${title}, ${content}`,
+      });
   }
 });
 

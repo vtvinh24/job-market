@@ -20,7 +20,8 @@ CREATE TABLE comment (
 	post_id INT NOT NULL FOREIGN KEY REFERENCES post(post_id),
 	comment_content NVARCHAR(MAX),
 	comment_status VARCHAR(16) NOT NULL
-)
+);
+GO
 
 INSERT INTO system_log (system_log_type, system_log_data)
 VALUES ('INFO', 'Created table: comment');
