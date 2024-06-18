@@ -30,6 +30,7 @@ import Security from "./pages/profile/Security";
 // Users
 import Setting from "./pages/home/Setting";
 import Users from "./pages/home/Users";
+import Information from "./pages/profile/Information";
 
 // Components
 import HomeFooter from "./components/HomeFooter";
@@ -40,6 +41,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "./App.css";
 import ErrorPage from "./pages/error/ErrorPage";
 import CreateTicketPage from "./pages/user/CreateTicket";
+
 
 function App() {
   return (
@@ -75,6 +77,7 @@ function App() {
           {/* PROFILE */}
           <Route exact path="/profile" element={<Profile />} />
           <Route exact path="/security" element={<Security />} />
+          <Route exact path="/information" element={<Information />} />
 
           {/* USERS ROUTES */}
           <Route path="/users" element={<Users />} />
