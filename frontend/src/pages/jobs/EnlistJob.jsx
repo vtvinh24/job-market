@@ -2,34 +2,16 @@ import React, { useState } from 'react';
 import '../../assets/css/EnlistJob.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Container, Button, Row, Form, Col } from 'react-bootstrap';
+
 import backgroundImg from '../../assets/img/Stole.jpg';
 import HomeNavbar from '../../components/HomeNavbar.jsx';
 import Footer from '../../components/HomeFooter.jsx';
-import useJobInsert from "../../hooks/useJobInsert.js";
 const EnlistJob = () => {
   const [additionalRequirements, setAdditionalRequirements] = useState([]);
+
   const { insertJob, loading, success } = useJobInsert();
 
-  const [formValues, setFormValues] = useState({
-    job_title: '',
-    job_work_type: '',
-    job_work_location: '',
-    job_tags: '',
-    job_max_applications: '',
-    job_approval_method: true,
-    job_requirement: '',
-    numberOfRecruits: '',
-    startDate: '',
-    endDate: '',
-    compensationType: 'One-time',
-    isChecked: false,
-    amount: '',
-    currency: 'VND',
-    per: 'month',
-    customIteration: '',
-    job_description: '',
-    job_contact_info: ''
-  });
+
   const handleAddRequirement = () => {
     setAdditionalRequirements([...additionalRequirements, ""]);
   };
@@ -48,13 +30,7 @@ const EnlistJob = () => {
     );
     setAdditionalRequirements(updatedRequirements);
   };
-  const handleChange = (e) => {
-    const { name, value, type, checked } = e.target;
-    setFormValues({
-      ...formValues,
-      [name]: type === 'checkbox' ? checked : value
-    });
-  };
+
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -119,6 +95,7 @@ const EnlistJob = () => {
             <Col md={6}>
               <Form.Group controlId="location">
                 <Form.Label>Location</Form.Label>
+
                 <Form.Control
                   type="text"
                   placeholder="Enter location"
@@ -126,6 +103,7 @@ const EnlistJob = () => {
                   value={formValues.job_work_location}
                   onChange={handleChange}
                 />
+
               </Form.Group>
             </Col>
           </Row>
@@ -359,5 +337,6 @@ const EnlistJob = () => {
     </>
   );
 };
+
 
 export default EnlistJob;
