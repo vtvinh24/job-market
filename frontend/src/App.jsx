@@ -71,7 +71,7 @@ function App() {
           <Route exact path="/jobs/add" element={<AddJob />} />
 
           {/* TECHNICAL ROUTES */}
-          <Route path="*" element={<PageNotFound />} />
+          <Route exact path="*" element={<PageNotFound />} />
           <Route exact path="/dashboard" element={<Dashboard />} />
 
           {/* PROFILE */}
@@ -80,9 +80,9 @@ function App() {
           <Route exact path="/information" element={<Information />} />
 
           {/* USERS ROUTES */}
-          <Route path="/users" element={<Users />} />
-          <Route path="/settings" element={<Setting />} />
-          <Route path="/ticket" element={<CreateTicketPage />} />
+          <Route exact path="/users" element={<Users />} />
+          <Route exact path="/settings" element={<Setting />} />
+          <Route exact path="/ticket" element={<CreateTicketPage />} />
         </Routes>
       </div>
       <HomeFooter />

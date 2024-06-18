@@ -49,9 +49,8 @@ const Profile = () => {
       <Container fluid className="mt-3">
         <Row>
           <Col md={3} className="bg-dark text-white p-4">
-            <h2>Navigation</h2>
             <Nav className="flex-column">
-              <Nav.Link href="/profile" className="text-white">Profile</Nav.Link>
+              <h2><Nav.Link href="/profile" className="text-white">Profile</Nav.Link></h2>
               <Nav.Link href="/information" className="text-white">Information</Nav.Link>
               <Nav.Link href="/security" className="text-white">Security</Nav.Link>
               <Row>
