@@ -2,7 +2,7 @@
   background-color: #fff;
 }
 .div-2 {
-  gap: 20px;
+  /* gap: 20px; */
   display: flex;
 }
 @media (max-width: 991px) {

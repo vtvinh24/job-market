@@ -18,6 +18,7 @@ import AddPost from "./pages/forum/AddPost";
 import Market from "./pages/jobs/Market";
 import Jobs from "./pages/home/Jobs";
 import AddJob from "./pages/jobs/EnlistJob";
+import MyJobs from "./pages/jobs/MyJobs";
 
 // Technical
 import PageNotFound from "./pages/technical/PageNotFound";
@@ -40,13 +41,13 @@ import HomeNavbar from "./components/HomeNavbar";
 // Misc
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "./App.css";
-
+import React from "react";
 
 
 function App() {
   return (
     <BrowserRouter>
-      <HomeNavbar />
+      
       <div className="content">
         <Routes>
           
@@ -69,6 +70,7 @@ function App() {
           <Route exact path="/market" element={<Market />} />
           <Route exact path="/jobs" element={<Jobs />} />
           <Route exact path="/jobs/add" element={<AddJob />} />
+          <Route exact path="/myjobs" element={<MyJobs />} />
 
           {/* TECHNICAL ROUTES */}
           <Route path="*" element={<PageNotFound />} />
@@ -84,7 +86,6 @@ function App() {
           <Route path="/settings" element={<Setting />} />
         </Routes>
       </div>
-      <HomeFooter />
     </BrowserRouter>
   );
 }

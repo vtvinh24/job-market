@@ -2,13 +2,19 @@
 
 //jobs list
 
-import React from 'react';
+import React, { useState } from 'react';
 import '../../assets/css/JobDashboard.css';
 import {Row,Col} from 'react-bootstrap';
 import SideBar from '../../components/job/SideBar';
 import Dashboard from '../../components/job/DashBoard';
 
 const MyJobs = () => {
+  const [activeComponent, setActiveComponent] = useState('dashboard');
+
+  const handleMenuClick = (component) => {
+    setActiveComponent(component);
+  };
+
     return (
         <>
        <div className="div">
@@ -46,46 +52,10 @@ const MyJobs = () => {
               </div>
             </div>
           </div> */}
-          <SideBar/>
+          <SideBar onMenuClick={handleMenuClick} />
           <div className="column-2">
-            {/* <div className="div-14">
-              <div className="div-15">
-                <div className="div-16">Dashboard</div>
-                <div className="div-17">Create Job</div>
-              </div>
-              <div className="div-18">
-                <div className="div-19">
-                  <div className="column-3">
-                    <div className="div-20">
-                      <div className="div-21">
-                        253
-                        <br />
-                      </div>
-                      <div className="div-22">Completed Jobs</div>
-                    </div>
-                  </div>
-                  <div className="column-4">
-                    <div className="div-23">
-                      <div className="div-24">
-                        3<br />
-                      </div>
-                      <div className="div-25">Current Apply Job</div>
-                    </div>
-                  </div>
-                  <div className="column-5">
-                    <div className="div-26">
-                      <div className="div-27">7</div>
-                      <div className="div-28">Jobs Posted</div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div className="div-29">Job Applied</div>
-              <div className="div-30" />
-              <div className="div-31">Job Completed</div>
-              <div className="div-32" />
-            </div> */}
-            <Dashboard/>
+          {activeComponent === 'dashboard' && <Dashboard />}
+          {activeComponent !== 'dashboard' && <div>Sorry, this service is currently unavailable.</div>}
           </div>
         </div>
       </div>

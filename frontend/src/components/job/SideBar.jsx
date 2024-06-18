@@ -1,7 +1,7 @@
 import React from 'react';
 import '../../assets/css/SideBar.css';
 
-const Sidebar = () => {
+const Sidebar = ({ onMenuClick }) => {
   return (
     <div className="sidebar">
       <div className="sidebar-back">
@@ -13,10 +13,10 @@ const Sidebar = () => {
       </div>
       <hr />
       <div className="sidebar-menu">
-        <a href="#" className="menu-item dashboard">Dashboard</a>
-        <a href="#" className="menu-item">Job History</a>
-        <a href="#" className="menu-item">Job Applied</a>
-        <a href="#" className="menu-item">Job Completed</a>
+        <a href="#" className="menu-item dashboard" onClick={() => onMenuClick('dashboard')}>Dashboard</a>
+        <a href="#" className="menu-item" onClick={() => onMenuClick('jobHistory')}>Job History</a>
+        <a href="#" className="menu-item" onClick={() => onMenuClick('jobApplied')}>Job Applied</a>
+        <a href="#" className="menu-item" onClick={() => onMenuClick('jobCompleted')}>Job Completed</a>
       </div>
     </div>
   );
