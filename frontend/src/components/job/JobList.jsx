@@ -24,7 +24,8 @@ function JobList() {
     let contents = defaultContents;
     let loading = defaultLoading;
     let error = defaultError;
-  
+
+
     switch (filter) {
       case 'relevance':
         contents = viewContents;
@@ -35,6 +36,12 @@ function JobList() {
         contents = timeContents;
         loading = timeLoading;
         error = timeError;
+        break;
+      case 'salaryIncrease':
+        contents.sort((a, b) => parseFloat(a.job_compensation_amount) - parseFloat(b.job_compensation_amount));
+        break;
+      case 'salaryDecrease':
+        contents.sort((a, b) => parseFloat(b.job_compensation_amount) - parseFloat(a.job_compensation_amount));
         break;
       default:
         contents = defaultContents;
@@ -64,6 +71,9 @@ function JobList() {
       return content.job_title.toLowerCase().includes(searchQuery.toLowerCase()) && isWithinSalaryRange;
     });
 
+
+    
+
     const formatSalary = (type, amount,currency) => {
       switch (type) {
         case 'ONETIME':
@@ -71,7 +81,7 @@ function JobList() {
         case 'HOURLY':
           return `${amount} ${currency}/hour`;
         case 'MONTHLY':
-          return `${amount} ${currency} per month`;
+          return `${amount} ${currency}/month`;
         default:
           return amount;
       }
@@ -101,11 +111,14 @@ function JobList() {
             <Form.Group controlId="filterDropdown">
               <Form.Select
                 value={filter}
+                aria-placeholder='Filter'
                 onChange={(e) => setFilter(e.target.value)}
               >
-                <option value="default">Filter</option>
+                <option value="default">Default</option>
                 <option value="relevance">Relevance</option>
                 <option value="recent">Recent</option>
+                <option value="salaryIncrease">Salary (Low to High)</option>
+                <option value="salaryDecrease">Salary (High to Low)</option>
               </Form.Select>
             </Form.Group>
           </Form>
@@ -116,13 +129,17 @@ function JobList() {
           <Col>
           <JobPagination jobsPerPage={jobsPerPage} totalJobs={filteredContents.length} paginate={paginate} currentPage={currentPage} />
             <div>
-              {filteredContents.map(content => (
+              {filteredContents.length === 0 ? (
+                 <p style={{ textAlign: 'center', marginTop: '20px', fontSize: '40px', fontWeight: 'bold', height: '200px' }}>Sorry, There is no job that fulfills your requirements.</p>
+              ): (
+                
+              filteredContents.map(content => (
               <div className="job-card" key={content.job_id}>
                 <div className="job-card-img">IMG Background</div>
                 <div className="job-card-content">
                   <div className="job-card-header">
                     <h2 className="job-title">{content.job_title}</h2>
-                    <a href="#" className="job-detail-link">Detail</a>
+                    <a href={`/jobs/${content.job_id}`} className="job-detail-link">Detail</a>
                   </div>
                   <div className="job-card-body">
                     <div className="job-info">
@@ -137,6 +154,7 @@ function JobList() {
                   </div>
                 </div>
             </div>
+              )
             ))}
             <JobPagination jobsPerPage={jobsPerPage} totalJobs={filteredContents.length} paginate={paginate} currentPage={currentPage}/>
             </div>
