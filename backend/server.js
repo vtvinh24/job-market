@@ -3,6 +3,7 @@ const cors = require("cors");
 const config = require("./config/server.json");
 const sql = require("mssql");
 
+
 const app = express();
 const port = 8000;
 
@@ -17,7 +18,7 @@ app.use(
 sql
   .connect({
     user: "sa",
-    password: "sa",
+    password: "ducminh2306",
     server: "localhost",
     database: "mJOB",
     encrypt: false,
