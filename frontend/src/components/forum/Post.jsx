@@ -57,7 +57,7 @@ const Post = ({ post_id }) => {
             <Link to={`/users/${post.username}`}>{post.username}</Link>
           </div>
           <div>
-            <p>{getMoment(post.post_created_date)}</p>
+            <p>{getMoment(post.post_updated_time)}</p>
           </div>
         </div>
         <div className="post-content flex-grow">
