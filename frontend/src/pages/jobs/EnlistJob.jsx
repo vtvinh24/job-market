@@ -235,8 +235,8 @@ return (
               <Form.Label>Compensation type</Form.Label>
               <Form.Control 
                 as="select" 
-                name="job_compensation_type"
-                value={formValues.job_compensation_type}
+                name="job_compensation_types"
+                value={formValues.job_compensation_types}
                 onChange={handleChange}
               >
                 <option>One-time</option>
@@ -265,8 +265,8 @@ return (
               <Form.Control 
                 type="number" 
                 placeholder='Amount'
-                name="job_compensation_amount"
-                value={formValues.job_compensation_amount}
+                name="job_compensation_amounts"
+                value={formValues.job_compensation_amounts}
                 onChange={handleChange}
               />
             </Form.Group>
@@ -276,8 +276,8 @@ return (
               <Form.Label>*</Form.Label>
               <Form.Control 
                 as="select" 
-                name="job_compensation_currency"
-                value={formValues.job_compensation_currency}
+                name="job_compensation_currencies"
+                value={formValues.job_compensation_currencies}
                 onChange={handleChange}
               >
                 <option>VND</option>
@@ -291,8 +291,8 @@ return (
             <Form.Label>per</Form.Label>
             <Form.Control 
               as="select" 
-              name="job_compensation_period"
-              value={formValues.job_compensation_period}
+              name="job_compensation_periods"
+              value={formValues.job_compensation_periods}
               onChange={handleChange}
             >
               <option>month</option>
@@ -306,9 +306,9 @@ return (
             <Form.Label>Custom Iteration</Form.Label>
             <Form.Control 
               type="text" 
-              placeholder='Custom Iteration/hours per day'
-              name="job_custom_iteration"
-              value={formValues.job_custom_iteration}
+              placeholder='Custom Iteration/hours per day if necessary'
+              name="job_custom_iterations"
+              value={formValues.job_custom_iterations}
               onChange={handleChange}
             />
           </Col>
