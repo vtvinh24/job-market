@@ -151,7 +151,11 @@ router.delete("/delete", async (req, res) => {
       .request()
       .input("post_id", db.sql.Int, post_id)
       .query(DELETE_POST);
-    res.status(200).send();
+    if (result.rowsAffected[0] === 0) {
+      res.status(404).send();
+    } else {
+      res.status(200).send();
+    }
   } catch (err) {
     res.status(500).send();
   }

@@ -1,4 +1,4 @@
-import usePostsQuery from "../../hooks/usePostsQuery";
+import usePostsQuery from "../../hooks/forum/usePostsQuery";
 import "../../assets/css/Forum.css";
 import { getMoment } from "../../functions/Converter";
 import { Card } from "react-bootstrap";

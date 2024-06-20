@@ -2,16 +2,16 @@ import { useState } from 'react';
 import axios from 'axios';
 const API_URL = "http://localhost:8000/api";
 
-const usePostUpdate = () => {
+const usePostDelete = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  const updatePost = async (title, content, user_id, post_id) => {
+  const deletePost = async (post_id) => {
     setLoading(true);
     setError(null);
 
     try {
-      const response = await axios.delete(`${API_URL}/posts/delete`, { title, content, user_id, post_id });
+      const response = await axios.delete(`${API_URL}/posts/delete`, { data: { post_id } });
       setLoading(false);
       return response.data;
     } catch (err) {
@@ -20,7 +20,7 @@ const usePostUpdate = () => {
     }
   };
 
-  return { updatePost, loading, error };
+  return { deletePost, loading, error };
 };
 
 export default usePostDelete;
