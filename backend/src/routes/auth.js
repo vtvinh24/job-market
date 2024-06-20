@@ -1,6 +1,6 @@
 const CryptoJS = require("crypto-js");
 const express = require("express");
-const db = require("../models/DBContext");
+const db = require("../model/DBContext");
 const router = express.Router();
 
 const SQL_CHECK_USERNAME = `

@@ -1,6 +1,6 @@
 // This is a template for creating a new route.
 const express = require("express");
-const db = require("../models/DBContext");
+const db = require("../model/DBContext");
 
 const router = express.Router();
 

@@ -2,8 +2,9 @@
 import React, { useState } from "react";
 import { Form, Button, Container, Card, Alert } from "react-bootstrap";
 import axios from "axios";
+// import CarouselComponent from "../../components/HomeCarousel.jsx";
 
-const RegisterForm = () => {
+const Register = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
@@ -77,4 +78,4 @@ const RegisterForm = () => {
   );
 };
 
-export default RegisterForm;
+export default Register;
