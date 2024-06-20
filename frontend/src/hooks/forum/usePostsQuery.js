@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router";
 
 const API_URL = "http://localhost:8000/api";
 
@@ -7,6 +8,7 @@ const usePostsQuery = () => {
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchPosts = async () => {
@@ -16,6 +18,13 @@ const usePostsQuery = () => {
         setPosts(response.data);
         setLoading(false);
       } catch (error) {
+        navigate("/error", {
+          state: {
+            message: error.response
+              ? error.response.data.message
+              : "An error occurred",
+          },
+        });
         setError(error);
         setLoading(false);
       }

@@ -20,7 +20,7 @@
 }
 
 .container{
-  margin-bottom: 20px;
+  /* margin-bottom: 20px; */
 }
 .background-img{
   padding-top: 10px;
@@ -95,7 +95,7 @@ input, select, textarea {
 }
 
 .mt-3{
-  margin-right: 50%;
+  /* margin-right: 50%; */
 }
 .additional-requirement-wrapper {
   display: flex;
