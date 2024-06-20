@@ -6,6 +6,7 @@ import { FaArrowLeft } from 'react-icons/fa';
 import HomeFooter from "../../components/HomeFooter.jsx";
 import HomeNavbar from "../../components/HomeNavbar.jsx";
 
+
 const BackgroundContainer = styled.div`
   background-size: cover;
   background-position: center;
@@ -174,8 +175,12 @@ const JobDetail = () => {
       </Section>
       <Section>
         <Label>Compensation:</Label>
-        <Text>Type: {job.compensation_type}</Text>
-        <Text>Amount: {job.amount} VND</Text>
+        <Text>Type: {job.job_compensation_types}</Text>
+        <Text>Amount: {job.job_compensation_amounts} {job.job_compensation_currencies} per {job.job_compensation_periods}</Text>
+      </Section>
+      <Section>
+        <Label>Custom Iterations:</Label>
+        <Text> {job.job_custom_iterations}</Text> 
       </Section>
       <Section>
         <Label>Description:</Label>
