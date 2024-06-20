@@ -14,7 +14,12 @@ CREATE TABLE job (
 	job_start_date DATE,
     job_end_date DATE,
     job_number_of_recruits INT DEFAULT 0,
-	job_requirements NVARCHAR(MAX)
+	job_requirements NVARCHAR(MAX),
+	job_compensation_types NVARCHAR(MAX),
+    job_compensation_amounts NVARCHAR(MAX),
+    job_compensation_currencies NVARCHAR(MAX),
+    job_compensation_periods NVARCHAR(MAX),
+    job_custom_iterations NVARCHAR(MAX)
 );
 GO
 
