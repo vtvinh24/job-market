@@ -30,7 +30,7 @@ const AddForm = () => {
   };
 
   return (
-    <Container style={{ minHeight: '100vh' }}>
+    <Container>
       <Row>
         <h1 className="text-center">Create a Post</h1>
       </Row>

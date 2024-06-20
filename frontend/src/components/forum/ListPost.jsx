@@ -4,7 +4,6 @@ import { getMoment } from "../../functions/Converter";
 import { Card } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
-import { Container } from "react-bootstrap";
 
 // ...
 
@@ -21,7 +20,7 @@ const ListPost = () => {
   }
 
   return (
-    <Container style={{ minHeight: "100vh", minWidth: "100vw" }}>
+    <div>
       {posts.map((post) => (
         <Card
           className="post-card"
@@ -44,13 +43,16 @@ const ListPost = () => {
             >
               {post.username}
             </Link>
-            <Card.Text style={{ textAlign: "right", fontSize: "small" }}>
+            <Card.Text
+              
+              style={{ textAlign: "right", fontSize: "small"}}
+            >
               {getMoment(post.post_created_date)}
             </Card.Text>
           </Card.Body>
         </Card>
       ))}
-    </Container>
+    </div>
   );
 };
 

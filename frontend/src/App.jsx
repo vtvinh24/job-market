@@ -24,15 +24,13 @@ import MyJobs from "./pages/jobs/MyJobs";
 import PageNotFound from "./pages/technical/PageNotFound";
 import Dashboard from "./pages/home/Dashboard";
 
+// Profile
+import Profile from "./pages/profile/Profile";
+import Security from "./pages/profile/Security";
 
 // Users
 import Setting from "./pages/home/Setting";
 import Users from "./pages/home/Users";
-
-//Profile
-import Profile from "./pages/profile/Profile";
-import Information from "./pages/profile/Information";
-import Security from "./pages/profile/Security";
 
 // Components
 import HomeFooter from "./components/HomeFooter";
@@ -41,16 +39,19 @@ import HomeNavbar from "./components/HomeNavbar";
 // Misc
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "./App.css";
+
 import React from "react";
+
+import ErrorPage from "./pages/error/ErrorPage";
+import CreateTicketPage from "./pages/user/CreateTicket";
 
 
 function App() {
   return (
     <BrowserRouter>
-      
-      <div className="content">
+      <HomeNavbar />
+      <div className="content" style={{ minHeight: "60vh" }}>
         <Routes>
-          
           {/* HOME ROUTES */}
           <Route exact path="/" element={<HomeGuest />} />
           <Route exact path="/home" element={<HomePage />} />
@@ -59,6 +60,7 @@ function App() {
           <Route exact path="/login" element={<Login />} />
           <Route exact path="/register" element={<Register />} />
           <Route exact path="/reset-password" element={<ResetPassword />} />
+          <Route exact path="/error" element={<ErrorPage />} />
 
           {/* FORUM ROUTES */}
           <Route exact path="/forum" element={<Forum />} />
@@ -75,15 +77,15 @@ function App() {
           {/* TECHNICAL ROUTES */}
           <Route path="*" element={<PageNotFound />} />
           <Route exact path="/dashboard" element={<Dashboard />} />
-          
+
           {/* PROFILE */}
           <Route exact path="/profile" element={<Profile />} />
-          <Route exact path="/information" element={<Information />} />
           <Route exact path="/security" element={<Security />} />
 
           {/* USERS ROUTES */}
           <Route path="/users" element={<Users />} />
           <Route path="/settings" element={<Setting />} />
+          <Route path="/ticket" element={<CreateTicketPage />} />
         </Routes>
       </div>
     </BrowserRouter>

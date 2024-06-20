@@ -1,9 +1,11 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router";
 
 const API_URL = "http://localhost:8000/api";
 
 const useCountUser = () => {
+  const navigate = useNavigate();
   const [count, setCount] = useState(0); // Assuming count is a number
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -18,6 +20,13 @@ const useCountUser = () => {
       } catch (error) {
         setError(error);
         setLoading(false);
+        navigate("/error", {
+          state: {
+            message: error.response
+              ? error.response.data.message
+              : "An error occurred",
+          },
+        });
       }
     };
     fetchCount();
