@@ -17,8 +17,8 @@ app.use(
 // Rate limit middleware
 const rateLimit = require("express-rate-limit");
 const limiter = rateLimit({
-  windowMs: 5000, // 5 seconds
-  max: 5, // 5 requests per 5 seconds
+  windowMs: 60000, // 60 seconds
+  max: 100, // 100 requests per minute
 });
 
 app.use(limiter);
@@ -45,7 +45,7 @@ const countTotalUserRoute = require("./src/routes/dashboard/countTotalUser");
 app.use("/api/dashboard/count/user/total", countTotalUserRoute);
 
 const countActiveUserRoute = require("./src/routes/dashboard/countActiveUser");
-app.use("/api/dashboard/count/user/active", countTotalUserRoute);
+app.use("/api/dashboard/count/user/active", countActiveUserRoute);
 
 // TEMPLATE FOR ADDING ROUTES
 // const ____Route = require("./src/routes/____");
