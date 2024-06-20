@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router";
 
 // Edit this component's name
 const use____Query = (param1, param2) => {
@@ -10,7 +9,6 @@ const use____Query = (param1, param2) => {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const navigate = useNavigate();
   // const [number1, setNumber1] = useState(0); // Example of adding more states
 
   useEffect(() => {
@@ -40,13 +38,6 @@ const use____Query = (param1, param2) => {
       } catch (error) {
         setError(error);
         setLoading(false);
-        navigate("/error", {
-          state: {
-            message: error.response
-              ? error.response.data.message
-              : "An error occurred",
-          },
-        });
       }
     };
 

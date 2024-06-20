@@ -6,7 +6,7 @@ const HomeNavbar = ({ user }) => {
     return (
         <>
         <Navbar bg="light" expand="lg">
-            <Navbar.Brand href="/home" style={{backgroundColor:'darkgray', padding: '20px 40px 20px 40px'}}>Logo</Navbar.Brand>
+            <Navbar.Brand href="#" style={{backgroundColor:'darkgray', padding: '20px 40px 20px 40px'}}>Logo</Navbar.Brand>
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav" style={{ justifyContent: 'space-between',marginLeft: 'auto' }}>
                 {/* <Nav className="mr-auto container" style={{ justifyContent: 'space-evenly'}}>
@@ -16,7 +16,7 @@ const HomeNavbar = ({ user }) => {
                 </Nav> */}
                 <Nav className="mr-auto container" style={{ justifyContent: 'space-evenly' }}>
                         <Nav.Link href="/home" className={location.pathname === '/' || location.pathname === '/home' ? 'active' : ''}>Home</Nav.Link>
-                        <Nav.Link href="/market" className={location.pathname === '/market' ? 'active' : ''}>Jobs</Nav.Link>
+                        <Nav.Link href="/jobs" className={location.pathname === '/jobs' ? 'active' : ''}>Jobs</Nav.Link>
                         <Nav.Link href="/forum" className={location.pathname === '/forum' ? 'active' : ''}>Forum</Nav.Link>
                 </Nav>
                 {user ? (
@@ -30,10 +30,8 @@ const HomeNavbar = ({ user }) => {
                     </Nav>
                 ) : (
                     <Nav className='container' style={{ justifyContent: 'flex-end' }}>
-
                         <Button variant="outline-secondary" onClick={() => window.location.href = '/login'}>Login</Button>
-                        <div style={{width: "8px"}}></div>
-                        <Button variant="outline-secondary" onClick={() => window.location.href = '/register'}>Register</Button>
+                        <Button variant="outline-secondary" onClick={() => window.location.href = '/signup'}>Sign Up</Button>
                     </Nav>
                     
                     

@@ -1,6 +1,5 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
-import { useNavigate } from "react-router";
 
 const API_URL = "http://localhost:8000/api";
 
@@ -8,7 +7,6 @@ const useNewsContent = () => {
   const [news, setNews] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchnews = async () => {
@@ -18,13 +16,6 @@ const useNewsContent = () => {
         setNews(response.data);
         setLoading(false);
       } catch (error) {
-        navigate("/error", {
-          state: {
-            message: error.response
-              ? error.response.data.message
-              : "An error occurred",
-          },
-        });
         setError(error);
         setLoading(false);
       }
@@ -33,7 +24,7 @@ const useNewsContent = () => {
     fetchnews();
   }, []);
 
-  return { news, loading, error };
+  return {news, loading, error };
 };
 
 export default useNewsContent;
