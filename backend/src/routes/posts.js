@@ -131,15 +131,12 @@ router.put("/update", async (req, res) => {
       .query(UPDATE_POST);
 
     if (result.rowsAffected[0] === 0) {
-      return res.status(404).json({ message: "Invalid post update" });
+      return res.status(404).send();
     } else {
-      return res.status(200).json({ message: "Post updated successfully" });
+      return res.status(200).send();
     }
   } catch (err) {
-    return res.status(500).json({
-      message: "Error occurred",
-      error: `${post_id}, ${user_id}, ${title}, ${content}`,
-    });
+    return res.status(500).send();
   }
 });
 
