@@ -34,9 +34,9 @@ const EditForm = () => {
     //const user_id = userContext.user_id;
     const user_id = 1; // Set author here
     const result = await updatePost(title, content, user_id, post_id);
-
+    console.log(result);
     if (result) {
-      navigate(-1);
+      navigate(`/posts/${post_id}`);
     }
   };
 
