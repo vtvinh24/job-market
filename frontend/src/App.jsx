@@ -18,15 +18,12 @@ import AddPost from "./pages/forum/AddPost";
 import Market from "./pages/jobs/Market";
 import Jobs from "./pages/home/Jobs";
 import AddJob from "./pages/jobs/EnlistJob";
-import MyJobs from "./pages/jobs/MyJobs";
+import JobDetail from "./pages/jobs/JobDetail";
 
 // Technical
 import PageNotFound from "./pages/technical/PageNotFound";
 import Dashboard from "./pages/home/Dashboard";
 
-// Profile
-import Profile from "./pages/profile/Profile";
-import Security from "./pages/profile/Security";
 
 // Users
 import Setting from "./pages/home/Setting";
@@ -39,18 +36,15 @@ import HomeNavbar from "./components/HomeNavbar";
 // Misc
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "./App.css";
-
 import React from "react";
-
-import ErrorPage from "./pages/error/ErrorPage";
-import CreateTicketPage from "./pages/user/CreateTicket";
 
 function App() {
   return (
     <BrowserRouter>
       <HomeNavbar />
-      <div className="content" style={{ minHeight: "60vh" }}>
+      <div className="content">
         <Routes>
+          
           {/* HOME ROUTES */}
           <Route exact path="/" element={<HomeGuest />} />
           <Route exact path="/home" element={<HomePage />} />
@@ -70,23 +64,19 @@ function App() {
           <Route exact path="/market" element={<Market />} />
           <Route exact path="/jobs" element={<Jobs />} />
           <Route exact path="/jobs/add" element={<AddJob />} />
-          <Route exact path="/myjobs" element={<MyJobs />} />
-
-          {/* PROFILE */}
-          <Route exact path="/profile" element={<Profile />} />
-          <Route exact path="/security" element={<Security />} />
-
-          {/* USERS ROUTES */}
-          <Route exact path="/users" element={<Users />} />
-          <Route exact path="/settings" element={<Setting />} />
-          <Route exact path="/ticket" element={<CreateTicketPage />} />
+          <Route exact path="/jobs/detail/:id" element={<JobDetail />} />
 
           {/* TECHNICAL ROUTES */}
+          <Route path="*" element={<PageNotFound />} />
           <Route exact path="/dashboard" element={<Dashboard />} />
-          <Route exact path="/error" element={<ErrorPage />} />
-          <Route exact path="*" element={<PageNotFound />} />
+          
+
+          {/* USERS ROUTES */}
+          <Route path="/users" element={<Users />} />
+          <Route path="/settings" element={<Setting />} />
         </Routes>
       </div>
+      <HomeFooter />
     </BrowserRouter>
   );
 }

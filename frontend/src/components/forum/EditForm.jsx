@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { Form, Button, Container, Row, Col } from "react-bootstrap";
-import usePostUpdate from "../../hooks/forum/usePostUpdate";
+import usePostUpdate from "../../hooks/usePostUpdate";
 import { useNavigate, useParams } from "react-router-dom";
-import usePostDetail from "../../hooks/forum/usePostDetail";
+import usePostDetail from "../../hooks/usePostDetail";
 
 const EditForm = () => {
   const [title, setTitle] = useState("");
@@ -34,14 +34,14 @@ const EditForm = () => {
     //const user_id = userContext.user_id;
     const user_id = 1; // Set author here
     const result = await updatePost(title, content, user_id, post_id);
-    console.log(result);
+
     if (result) {
-      navigate(`/posts/${post_id}`);
+      navigate(-1);
     }
   };
 
   return (
-    <Container style={{ minHeight: "100vh" }}>
+    <Container style={{ minHeight: "100vh"}}>
       <Row>
         <h1 className="text-center">Edit Post</h1>
       </Row>

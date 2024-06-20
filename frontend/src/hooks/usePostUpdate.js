@@ -13,7 +13,7 @@ const usePostUpdate = () => {
     try {
       const response = await axios.put(`${API_URL}/posts/update`, { title, content, user_id, post_id });
       setLoading(false);
-      return response.status === 200;
+      return response.data;
     } catch (err) {
       console.log(err);
       setLoading(false);

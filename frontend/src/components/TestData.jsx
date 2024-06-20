@@ -1,12 +1,12 @@
 import React from "react";
-import  useJobList  from "../hooks/useJobList";
+import useMarketContent from "../hooks/useMarketContent.js";
 import "../assets/css/Forum.css";
 import { getMoment } from "../functions/Converter";
 import { Card } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
 const ListContent = () => {
-  const {contents, loading, error } = useJobList();
+  const {contents, loading, error } = useMarketContent();
 
   if (loading) {
     return <div>Loading...</div>;
@@ -15,39 +15,37 @@ const ListContent = () => {
   if (error) {
     return <div>Error: {error.message}</div>;
   }
-  // array.forEach(contents => {
-  //     console.log(contents);
-  // });
-  console.log(contents);
+
   return (
     <div>
-      {contents.map((content) => (
-        <Card>
-        <ul>
-          <li>{content.job_title}</li>
-          <li>{content.job_description}</li>
-          <li>{content.job_contact_info}</li>
-          <li>{content.job_work_location}</li>
-        </ul>
+      {contents.map((marketcontent) => (
+        <Card className="post-card" key={marketcontent.id}>
+          
+            <Card.Body>
+              <Card.Title as="h2" style={{ color: "blue" }}>
+                {marketcontent.topic}
+              </Card.Title>
+              <Card.Text className="post-card-content">
+                {marketcontent.content}
+              </Card.Text>
+              <Card.Link
+                href={`/users/${marketcontent.author}`}
+                className="post-author"
+                data-toggle="tooltip"
+                title={`Author: ${marketcontent.author}`}
+                onClick={(e) => e.stopPropagation()}
+              >
+                {marketcontent.author}
+              </Card.Link>
+              <Card.Text
+                className="post-card-content"
+                style={{ textAlign: "right", fontSize: "small" }}
+              >
+                {getMoment(marketcontent.created_timestamp)}
+              </Card.Text>
+            </Card.Body>
+       
         </Card>
-        // <Card className="post-card" key={content.job_id}>
-        //   <Card.Body>
-        //     <Card.Title as="h2" style={{ color: "blue" }}>
-        //       {content.job_title}
-        //     </Card.Title>
-        //     <Card.Text className="post-card-content">
-        //       {content.job_description}
-        //     </Card.Text>
-        //     {/* <Card.Link
-        //       href={`/users/${content.author}`}
-        //       className="card-author"
-        //       data-toggle="tooltip"
-        //     >
-        //       {content.author}
-        //     </Card.Link> */}
-        //   <Card.Test> {content.job_contact_info}</Card.Test>
-        //   </Card.Body>
-        // </Card>
       ))}
     </div>
   );

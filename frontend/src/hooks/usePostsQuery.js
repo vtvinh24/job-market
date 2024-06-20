@@ -3,17 +3,17 @@ import { useState, useEffect } from "react";
 
 const API_URL = "http://localhost:8000/api";
 
-const useJobList = () => {
-  const [contents, setContents] = useState([]);
+const usePostsQuery = () => {
+  const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    const fetchContents = async () => {
+    const fetchPosts = async () => {
       try {
-        const url = `${API_URL}/joblist/byDayCreated`;
+        const url = `${API_URL}/posts`;
         const response = await axios.get(url);
-        setContents(response.data);
+        setPosts(response.data);
         setLoading(false);
       } catch (error) {
         setError(error);
@@ -21,10 +21,10 @@ const useJobList = () => {
       }
     };
 
-    fetchContents();
+    fetchPosts();
   }, []);
 
-  return { contents, loading, error };
+  return { posts, loading, error };
 };
 
-export default useJobList;
+export default usePostsQuery;

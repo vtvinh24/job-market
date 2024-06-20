@@ -2,25 +2,25 @@ import { useState } from 'react';
 import axios from 'axios';
 const API_URL = "http://localhost:8000/api";
 
-const usePostDelete = () => {
+const usePostInsert = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  const deletePost = async (post_id) => {
+  const insertPost = async (title, content, user_id) => {
     setLoading(true);
     setError(null);
 
     try {
-      const response = await axios.delete(`${API_URL}/posts/delete`, { data: { post_id } });
+      const response = await axios.post(`${API_URL}/posts`, { title, content, user_id });
       setLoading(false);
       return response.data;
     } catch (err) {
-      console.log(err);
+      setError(err.message || 'Error occurred');
       setLoading(false);
     }
   };
 
-  return { deletePost, loading, error };
+  return { insertPost, loading, error };
 };
 
-export default usePostDelete;
+export default usePostInsert;
