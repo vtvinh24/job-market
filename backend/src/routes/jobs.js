@@ -38,7 +38,12 @@ router.post('/', async (req, res) => {
     job_start_date,
     job_end_date,
     job_number_of_recruits,
-    job_requirements
+    job_requirements,
+    job_compensation_types,
+    job_compensation_amounts ,
+    job_compensation_currencies ,
+    job_compensation_periods ,
+    job_custom_iterations 
   } = req.body;
   const user_id = 1;
   try {
@@ -61,9 +66,14 @@ router.post('/', async (req, res) => {
     .input('job_end_date', sql.Date, job_end_date)
     .input('job_number_of_recruits', sql.Int, job_number_of_recruits)
     .input('job_requirements', sql.NVarChar, job_requirements)
+    .input('job_compensation_types', sql.NVarChar, job_compensation_types)
+    .input('job_compensation_amounts', sql.NVarChar, job_compensation_amounts)
+    .input('job_compensation_currencies', sql.NVarChar, job_compensation_currencies)
+    .input('job_compensation_periods', sql.NVarChar, job_compensation_periods)
+    .input('job_custom_iterations', sql.NVarChar, job_custom_iterations)
       .query(`
-        INSERT INTO job (user_id, job_title, job_work_location, job_tags, job_max_applications, job_approval_method, job_description, job_contact_info, job_start_date, job_end_date, job_number_of_recruits, job_requirements)
-        VALUES (@user_id, @job_title,  @job_work_location, @job_tags, @job_max_applications, @job_approval_method,  @job_description, @job_contact_info, @job_start_date, @job_end_date, @job_number_of_recruits, @job_requirements);
+        INSERT INTO job (user_id, job_title, job_work_location, job_tags, job_max_applications, job_approval_method, job_description, job_contact_info, job_start_date, job_end_date, job_number_of_recruits, job_requirements, job_compensation_types, job_compensation_amounts, job_compensation_currencies, job_compensation_periods, job_custom_iterations)
+        VALUES (@user_id, @job_title,  @job_work_location, @job_tags, @job_max_applications, @job_approval_method,  @job_description, @job_contact_info, @job_start_date, @job_end_date, @job_number_of_recruits, @job_requirements, @job_compensation_types, @job_compensation_amounts, @job_compensation_currencies, @job_compensation_periods, @job_custom_iterations);
       `);
 
     res.status(201).send({ message: 'Job successfully inserted' });
@@ -85,7 +95,12 @@ router.put('/update', async (req, res) => {
     job_start_date,
     job_end_date,
     job_number_of_recruits,
-    job_requirements
+    job_requirements,
+    job_compensation_types,
+    job_compensation_amounts ,
+    job_compensation_currencies ,
+    job_compensation_periods ,
+    job_custom_iterations 
   } = req.body;
 
   try {
@@ -109,6 +124,11 @@ router.put('/update', async (req, res) => {
     .input('job_end_date', sql.Date, job_end_date)
     .input('job_number_of_recruits', sql.Int, job_number_of_recruits)
     .input('job_requirements', sql.NVarChar, job_requirements)
+    .input('job_compensation_types', sql.NVarChar, job_compensation_types)
+    .input('job_compensation_amounts', sql.NVarChar, job_compensation_amounts)
+    .input('job_compensation_currencies', sql.NVarChar, job_compensation_currencies)
+    .input('job_compensation_periods', sql.NVarChar, job_compensation_periods)
+    .input('job_custom_iterations', sql.NVarChar, job_custom_iterations)
       .query(`
         UPDATE job SET
         job_title = @job_title,
@@ -123,6 +143,11 @@ router.put('/update', async (req, res) => {
         job_end_date = @job_end_date,
         job_number_of_recruits = @job_number_of_recruits
         job_requirements = @job_requirements
+        job_compensation_types = @job_compensation_types
+        job_compensation_amounts = @job_compensation_amounts
+        job_compensation_currencies = @job_compensation_currencies
+        job_compensation_periods = @job_compensation_periods
+        job_custom_iterations = @job_custom_iterations
         WHERE user_id = @user_id;  
       `);
 
@@ -153,121 +178,4 @@ router.get("/:id", async (req, res) => {
       res.status(500).send({ error: 'An error occurred while fetching job details' });
     }
   });
-
-  // POST route to insert job compensation
-router.post('/:id/compensation', async (req, res) => {
-  const {
-    job_compensation_platform,
-    job_compensation_type,
-    job_compensation_amount,
-    job_compensation_currency,
-    job_compensation_period,
-    job_custom_iteration,
-    job_hours_per_day
-  } = req.body;
-
-  const { job_id } = req.params;
-
-  try {
-    const pool = await poolPromise;
-    const result = await pool.request()
-      .input('job_id', sql.Int, job_id)
-      .input('job_compensation_platform', sql.Bit, job_compensation_platform)
-      .input('job_compensation_type', sql.NVarChar, job_compensation_type)
-      .input('job_compensation_amount', sql.Decimal(10, 2), job_compensation_amount)
-      .input('job_compensation_currency', sql.NVarChar, job_compensation_currency)
-      .input('job_compensation_period', sql.NVarChar, job_compensation_period)
-      .input('job_custom_iteration', sql.NVarChar, job_custom_iteration)
-      .input('job_hours_per_day', sql.Int, job_hours_per_day)
-      .query(`
-        INSERT INTO job_compensation (job_id, job_compensation_platform, job_compensation_type, job_compensation_amount, job_compensation_currency, job_compensation_period, job_custom_iteration, job_hours_per_day)
-        VALUES (@job_id, @job_compensation_platform, @job_compensation_type, @job_compensation_amount, @job_compensation_currency, @job_compensation_period, @job_custom_iteration, @job_hours_per_day);
-      `);
-
-    res.status(201).send({ message: 'Job compensation successfully inserted' });
-  } catch (error) {
-    console.error('Error inserting job compensation:', error);
-    res.status(500).send({ error: 'An error occurred while inserting the job compensation' });
-  }
-});
-
-router.put('/:id/compensation', async (req, res) => {
-  const {
-    job_compensation_platform,
-    job_compensation_type,
-    job_compensation_amount,
-    job_compensation_currency,
-    job_compensation_period,
-    job_custom_iteration,
-    job_hours_per_day
-  } = req.body;
-
-  const { job_id } = req.params;
-
-  try {
-    const pool = await poolPromise;
-    const result = await pool.request()
-      .input('job_id', sql.Int, job_id)
-      .input('job_compensation_platform', sql.Bit, job_compensation_platform)
-      .input('job_compensation_type', sql.NVarChar, job_compensation_type)
-      .input('job_compensation_amount', sql.Decimal(10, 2), job_compensation_amount)
-      .input('job_compensation_currency', sql.NVarChar, job_compensation_currency)
-      .input('job_compensation_period', sql.NVarChar, job_compensation_period)
-      .input('job_custom_iteration', sql.NVarChar, job_custom_iteration)
-      .input('job_hours_per_day', sql.Int, job_hours_per_day)
-      .query(`
-        UPDATE job_compensation SET
-          job_compensation_platform = @job_compensation_platform,
-          job_compensation_type = @job_compensation_type,
-          job_compensation_amount = @job_compensation_amount,
-          job_compensation_currency = @job_compensation_currency,
-          job_compensation_period = @job_compensation_period,
-          job_custom_iteration = @job_custom_iteration,
-          job_hours_per_day = @job_hours_per_day
-        WHERE job_id = @job_id;
-      `);
-
-    res.status(200).send({ message: 'Job compensation successfully updated' });
-  } catch (error) {
-    console.error('Error updating job compensation:', error);
-    res.status(500).send({ error: 'An error occurred while updating the job compensation' });
-  }
-});
-
-router.get('/:id/compensation', async (req, res) => {
-  const { job_id } = req.params;
-
-  try {
-    const pool = await poolPromise;
-    const result = await pool.request()
-      .input('job_id', sql.Int, job_id)
-      .query('SELECT * FROM job_compensation WHERE job_id = @job_id');
-
-    if (result.recordset.length === 0) {
-      return res.status(404).send({ message: 'Job compensation not found' });
-    }
-
-    res.send(result.recordset[0]);
-  } catch (error) {
-    console.error('Error fetching job compensation details:', error);
-    res.status(500).send({ error: 'An error occurred while fetching job compensation details' });
-  }
-});
-
-router.delete('/:id/compensation', async (req, res) => {
-  const { job_id } = req.params;
-
-  try {
-    const pool = await poolPromise;
-    const result = await pool.request()
-      .input('job_id', sql.Int, job_id)
-      .query('DELETE FROM job_compensation WHERE job_id = @job_id');
-
-    res.status(200).send({ message: 'Job compensation successfully deleted' });
-  } catch (error) {
-    console.error('Error deleting job compensation:', error);
-    res.status(500).send({ error: 'An error occurred while deleting the job compensation' });
-  }
-});
-
 module.exports = router;
