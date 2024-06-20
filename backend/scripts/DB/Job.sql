@@ -10,7 +10,11 @@ CREATE TABLE job (
 	job_max_applications INT DEFAULT 0,
 	job_approval_method BIT NOT NULL DEFAULT 1,
 	job_description NVARCHAR(MAX) NOT NULL,
-	job_contact_info NVARCHAR(MAX)
+	job_contact_info NVARCHAR(MAX),
+	job_start_date DATE,
+    job_end_date DATE,
+    job_number_of_recruits INT DEFAULT 0,
+	job_requirements NVARCHAR(MAX)
 );
 GO
 
