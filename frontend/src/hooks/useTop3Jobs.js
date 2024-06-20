@@ -4,7 +4,7 @@ import { useNavigate } from "react-router";
 
 const API_URL = "http://localhost:8000/api";
 
-const useMarketContent = () => {
+const useTop3Jobs = () => {
   const [contents, setContents] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -15,7 +15,7 @@ const useMarketContent = () => {
   useEffect(() => {
     const fetchContents = async () => {
       try {
-        const url = `${API_URL}/marketing`;
+        const url = `${API_URL}/jobs/top3`;
         const response = await axios.get(url);
         setContents(response.data);
         setLoading(false);
@@ -38,4 +38,4 @@ const useMarketContent = () => {
   return { contents, loading, error };
 };
 
-export default useMarketContent;
+export default useTop3Jobs;

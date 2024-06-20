@@ -75,7 +75,7 @@ function JobList() {
     
 
     const formatSalary = (type, amount,currency) => {
-      switch (type) {
+      switch (type.toUpperCase()) {
         case 'ONETIME':
           return `${amount} ${currency}`;
         case 'HOURLY':
@@ -129,11 +129,11 @@ function JobList() {
           <Col>
           <JobPagination jobsPerPage={jobsPerPage} totalJobs={filteredContents.length} paginate={paginate} currentPage={currentPage} />
             <div>
-              {filteredContents.length === 0 ? (
+              {currentJobs.length === 0 ? (
                  <p style={{ textAlign: 'center', marginTop: '20px', fontSize: '40px', fontWeight: 'bold', height: '200px' }}>Sorry, There is no job that fulfills your requirements.</p>
               ): (
                 
-              filteredContents.map(content => (
+                currentJobs.map(content => (
               <div className="job-card" key={content.job_id}>
                 <div className="job-card-img">IMG Background</div>
                 <div className="job-card-content">
@@ -148,7 +148,7 @@ function JobList() {
                       <p>Location: {content.job_work_location}</p>
                     </div>
                      <div className="job-info-right">
-                      <p>{formatSalary(content.job_compensation_type, content.job_compensation_amount,content.job_compensation_currency)}</p>
+                      <p className='tag'>{formatSalary(content.job_compensation_type, content.job_compensation_amount,content.job_compensation_currency)}</p>
                       <p>{content.timeleft} days left</p>
                     </div> 
                   </div>

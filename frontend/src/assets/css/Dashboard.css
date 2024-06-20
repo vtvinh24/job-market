@@ -73,4 +73,22 @@
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Adding shadow */
 
   }
+
+  .completed{
+    color: green;
+    font-weight: bold;
+    font-size: 35px !important;
+  }
+
+  .applied{
+    color: blue;
+    font-weight: bold;
+    font-size: 35px !important;
+  }
+
+  .created{
+    color: rosybrown;
+    font-weight: bold;
+    font-size: 35px !important;
+  }
   

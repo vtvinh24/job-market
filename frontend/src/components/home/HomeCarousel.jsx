@@ -8,6 +8,7 @@ import '../../assets/css/Carosel.css';
 function HomeCarousel() {
   const {contents, loading, error } = useMarketContent();
 
+  console.log(contents);
   if (loading) {
     return <div>Loading...</div>;
   }

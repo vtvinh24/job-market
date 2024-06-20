@@ -40,14 +40,14 @@
   }
   
   .username {
-    font-size: 18px;
+    font-size: 25px;
     font-weight: bold;
   }
   
   hr {
     width: 100%;
     border-top: 2px solid #000;
-    margin-bottom: 20px;
+    margin-bottom: 5px;
   }
   
   .sidebar-menu {
@@ -77,4 +77,8 @@
     color: white;
     border-radius: 20px;
   }
-  
+  .selected{
+    background-color: rgb(40, 40, 40);
+    color: white;
+    border-radius: 20px;  
+  }

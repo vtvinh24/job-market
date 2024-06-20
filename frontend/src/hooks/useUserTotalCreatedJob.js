@@ -4,20 +4,18 @@ import { useNavigate } from "react-router";
 
 const API_URL = "http://localhost:8000/api";
 
-const useMarketContent = () => {
-  const [contents, setContents] = useState([]);
+const useUserTotalCreatedJob = (userId) => {
+  const [count, setCount] = useState(0);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const navigate = useNavigate();
-
-  console.log(contents);
-  console.log('Hello');
+  
   useEffect(() => {
-    const fetchContents = async () => {
+    const fetchCompletedJobsCount = async () => {
       try {
-        const url = `${API_URL}/marketing`;
+        const url = `${API_URL}/myjobs/created/${userId}`;
         const response = await axios.get(url);
-        setContents(response.data);
+        setCount(response.data.total);
         setLoading(false);
       } catch (error) {
         navigate("/error", {
@@ -32,10 +30,11 @@ const useMarketContent = () => {
       }
     };
 
-    fetchContents();
-  }, []);
-
-  return { contents, loading, error };
+    if (userId) {
+      fetchCompletedJobsCount();
+    }
+  }, [userId, navigate]);
+  return { count, loading, error };
 };
 
-export default useMarketContent;
+export default useUserTotalCreatedJob;
