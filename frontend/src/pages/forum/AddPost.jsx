@@ -6,7 +6,13 @@ const AddPost = () => {
   return (
     <div className="forum-body">
       <Col md={2}>
-        <NavigateButton path="/forum" text="Back to Forum" variant="primary" />
+        <NavigateButton
+          path="/forum"
+          text="Back to Forum"
+          variant="primary"
+          confirm={true}
+          confirmMsg={"Discard changes and leave this page?"}
+        />
       </Col>
       <AddForm />
     </div>
