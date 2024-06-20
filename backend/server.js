@@ -13,6 +13,15 @@ app.use(
   })
 );
 
+// Rate limit middleware
+const rateLimit = require("express-rate-limit");
+const limiter = rateLimit({
+  windowMs: 5000, // 5 seconds
+  max: 5, // 5 requests per 5 seconds
+});
+
+app.use(limiter);
+
 app.use(express.json());
 
 // Import and define routes
