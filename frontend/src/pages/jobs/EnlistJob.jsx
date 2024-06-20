@@ -12,21 +12,20 @@ const EnlistJob = () => {
 
   const [formValues, setFormValues] = useState({
     job_title: '',
-    job_work_type: '',
     job_work_location: '',
     job_tags: '',
     job_max_applications: '',
     job_approval_method: true,
-    job_requirement: '',
-    numberOfRecruits: '',
-    startDate: '',
-    endDate: '',
-    compensationType: 'One-time',
-    isChecked: false,
-    amount: '',
-    currency: 'VND',
-    per: 'month',
-    customIteration: '',
+    job_requirements: '',
+    job_number_of_recruits: '',
+    job_start_date: '',
+    job_end_date: '',
+    job_compensation_type: '',
+    //isChecked: false,
+    job_compensation_amount: '',
+    job_compensation_currency: 'VND',
+    job_compensation_per: 'month',
+    job_custom_iteration: '',
     job_description: '',
     job_contact_info: ''
   });
@@ -50,17 +49,25 @@ const EnlistJob = () => {
   };
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
+    if (name === 'job_description') {
+    const formattedValue = value.replace(/\n{2,}/g, '\n');
     setFormValues({
       ...formValues,
-      [name]: type === 'checkbox' ? checked : value
+      [name]: formattedValue,
     });
-  };
+  } else {
+    setFormValues({
+      ...formValues,
+      [name]: type === 'checkbox' ? checked : value,
+    });
+  }
+};
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const handleSubmit = () => {
+    const jobRequirements = additionalRequirements.join(';'); // Join requirements with a newline as delimiter
     const jobData = {
       ...formValues,
-      additionalRequirements
+      job_requirements: jobRequirements,
     };
     insertJob(jobData);
   };
@@ -87,7 +94,7 @@ return (
         <Row><h1 className='header1'>Enlist a Job</h1></Row>
         <Row><h3 className='header2'>General Information</h3></Row>
         <Row className="m-auto align-self-center w-100">
-          <Col md={{ span: 6, offset: 3 }}>
+          <Col md={{ span: 10, offset: 1 }}>
             <Form.Group controlId="title">
               <Form.Label>Job Title</Form.Label>
               <Form.Control 
@@ -102,21 +109,7 @@ return (
           </Col>
         </Row>
         <Row className="m-auto align-self-center w-100">
-          <Col md={6}>
-            <Form.Group controlId="workType">
-              <Form.Label>Work Type</Form.Label>
-              <Form.Control 
-                as="select" 
-                name="job_work_type"
-                value={formValues.job_work_type}
-                onChange={handleChange}
-              >
-                <option>Office</option>
-                <option>Remote</option>
-              </Form.Control>
-            </Form.Group>
-          </Col>
-          <Col md={6}>
+          <Col md={{ span: 10, offset: 1 }}>
             <Form.Group controlId="location">
               <Form.Label>Location</Form.Label>
               <Form.Control 
@@ -130,7 +123,7 @@ return (
           </Col>
         </Row>
         <Row className="m-auto align-self-center w-100">
-          <Col md={{ span: 6, offset: 3 }}>
+          <Col md={{ span: 10, offset: 1  }}>
             <Form.Group controlId="tags">
               <Form.Label>Tags</Form.Label>
               <Form.Control 
@@ -177,8 +170,8 @@ return (
               <Form.Control 
                 type="number" 
                 placeholder='Number of recruits'
-                name="job_max_applications"
-                value={formValues.job_max_applications}
+                name="job_number_of_recruits"
+                value={formValues.job_number_of_recruits}
                 onChange={handleChange}
               />
             </Form.Group>
@@ -191,8 +184,8 @@ return (
               <Form.Control 
                 type="date" 
                 placeholder='Start date'
-                name="startDate"
-                value={formValues.startDate}
+                name="job_start_date"
+                value={formValues.job_start_date}
                 onChange={handleChange}
               />
             </Form.Group>
@@ -203,8 +196,8 @@ return (
               <Form.Control 
                 type="date" 
                 placeholder='End date'
-                name="endDate"
-                value={formValues.endDate}
+                name="job_end_date"
+                value={formValues.job_end_date}
                 onChange={handleChange}
               />
             </Form.Group>
@@ -218,14 +211,14 @@ return (
             </Form.Group>
             <Col>
               <Button className="circle-button" onClick={handleAddRequirement}>+</Button>
-              {additionalRequirements.map((requirement, index) => (
+              {additionalRequirements.map((job_requirements, index) => (
                 <div key={index} className="additional-requirement-wrapper">
                   <Form.Control 
                     as="textarea"
                     rows={1}
                     className="additional-requirement-input"
-                    name="job_requirement"
-                    value={requirement}
+                    name="job_requirements"
+                    value={job_requirements}
                     onChange={(e) => handleRequirementChange(index, e.target.value)}
                     placeholder="Enter requirement"
                   />
@@ -242,8 +235,8 @@ return (
               <Form.Label>Compensation type</Form.Label>
               <Form.Control 
                 as="select" 
-                name="compensationType"
-                value={formValues.compensationType}
+                name="job_compensation_type"
+                value={formValues.job_compensation_type}
                 onChange={handleChange}
               >
                 <option>One-time</option>
@@ -272,8 +265,8 @@ return (
               <Form.Control 
                 type="number" 
                 placeholder='Amount'
-                name="amount"
-                value={formValues.amount}
+                name="job_compensation_amount"
+                value={formValues.job_compensation_amount}
                 onChange={handleChange}
               />
             </Form.Group>
@@ -283,8 +276,8 @@ return (
               <Form.Label>*</Form.Label>
               <Form.Control 
                 as="select" 
-                name="currency"
-                value={formValues.currency}
+                name="job_compensation_currency"
+                value={formValues.job_compensation_currency}
                 onChange={handleChange}
               >
                 <option>VND</option>
@@ -298,8 +291,8 @@ return (
             <Form.Label>per</Form.Label>
             <Form.Control 
               as="select" 
-              name="per"
-              value={formValues.per}
+              name="job_compensation_period"
+              value={formValues.job_compensation_period}
               onChange={handleChange}
             >
               <option>month</option>
@@ -314,8 +307,8 @@ return (
             <Form.Control 
               type="text" 
               placeholder='Custom Iteration/hours per day'
-              name="customIteration"
-              value={formValues.customIteration}
+              name="job_custom_iteration"
+              value={formValues.job_custom_iteration}
               onChange={handleChange}
             />
           </Col>
@@ -348,7 +341,7 @@ return (
             />
           </Col>
         </Row>
-        <Button type="submit" className='enlistbutton' disabled={loading}>
+        <Button type="submit" className='enlistbutton' onClick={handleSubmit} disabled={loading}>
           {loading ? 'Enlisting...' : 'Enlist'}
         </Button>
         {/* {error && <p className="error-message">{error}</p>} */}
