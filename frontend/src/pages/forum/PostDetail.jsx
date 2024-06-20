@@ -1,6 +1,6 @@
 import React from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
-import usePostDetail from "../../hooks/usePostDetail.js";
+// import usePostDetail from "../../hooks/usePostDetail.js";
 import { Button, Row, Col } from "react-bootstrap";
 import "../../assets/css/Forum.css";
 import { getMoment } from "../../functions/Converter.js";

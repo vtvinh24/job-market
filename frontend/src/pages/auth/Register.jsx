@@ -2,6 +2,7 @@
 import React, { useState } from "react";
 import { Form, Button, Container, Card, Alert } from "react-bootstrap";
 import axios from "axios";
+import { useNavigate } from "react-router";
 // import CarouselComponent from "../../components/HomeCarousel.jsx";
 
 const Register = () => {
@@ -10,6 +11,7 @@ const Register = () => {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [message, setMessage] = useState(null);
   const [error, setError] = useState(null);
+  const navigate = useNavigate()
 
   const handleRegister = async (e) => {
     e.preventDefault();
@@ -18,12 +20,17 @@ const Register = () => {
       return;
     }
     try {
-      const response = await axios.post("/api/register", {
+      const response = await axios.post("/api/auth/register", {
         username,
         password,
       });
       setMessage("Registration successful!");
       setError(null);
+      if (response.status === 201) {
+        setTimeout(()=> {
+          navigate("/login")
+        },3000 )
+      }
     } catch (err) {
       setError("Registration failed! Please try again.");
       setMessage(null);
