@@ -3,8 +3,6 @@ import '../../assets/css/EnlistJob.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Container, Button, Row, Form, Col } from 'react-bootstrap';
 import backgroundImg from '../../assets/img/Stole.jpg'; 
-import HomeNavbar from '../../components/HomeNavbar.jsx';
-import Footer from '../../components/HomeFooter.jsx';
 import useJobInsert from "../../hooks/useJobInsert.js";
 const EnlistJob = () => {
   const [additionalRequirements, setAdditionalRequirements] = useState([]);
@@ -85,7 +83,6 @@ ROW 3  TAGS
 return (
   <>
     <div className="App">
-      <HomeNavbar />
     </div>
     <img src={backgroundImg} alt="Image" className="background-img"/>
     <Container className='container'>
@@ -348,7 +345,6 @@ return (
         {success && <p className="success-message">Job successfully enlisted!</p>}
       </Form>
     </Container>
-    <Footer />
   </>
 );
 };
