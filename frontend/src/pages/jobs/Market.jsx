@@ -33,7 +33,7 @@ function JobMarket() {
   return (
     <>
 
-      {/* <HomeNavbar /> */}
+      <HomeNavbar />
         <JobList />
       <HelpCenter />
       <Footer />

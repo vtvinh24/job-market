@@ -10,12 +10,10 @@ const useMarketContent = () => {
   const [error, setError] = useState(null);
   const navigate = useNavigate();
 
-  console.log(contents);
-  console.log('Hello');
   useEffect(() => {
     const fetchContents = async () => {
       try {
-        const url = `${API_URL}/marketing`;
+        const url = `/marketing`;
         const response = await axios.get(url);
         setContents(response.data);
         setLoading(false);
