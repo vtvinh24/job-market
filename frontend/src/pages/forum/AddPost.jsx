@@ -1,17 +1,20 @@
-import React from "react";
-import { Col, Button } from "react-bootstrap";
+import { Col } from "react-bootstrap";
 import AddForm from "../../components/forum/AddForm";
+import NavigateButton from "../../components/buttons/NavigateButton";
 
 const AddPost = () => {
   return (
     <div className="forum-body">
       <Col md={2}>
-        <Button href="/forum" className="forum-button">
-          Back to Forum
-        </Button>
+        <NavigateButton
+          path="/forum"
+          text="Back to Forum"
+          variant="primary"
+          confirm={true}
+          confirmMsg={"Discard changes and leave this page?"}
+        />
       </Col>
       <AddForm />
-      
     </div>
   );
 };
