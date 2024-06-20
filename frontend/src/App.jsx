@@ -44,6 +44,8 @@ import React from "react";
 
 import ErrorPage from "./pages/error/ErrorPage";
 import CreateTicketPage from "./pages/user/CreateTicket";
+import JobDetail from "./pages/jobs/JobDetail";
+import EnlistJob from "./pages/jobs/EnlistJob";
 
 function App() {
   return (
@@ -69,7 +71,8 @@ function App() {
           {/* JOBS ROUTES */}
           <Route exact path="/market" element={<Market />} />
           <Route exact path="/jobs" element={<Jobs />} />
-          <Route exact path="/jobs/add" element={<AddJob />} />
+          <Route exact path="/jobs/:id" element={<JobDetail />} />
+          <Route exact path="/jobs/add" element={<EnlistJob />} />
           <Route exact path="/myjobs" element={<MyJobs />} />
 
           {/* PROFILE */}
