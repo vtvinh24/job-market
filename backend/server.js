@@ -14,20 +14,14 @@ app.use(
   })
 );
 
-sql
-  .connect({
-    user: "sa",
-    password: "sa",
-    server: "localhost",
-    database: "mJOB",
-    encrypt: false,
-  })
-  .then(() => {
-    console.log("Connected to SQL Server");
-  })
-  .catch((err) => {
-    console.error("SQL connection error:", err);
-  });
+// Rate limit middleware
+const rateLimit = require("express-rate-limit");
+const limiter = rateLimit({
+  windowMs: 5000, // 5 seconds
+  max: 5, // 5 requests per 5 seconds
+});
+
+app.use(limiter);
 
 app.use(express.json());
 

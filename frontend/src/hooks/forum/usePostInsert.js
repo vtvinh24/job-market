@@ -1,14 +1,12 @@
 import { useState } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router";
 const API_URL = "http://localhost:8000/api";
 
 const usePostInsert = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
-  const navigate = useNavigate();
 
-  const insertPost = async (title, content, user_id) => {
+  const insertPost = async (title, content, user_id, post_status) => {
     setLoading(true);
     setError(null);
 
@@ -17,18 +15,12 @@ const usePostInsert = () => {
         title,
         content,
         user_id,
+        post_status,
       });
       setLoading(false);
-      return response.data;
+      return response.status === 201;
     } catch (err) {
-      navigate("/error", {
-        state: {
-          message: error.response
-            ? error.response.data.message
-            : "An error occurred",
-        },
-      });
-      setError(errormessage || "Error occurred");
+      setError(err.message || "Error occurred");
       setLoading(false);
     }
   };
