@@ -45,6 +45,7 @@ import React from "react";
 import ErrorPage from "./pages/error/ErrorPage";
 import CreateTicketPage from "./pages/user/CreateTicket";
 
+
 function App() {
   return (
     <BrowserRouter>
@@ -59,6 +60,7 @@ function App() {
           <Route exact path="/login" element={<Login />} />
           <Route exact path="/register" element={<Register />} />
           <Route exact path="/reset-password" element={<ResetPassword />} />
+          <Route exact path="/error" element={<ErrorPage />} />
 
           {/* FORUM ROUTES */}
           <Route exact path="/forum" element={<Forum />} />
@@ -72,19 +74,18 @@ function App() {
           <Route exact path="/jobs/add" element={<AddJob />} />
           <Route exact path="/myjobs" element={<MyJobs />} />
 
+          {/* TECHNICAL ROUTES */}
+          <Route path="*" element={<PageNotFound />} />
+          <Route exact path="/dashboard" element={<Dashboard />} />
+
           {/* PROFILE */}
           <Route exact path="/profile" element={<Profile />} />
           <Route exact path="/security" element={<Security />} />
 
           {/* USERS ROUTES */}
-          <Route exact path="/users" element={<Users />} />
-          <Route exact path="/settings" element={<Setting />} />
-          <Route exact path="/ticket" element={<CreateTicketPage />} />
-
-          {/* TECHNICAL ROUTES */}
-          <Route exact path="/dashboard" element={<Dashboard />} />
-          <Route exact path="/error" element={<ErrorPage />} />
-          <Route exact path="*" element={<PageNotFound />} />
+          <Route path="/users" element={<Users />} />
+          <Route path="/settings" element={<Setting />} />
+          <Route path="/ticket" element={<CreateTicketPage />} />
         </Routes>
       </div>
     </BrowserRouter>

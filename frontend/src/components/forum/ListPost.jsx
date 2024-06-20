@@ -43,8 +43,11 @@ const ListPost = () => {
             >
               {post.username}
             </Link>
-            <Card.Text style={{ textAlign: "right", fontSize: "small" }}>
-              {getMoment(post.post_updated_time)}
+            <Card.Text
+              
+              style={{ textAlign: "right", fontSize: "small"}}
+            >
+              {getMoment(post.post_created_date)}
             </Card.Text>
           </Card.Body>
         </Card>
