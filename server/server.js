@@ -28,6 +28,9 @@ app.use("/api/marketing", marketingRoute);
 const dataPostRoute = require("./src/routes/datapost");
 app.use("/api/datapost", dataPostRoute);
 
+const ticketRoute = require("./src/routes/ticket");
+app.use("/api/ticket", ticketRoute);
+
 const countTotalUserRoute = require("./src/routes/dashboard/countTotalUser");
 app.use("/api/dashboard/count/user/total", countTotalUserRoute);
 
