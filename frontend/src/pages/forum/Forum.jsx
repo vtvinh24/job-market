@@ -1,11 +1,10 @@
-import React from "react";
 import ListPost from "../../components/forum/ListPost";
-import { Button, Row } from "react-bootstrap";
+import { Row, Container } from "react-bootstrap";
 import NavigateButton from "../../components/buttons/NavigateButton";
 
 const Forum = () => {
   return (
-    <div className="forum-body">
+    <Container className="forum-body">
       <NavigateButton
         path="/forum/add"
         text="Create Post"
@@ -15,7 +14,7 @@ const Forum = () => {
       <Row>
         <ListPost />
       </Row>
-    </div>
+    </Container>
   );
 };
 

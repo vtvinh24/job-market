@@ -46,6 +46,4 @@ backend/node_modules
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
-frontend/src/App.jsx
-backend/config/db.json
 backend/config/db.json

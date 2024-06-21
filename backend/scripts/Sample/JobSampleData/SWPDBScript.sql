@@ -258,6 +258,8 @@ INSERT INTO system_log (system_log_type, system_log_data)
 VALUES ('INFO', 'Created table: job_application');
 GO
 
+drop table job_history
+
 CREATE TABLE job_history (
 	user_id INT NOT NULL FOREIGN KEY REFERENCES auth(user_id),
 	job_id INT NOT NULL FOREIGN KEY REFERENCES job(job_id),
@@ -390,12 +392,13 @@ VALUES
 (2, 2, '2024-11-30', 1),
 (3, 4, '2024-10-31', 1),
 (4, 1, '2024-09-30', 1),
-(5, 2, '2024-08-31', 1),
-(6, 1, '2024-07-31', 1),
-(7, 2, '2024-06-30', 1),
-(8, 3, '2024-05-31', 1),
-(9, 4, '2024-04-30', 1),
-(10, 2, '2024-03-31', 1);
+(5, 2, '2024-09-11', 1),
+(6, 1, '2024-08-31', 1),
+(7, 2, '2024-08-30', 1),
+(8, 3, '2024-08-11', 1),
+(9, 4, '2024-07-30', 1),
+(10, 2, '2024-07-21', 1);
+
 
 -- Add requirements for the jobs
 INSERT INTO job_requirement (job_id, job_requirement)
@@ -473,16 +476,21 @@ select j.job_id,j.job_title,j.job_description,j.job_work_location,j.job_contact_
 select j.job_id,u.username,j.job_title,j.job_description,j.job_tags,j.job_work_location,j.job_description,jv.job_view,jl.job_log_time from 
 job j join auth u on j.user_id=u.user_id 
 join job_view jv on j.job_id=jv.job_id
-join job_log jl on j.job_id=jl.job_id;
+join job_log jl on j.job_id=jl.job_id
+where jl.job_log_type='create';
 
 
 --Order by jobid
-SELECT j.job_id,u.username,j.job_title,j.job_description,j.job_tags,j.job_work_location,j.job_description,jv.job_view,jl.job_log_time
+SELECT j.job_id,u.username,j.job_title,j.job_description,j.job_tags,j.job_work_location,jc.job_compensation_amount,jc.job_compensation_currency,jc.job_compensation_type,jv.job_view,jl.job_log_time,jr.job_recruitment_deadline
 FROM job j
 INNER JOIN auth u ON j.user_id = u.user_id  -- Use INNER JOIN for required data
 INNER JOIN job_view jv ON j.job_id = jv.job_id
 INNER JOIN job_log jl ON j.job_id = jl.job_id
+INNER JOIN job_compensation jc on j.job_id=jc.job_id
+INNER JOIN job_recruitment jr on j.job_id=jr.job_id
+where jl.job_log_type='create'
 ORDER BY j.job_id;
+
 
 
 --Order by view
@@ -526,3 +534,102 @@ VALUES
 (8, 'create', '2023-06-08 17:00:00'),
 (9, 'create', '2023-06-09 18:00:00'),
 (10, 'create', '2023-06-10 19:00:00');
+
+
+SELECT 
+    j.job_id,
+    u.username,
+    j.job_title,
+    j.job_description,
+    j.job_tags,
+    j.job_work_location,
+    jc.job_compensation_amount,
+    jc.job_compensation_currency,
+    jc.job_compensation_type,
+    jv.job_view,
+    DATEDIFF(DAY, GETDATE(), jr.job_recruitment_deadline) AS timeleft
+FROM 
+    job j
+INNER JOIN 
+    auth u ON j.user_id = u.user_id  -- Use INNER JOIN for required data
+INNER JOIN 
+    job_view jv ON j.job_id = jv.job_id
+INNER JOIN 
+    job_log jl ON j.job_id = jl.job_id
+INNER JOIN 
+    job_compensation jc ON j.job_id = jc.job_id
+INNER JOIN 
+    job_recruitment jr ON j.job_id = jr.job_id
+WHERE 
+    jl.job_log_type = 'create'
+ORDER BY 
+    j.job_id;
+
+
+--Order by view
+SELECT 
+    j.job_id,
+    u.username,
+    j.job_title,
+    j.job_tags,
+    j.job_work_location,
+    jc.job_compensation_amount,
+    jc.job_compensation_currency,
+    jc.job_compensation_type,
+    DATEDIFF(DAY, GETDATE(), jr.job_recruitment_deadline) AS timeleft
+FROM 
+    job j
+INNER JOIN 
+    auth u ON j.user_id = u.user_id  -- Use INNER JOIN for required data
+INNER JOIN 
+    job_view jv ON j.job_id = jv.job_id
+INNER JOIN 
+    job_log jl ON j.job_id = jl.job_id
+INNER JOIN 
+    job_compensation jc ON j.job_id = jc.job_id
+INNER JOIN 
+    job_recruitment jr ON j.job_id = jr.job_id
+WHERE 
+    jl.job_log_type = 'create'
+ORDER BY jv.job_view DESC;
+
+
+--Order by time
+SELECT 
+    j.job_id,
+    u.username,
+    j.job_title,
+    j.job_tags,
+    j.job_work_location,
+    jc.job_compensation_amount,
+    jc.job_compensation_currency,
+    jc.job_compensation_type,
+    DATEDIFF(DAY, GETDATE(), jr.job_recruitment_deadline) AS timeleft
+FROM 
+    job j
+INNER JOIN 
+    auth u ON j.user_id = u.user_id  -- Use INNER JOIN for required data
+INNER JOIN 
+    job_view jv ON j.job_id = jv.job_id
+INNER JOIN 
+    job_log jl ON j.job_id = jl.job_id
+INNER JOIN 
+    job_compensation jc ON j.job_id = jc.job_id
+INNER JOIN 
+    job_recruitment jr ON j.job_id = jr.job_id
+WHERE 
+    jl.job_log_type = 'create'
+ORDER BY jl.job_log_time DESC;
+
+Select * from job_history jh where jh.user_id='4' and jh.job_status='done';
+
+select * from job;
+
+select * from job_recruitment;
+
+select * from job_application;
+
+select * from job_history;
+
+drop table job_history
+
