@@ -50,14 +50,14 @@ function App() {
       <div className="content">
         <Routes>
           
-          {/* HOME ROUTES */}
-          <Route exact path="/" element={<HomeGuest />} />
-          <Route exact path="/home" element={<HomePage />} />
-
           {/* AUTH ROUTES */}
           <Route exact path="/login" element={<Login />} />
           <Route exact path="/register" element={<Register />} />
           <Route exact path="/reset-password" element={<ResetPassword />} />
+
+          {/* HOME ROUTES */}
+          <Route exact path="/" element={<HomeGuest />} />
+          <Route exact path="/home" element={<HomePage />} />
 
           {/* FORUM ROUTES */}
           <Route exact path="/forum" element={<Forum />} />
@@ -81,14 +81,14 @@ function App() {
           <Route exact path="/settings" element={<Setting />} />
           <Route exact path="/ticket" element={<CreateTicketPage />} />
 
-          {/* TECHNICAL ROUTES */}
-          <Route path="*" element={<PageNotFound />} />
-          <Route exact path="/dashboard" element={<Dashboard />} />
-          
-
           {/* USERS ROUTES */}
           <Route path="/users" element={<Users />} />
           <Route path="/settings" element={<Setting />} />
+          
+          {/* TECHNICAL ROUTES */}
+          <Route exact path="*" element={<PageNotFound />} />
+          <Route exact path="/dashboard" element={<Dashboard />} />
+
         </Routes>
       </div>
       <HomeFooter />
