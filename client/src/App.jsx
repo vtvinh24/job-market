@@ -17,7 +17,7 @@ import AddPost from "./pages/forum/AddPost";
 // Jobs
 import Market from "./pages/jobs/Market";
 import Jobs from "./pages/home/Jobs";
-import AddJob from "./pages/jobs/EnlistJob";
+import EnlistJob from "./pages/jobs/EnlistJob";
 import JobDetail from "./pages/jobs/JobDetail";
 
 // Technical
@@ -38,10 +38,8 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "./App.css";
 import React from "react";
 
-import ErrorPage from "./pages/error/ErrorPage";
+// import ErrorPage from "./pages/error/ErrorPage";
 import CreateTicketPage from "./pages/user/CreateTicket";
-import JobDetail from "./pages/jobs/JobDetail";
-import EnlistJob from "./pages/jobs/EnlistJob";
 
 function App() {
   return (
@@ -82,8 +80,8 @@ function App() {
           <Route exact path="/ticket" element={<CreateTicketPage />} />
 
           {/* USERS ROUTES */}
-          <Route path="/users" element={<Users />} />
-          <Route path="/settings" element={<Setting />} />
+          <Route exact path="/users" element={<Users />} />
+          <Route exact path="/settings" element={<Setting />} />
           
           {/* TECHNICAL ROUTES */}
           <Route exact path="*" element={<PageNotFound />} />
