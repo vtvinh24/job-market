@@ -1,17 +1,22 @@
 const express = require("express");
 const cors = require("cors");
 const config = require("./config/server.json");
+const rateLimit = require("express-rate-limit");
 
 const app = express();
 const port = 8000;
 
 // CORS rule
-app.use(
-  cors({
-    // origin: config.cors.origin,
-    origin: "http://localhost:5173",
-  })
-);
+app.use(cors({
+  origin: config.cors.origin
+}));
+
+// Rate limiter
+const limiter = rateLimit({
+  windowMs: config.rateLimiter.windowMs,
+  max: config.rateLimiter.max
+});
+app.use(limiter);
 
 app.use(express.json());
 

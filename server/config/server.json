@@ -2,16 +2,9 @@
   "cors": {
     "origin": "localhost:5173"
   },
-  "rate-limit": {
+  "rateLimiter": {
     "windowMs": 60000,
-    "limit": 5,
-    "message": "Too many requests, please try again later.",
-    "statusCode": 429,
-    "legacyHeaders": true,
-    "standardHeaders": true,
-    "requestPropertyName": "rateLimit",
-    "skipFailedRequests": false,
-    "skipSuccessfulRequests": false
+    "max": 100
   },
   "token_secret": "secret",
   "auth_salt": "salt19573"
