@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import { Form, Button, Container, Row, Col } from "react-bootstrap";
-import usePostInsert from "../../hooks/usePostInsert";
+import usePostInsert from "../../hooks/forum/usePostInsert";
 import { useNavigate } from "react-router-dom";
 
 const AddForm = () => {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
+  const [post_status, setPost_status] = useState("PUBLISHED");
   const { insertPost } = usePostInsert();
   const [error, setError] = useState(null);
   const navigate = useNavigate();
@@ -19,10 +20,9 @@ const AddForm = () => {
       return;
     }
 
-
     //const user_id = userContext.user_id;
-    const user_id = 3; // Set author here
-    const result = await insertPost(title, content, user_id);
+    const user_id = 1; // Set author here
+    const result = await insertPost(title, content, user_id, post_status);
 
     if (result) {
       navigate("/forum");
@@ -30,7 +30,7 @@ const AddForm = () => {
   };
 
   return (
-    <Container style={{ minHeight: '100vh' }}>
+    <Container style={{ minHeight: "100vh" }}>
       <Row>
         <h1 className="text-center">Create a Post</h1>
       </Row>

@@ -4,7 +4,13 @@ import NavigateButton from "../../components/buttons/NavigateButton";
 const EditPost = () => {
   return (
     <div className="forum-body">
-      <NavigateButton path="/forum" text="Back to Forum" variant="primary" />
+      <NavigateButton
+        path="/forum"
+        text="Back to Forum"
+        variant="primary"
+        confirm={true}
+        confirmMsg={"Discard changes and leave this page?"}
+      />
       <EditForm />
     </div>
   );

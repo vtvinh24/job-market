@@ -19,6 +19,7 @@ import Market from "./pages/jobs/Market";
 import Jobs from "./pages/home/Jobs";
 import EnlistJob from "./pages/jobs/EnlistJob";
 import JobDetail from "./pages/jobs/JobDetail";
+import MyJobs from "./pages/jobs/MyJobs";
 
 // Technical
 import PageNotFound from "./pages/technical/PageNotFound";
@@ -26,8 +27,9 @@ import Dashboard from "./pages/home/Dashboard";
 
 
 // Users
-import Setting from "./pages/home/Setting";
-import Users from "./pages/home/Users";
+// import Setting from "./pages/home/Setting";
+// import Users from "./pages/home/Users";
+// import Profile from "./pages/home/Profile";
 
 // Components
 import HomeFooter from "./components/HomeFooter";
@@ -70,18 +72,13 @@ function App() {
           <Route exact path="/jobs/add" element={<EnlistJob />} />
           <Route exact path="/myjobs" element={<MyJobs />} />
 
-          {/* PROFILE */}
-          <Route exact path="/profile" element={<Profile />} />
-          <Route exact path="/security" element={<Security />} />
-
           {/* USERS ROUTES */}
-          <Route exact path="/users" element={<Users />} />
-          <Route exact path="/settings" element={<Setting />} />
+          {/* <Route exact path="/profile" element={<Profile />} /> */}
+          {/* <Route exact path="/security" element={<Security />} /> */}
+          {/* <Route exact path="/users" element={<Users />} /> */}
+          {/* <Route exact path="/settings" element={<Setting />} /> */}
           <Route exact path="/ticket" element={<CreateTicketPage />} />
 
-          {/* USERS ROUTES */}
-          <Route exact path="/users" element={<Users />} />
-          <Route exact path="/settings" element={<Setting />} />
           
           {/* TECHNICAL ROUTES */}
           <Route exact path="*" element={<PageNotFound />} />
