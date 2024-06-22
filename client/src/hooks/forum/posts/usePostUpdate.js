@@ -11,7 +11,7 @@ const usePostUpdate = () => {
     setError(null);
 
     try {
-      const response = await axios.put(`${API_URL}/posts/update`, { title, content, user_id, post_id });
+      const response = await axios.put(`${API_URL}/forum/posts/update`, { title, content, user_id, post_id });
       setLoading(false);
       return response.status === 200;
     } catch (err) {

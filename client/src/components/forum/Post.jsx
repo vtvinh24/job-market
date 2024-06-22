@@ -1,11 +1,11 @@
 import { getMoment } from "../../functions/Converter.js";
 import avatar from "../../assets/img/default_avatar.webp";
-import usePostDetail from "../../hooks/forum/usePostDetail.js";
+import usePostDetail from "../../hooks/forum/posts/usePostDetail.js";
 import { Link, useNavigate } from "react-router-dom";
 import { Button, Container } from "react-bootstrap";
 import { useEffect } from "react";
 import NavigateButton from "../buttons/NavigateButton.jsx";
-import usePostDelete from "../../hooks/forum/usePostDelete.js";
+import usePostDelete from "../../hooks/forum/posts/usePostDelete.js";
 
 const Post = ({ post_id }) => {
   useEffect(() => {

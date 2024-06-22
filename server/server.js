@@ -20,8 +20,11 @@ app.use(express.json());
 
 
 // Import and define routes
-const postsRoute = require("./src/routes/posts");
-app.use("/api/posts", postsRoute);
+const exampleRoutes = require("./src/routes/Example");
+app.use("/api/example", exampleRoutes);
+
+const forumRoute = require("./src/routes/Forum");
+app.use("/api/forum", forumRoute);
 
 const authRoute = require("./src/routes/auth");
 app.use("/api/auth", authRoute);
@@ -32,8 +35,8 @@ app.use("/api/marketing", marketingRoute);
 const dataPostRoute = require("./src/routes/datapost");
 app.use("/api/datapost", dataPostRoute);
 
-// const ticketRoute = require("./src/routes/ticket");
-// app.use("/api/ticket", ticketRoute);
+const ticketRoute = require("./src/routes/ticket");
+app.use("/api/ticket", ticketRoute);
 
 const countTotalUserRoute = require("./src/routes/dashboard/countTotalUser");
 app.use("/api/dashboard/count/user/total", countTotalUserRoute);
@@ -41,8 +44,8 @@ app.use("/api/dashboard/count/user/total", countTotalUserRoute);
 const countActiveUserRoute = require("./src/routes/dashboard/countActiveUser");
 app.use("/api/dashboard/count/user/active", countActiveUserRoute);
 
-// const jobsRoute = require("./src/routes/jobs");
-// app.use("/api/jobs", jobsRoute);
+const jobsRoute = require("./src/routes/jobs");
+app.use("/api/jobs", jobsRoute);
 
 
 

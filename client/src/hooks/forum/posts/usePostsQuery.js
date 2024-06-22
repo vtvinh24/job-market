@@ -4,18 +4,18 @@ import { useNavigate } from "react-router";
 
 const API_URL = "http://localhost:8000/api";
 
-const usePostDetail = (id) => {
-  const [post, setPost] = useState([]);
+const usePostsQuery = () => {
+  const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const navigate = useNavigate();
 
   useEffect(() => {
-    const fetchPost = async () => {
+    const fetchPosts = async () => {
       try {
-        const url = `${API_URL}/posts/${id}`;
+        const url = `${API_URL}/forum/posts`;
         const response = await axios.get(url);
-        setPost(response.data);
+        setPosts(response.data);
         setLoading(false);
       } catch (error) {
         navigate("/error", {
@@ -29,9 +29,11 @@ const usePostDetail = (id) => {
         setLoading(false);
       }
     };
-    fetchPost();
+
+    fetchPosts();
   }, []);
-  return { post, loading, error };
+
+  return { posts, loading, error };
 };
 
-export default usePostDetail;
+export default usePostsQuery;

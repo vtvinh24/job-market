@@ -1,10 +1,10 @@
 const express = require('express');
 const router = express.Router();
 const sql = require('mssql');
-const dbConfig = require('../../config/db.json');
+const dbConfig = require('../../config.json');
 
 // SQL Server connection pool
-const poolPromise = new sql.ConnectionPool(dbConfig).connect().then(pool => {
+const poolPromise = new sql.ConnectionPool(dbConfig.database).connect().then(pool => {
   console.log('Connected to SQL Server');
   return pool;
 }).catch(err => {
