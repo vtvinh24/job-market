@@ -1,11 +1,16 @@
 {
-  "cors": {
-    "origin": "http://localhost:5173"
+  "boot": {
+    "port": 8000,
+    "maxRetries": 3
   },
-  "rateLimiter": {
-    "windowMs": 60000,
-    "max": 100
-  },
-  "token_secret": "secret",
-  "auth_salt": "salt19573"
+
+  "middleware": {
+    "cors": {
+      "origin": "http://localhost:5173"
+    },
+    "rateLimiter": {
+      "windowMs": 60000,
+      "max": 100
+    }
+  }
 }
