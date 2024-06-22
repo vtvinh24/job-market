@@ -1,7 +1,7 @@
 const sql = require('mssql');
-const configF = require('../../config/db.json');
+const configF = require('../../config.json');
 
-const poolPromise = new sql.ConnectionPool(configF)
+const poolPromise = new sql.ConnectionPool(configF.database)
   .connect()
   .then(pool => {
     return pool;

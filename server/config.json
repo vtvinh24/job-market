@@ -1,0 +1,24 @@
+{
+  "boot": {
+    "port": 8000,
+    "maxRetries": 3
+  },
+
+  "middleware": {
+    "cors": {
+      "origin": "http://localhost:5173"
+    },
+    "rateLimiter": {
+      "windowMs": 60000,
+      "max": 100
+    }
+  },
+
+  "database": {
+    "user": "sa",
+    "password": "123",
+    "server": "localhost",
+    "database": "mJOB",
+    "encrypt": false
+  }
+}

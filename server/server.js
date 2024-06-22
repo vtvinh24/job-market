@@ -1,24 +1,23 @@
 const express = require("express");
 const cors = require("cors");
-const config = require("./config/server.json");
+const config = require("./config.json");
 const rateLimit = require("express-rate-limit");
 
 const app = express();
-const port = 8000;
 
 // CORS rule
 app.use(cors({
-  origin: config.cors.origin
+  origin: config.middleware.cors.origin
 }));
 
 // Rate limiter
-const limiter = rateLimit({
-  windowMs: config.rateLimiter.windowMs,
-  max: config.rateLimiter.max
-});
-app.use(limiter);
+app.use(rateLimit({
+  windowMs: config.middleware.rateLimiter.windowMs,
+  max: config.middleware.rateLimiter.max
+}));
 
 app.use(express.json());
+
 
 // Import and define routes
 const postsRoute = require("./src/routes/posts");
@@ -45,15 +44,21 @@ app.use("/api/dashboard/count/user/active", countActiveUserRoute);
 const jobsRoute = require("./src/routes/jobs");
 app.use("/api/jobs", jobsRoute);
 
-// TEMPLATE FOR ADDING ROUTES
-// const ____Route = require("./src/routes/____");
-// app.use("/api/____", ____Route);
-
-// Remember to implement the route in the ____Route.js file
 
 
-
-// Start the server
+// Start the server, if port is already in use, try the next port
+var port = config.boot.port;
 app.listen(port, () => {
   console.log(`(server.js) Server is running on port ${port}`);
+}).on('error', (err) => {
+  const maxTries = config.boot.maxBootRetries;
+  if (err.code === 'EADDRINUSE') {
+    console.log(`(server.js) Port ${port} is already in use. Trying the next port...`);
+    port++;
+    app.listen(port, () => {
+      console.log(`(server.js) Server is running on port ${port}`);
+    });
+  } else {
+    console.error(`(server.js) Failed to start server: ${err}`);
+  }
 });
