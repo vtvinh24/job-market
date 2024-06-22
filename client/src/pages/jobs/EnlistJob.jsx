@@ -3,8 +3,6 @@ import '../../assets/css/EnlistJob.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Container, Button, Row, Form, Col } from 'react-bootstrap';
 import backgroundImg from '../../assets/img/Stole.jpg'; 
-import HomeNavbar from '../../components/HomeNavbar.jsx';
-import Footer from '../../components/HomeFooter.jsx';
 import useJobInsert from "../../hooks/useJobInsert.js";
 const EnlistJob = () => {
   const [additionalRequirements, setAdditionalRequirements] = useState([]);
@@ -20,12 +18,12 @@ const EnlistJob = () => {
     job_number_of_recruits: '',
     job_start_date: '',
     job_end_date: '',
-    job_compensation_type: '',
+    job_compensation_types: '',
     //isChecked: false,
-    job_compensation_amount: '',
-    job_compensation_currency: 'VND',
-    job_compensation_per: 'month',
-    job_custom_iteration: '',
+    job_compensation_amounts: '',
+    job_compensation_currencies: '',
+    job_compensation_periods: '',
+    job_custom_iterations: '',
     job_description: '',
     job_contact_info: ''
   });
@@ -84,9 +82,6 @@ ROW 3  TAGS
 
 return (
   <>
-    <div className="App">
-      <HomeNavbar />
-    </div>
     <img src={backgroundImg} alt="Image" className="background-img"/>
     <Container className='container'>
       <Form className='form' onSubmit={handleSubmit}>
@@ -348,7 +343,6 @@ return (
         {success && <p className="success-message">Job successfully enlisted!</p>}
       </Form>
     </Container>
-    <Footer />
   </>
 );
 };
