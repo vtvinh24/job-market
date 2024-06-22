@@ -3,8 +3,6 @@ import axios from 'axios';
 import styled, { keyframes } from 'styled-components';
 import { useParams, useNavigate } from 'react-router-dom';
 import { FaArrowLeft } from 'react-icons/fa';
-import HomeFooter from "../../components/HomeFooter.jsx";
-import HomeNavbar from "../../components/HomeNavbar.jsx";
 
 
 const BackgroundContainer = styled.div`
@@ -34,12 +32,13 @@ const BackButton = styled.button`
   border-radius: 20px;
   padding: 10px 15px;
   cursor: pointer;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
   display: flex;
   align-items: center;
   transition: background-color 0.3s;
   width: 5%;
   margin-left: 10px;
+  margin-top: 10px; 
   &:hover {
     background-color: #0056b3;
   }
@@ -145,7 +144,6 @@ const JobDetail = () => {
 
   return (
     <BackgroundContainer>
-      <HomeNavbar />
       <BackButton onClick={() => navigate(-1)}>
         <FaArrowLeft /> Back
       </BackButton>
@@ -192,7 +190,6 @@ const JobDetail = () => {
       </Section>
       <ApplyButton>Apply</ApplyButton>
     </JobDetailContainer>
-    <HomeFooter />
     </BackgroundContainer>
   );
 };

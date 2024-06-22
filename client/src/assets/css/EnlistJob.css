@@ -11,7 +11,7 @@ body {
   align-items: center;
   justify-content: center;
   padding: 0;
-  background-color: white; /* Bootstrap primary color */
+  background-color:#ccc; /* Bootstrap primary color */
   color: white;
   border: none;
   cursor: pointer;
@@ -20,7 +20,7 @@ body {
 }
 
 .circle-button:hover {
-  background-color: black; /* Darker shade of Bootstrap primary color */
+  background-color: blue; /* Darker shade of Bootstrap primary color */
 }
 
 .container{

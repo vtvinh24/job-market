@@ -20,6 +20,7 @@ import Jobs from "./pages/home/Jobs";
 import EnlistJob from "./pages/jobs/EnlistJob";
 import JobDetail from "./pages/jobs/JobDetail";
 import MyJobs from "./pages/jobs/MyJobs";
+import EditJob from "./pages/jobs/EditJob";
 
 // Technical
 import PageNotFound from "./pages/technical/PageNotFound";
@@ -71,6 +72,7 @@ function App() {
           <Route exact path="/jobs/:id" element={<JobDetail />} />
           <Route exact path="/jobs/add" element={<EnlistJob />} />
           <Route exact path="/myjobs" element={<MyJobs />} />
+          <Route exact path="/jobs/edit/:id" element={<EditJob />} />
 
           {/* USERS ROUTES */}
           {/* <Route exact path="/profile" element={<Profile />} /> */}
