@@ -30,7 +30,8 @@ import Dashboard from "./pages/home/Dashboard";
 // Users
 // import Setting from "./pages/home/Setting";
 // import Users from "./pages/home/Users";
-// import Profile from "./pages/home/Profile";
+  import Security from "./pages/profile/Security";
+  import Profile from "./pages/profile/Profile";
 
 // Components
 import HomeFooter from "./components/HomeFooter";
@@ -75,8 +76,8 @@ function App() {
           <Route exact path="/jobs/edit/:id" element={<EditJob />} />
 
           {/* USERS ROUTES */}
-          {/* <Route exact path="/profile" element={<Profile />} /> */}
-          {/* <Route exact path="/security" element={<Security />} /> */}
+           <Route exact path="/profile" element={<Profile />} /> 
+           <Route exact path="/security" element={<Security />} /> 
           {/* <Route exact path="/users" element={<Users />} /> */}
           {/* <Route exact path="/settings" element={<Setting />} /> */}
           <Route exact path="/ticket" element={<CreateTicketPage />} />
