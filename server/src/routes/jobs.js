@@ -84,7 +84,7 @@ router.post('/', async (req, res) => {
 });
 router.put('/update', async (req, res) => {
   const {
-    // user_id, 
+    job_id,
     job_title, 
     job_work_location, 
     job_tags, 
@@ -102,7 +102,7 @@ router.put('/update', async (req, res) => {
     job_compensation_periods ,
     job_custom_iterations 
   } = req.body;
-
+  const user_id = 1;
   try {
     const userExists = await checkUserIdExists(user_id);
     if (!userExists) {
@@ -111,13 +111,13 @@ router.put('/update', async (req, res) => {
 
     const pool = await poolPromise;
     const result = await pool.request()
+    .input('job_id', sql.Int, job_id)
     .input('user_id', sql.Int, user_id)
     .input('job_title', sql.NVarChar, job_title)
     .input('job_work_location', sql.NVarChar, job_work_location)
     .input('job_tags', sql.NVarChar, job_tags)
     .input('job_max_applications', sql.Int, job_max_applications)
     .input('job_approval_method', sql.Bit, job_approval_method)
-    .input('job_requirement', sql.NVarChar, job_requirement)
     .input('job_description', sql.NVarChar, job_description)
     .input('job_contact_info', sql.NVarChar, job_contact_info)
     .input('job_start_date', sql.Date, job_start_date)
@@ -136,19 +136,18 @@ router.put('/update', async (req, res) => {
         job_tags = @job_tags,
         job_max_applications = @job_max_applications,
         job_approval_method = @job_approval_method,
-        job_requirement = @job_requirement,
         job_description = @job_description,
-        job_contact_info = @job_contact_info
+        job_contact_info = @job_contact_info,
         job_start_date = @job_start_date,
         job_end_date = @job_end_date,
-        job_number_of_recruits = @job_number_of_recruits
-        job_requirements = @job_requirements
-        job_compensation_types = @job_compensation_types
-        job_compensation_amounts = @job_compensation_amounts
-        job_compensation_currencies = @job_compensation_currencies
-        job_compensation_periods = @job_compensation_periods
+        job_number_of_recruits = @job_number_of_recruits,
+        job_requirements = @job_requirements,
+        job_compensation_types = @job_compensation_types,
+        job_compensation_amounts = @job_compensation_amounts,
+        job_compensation_currencies = @job_compensation_currencies,
+        job_compensation_periods = @job_compensation_periods,
         job_custom_iterations = @job_custom_iterations
-        WHERE user_id = @user_id;  
+        WHERE user_id = @user_id AND job_id = @job_id;  
       `);
 
     res.status(200).send({ message: 'Job successfully updated' });
