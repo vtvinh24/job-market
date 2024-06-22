@@ -28,10 +28,12 @@ import Dashboard from "./pages/home/Dashboard";
 
 
 // Users
-// import Setting from "./pages/home/Setting";
-// import Users from "./pages/home/Users";
+  import Setting from "./pages/home/Setting";
+  import Users from "./pages/home/Users";
   import Security from "./pages/profile/Security";
   import Profile from "./pages/profile/Profile";
+  import Information from "./pages/profile/Information";
+
 
 // Components
 import HomeFooter from "./components/HomeFooter";
@@ -76,10 +78,11 @@ function App() {
           <Route exact path="/jobs/edit/:id" element={<EditJob />} />
 
           {/* USERS ROUTES */}
-           <Route exact path="/profile" element={<Profile />} /> 
-           <Route exact path="/security" element={<Security />} /> 
-          {/* <Route exact path="/users" element={<Users />} /> */}
-          {/* <Route exact path="/settings" element={<Setting />} /> */}
+          <Route exact path="/profile" element={<Profile />} /> 
+          <Route exact path="/security" element={<Security />} /> 
+          <Route exact path="/information" element={<Information />} /> 
+          <Route exact path="/users" element={<Users />} /> 
+          <Route exact path="/settings" element={<Setting />} /> 
           <Route exact path="/ticket" element={<CreateTicketPage />} />
 
           

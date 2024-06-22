@@ -27,7 +27,7 @@ const Users = () => {
                             <Nav.Link href="/users" className="text-white">Users</Nav.Link>
                             <Nav.Link href="/settings" className="text-white">Settings</Nav.Link>
                             <Row>
-                                <Col><Button variant="danger" href="/logout">Logout</Button></Col>
+                                <Col><Button variant="danger" href="/logout">Log Out</Button></Col>
                             </Row>
                         </Nav>
                     </Col>
