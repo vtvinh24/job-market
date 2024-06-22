@@ -20,8 +20,11 @@ app.use(express.json());
 
 
 // Import and define routes
-const postsRoute = require("./src/routes/posts");
-app.use("/api/posts", postsRoute);
+const exampleRoutes = require("./src/routes/Example");
+app.use("/api/example", exampleRoutes);
+
+const forumRoute = require("./src/routes/Forum");
+app.use("/api/forum", forumRoute);
 
 const authRoute = require("./src/routes/auth");
 app.use("/api/auth", authRoute);

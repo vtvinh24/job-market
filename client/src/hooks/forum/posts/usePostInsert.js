@@ -11,7 +11,7 @@ const usePostInsert = () => {
     setError(null);
 
     try {
-      const response = await axios.post(`${API_URL}/posts`, {
+      const response = await axios.post(`${API_URL}/forum/posts`, {
         title,
         content,
         user_id,

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Form, Button, Container, Row, Col } from "react-bootstrap";
-import usePostInsert from "../../hooks/forum/usePostInsert";
+import usePostInsert from "../../hooks/forum/posts/usePostInsert";
 import { useNavigate } from "react-router-dom";
 
 const AddForm = () => {
