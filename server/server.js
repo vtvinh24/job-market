@@ -2,6 +2,9 @@ const express = require("express");
 const cors = require("cors");
 const config = require("./config.json");
 const rateLimit = require("express-rate-limit");
+const bodyParser = require('body-parser');
+const sql = require('mssql');
+
 
 const app = express();
 
@@ -17,6 +20,9 @@ app.use(rateLimit({
 }));
 
 app.use(express.json());
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(cors());
 
 
 // Import and define routes
@@ -46,6 +52,9 @@ app.use("/api/dashboard/count/user/active", countActiveUserRoute);
 
 const jobsRoute = require("./src/routes/jobs");
 app.use("/api/jobs", jobsRoute);
+
+const profileRoute = require('./src/routes/profile/post');
+app.post('/submit', profileRoute.profile);
 
 
 
