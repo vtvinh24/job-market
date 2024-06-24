@@ -12,7 +12,7 @@ const BackgroundContainer = styled.div`
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  padding: 20px;
+  padding: 65px;
 `;
 
 const JobDetailContainer = styled.div`
@@ -36,7 +36,6 @@ const BackButton = styled.button`
   border-radius: 20px;
   padding: 10px 15px;
   cursor: pointer;
-  margin-bottom: 10px;
   display: flex;
   align-items: center;
   transition: background-color 0.3s, transform 0.3s;
@@ -123,7 +122,7 @@ const JobDetail = () => {
   const { id } = useParams();
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
-  const  jobId  = id;
+  const jobId = id;
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -131,7 +130,7 @@ const JobDetail = () => {
       try {
         const response = await axios.get(`http://localhost:8000/api/jobs/${jobId}`);
         setJob(response.data);
-         setLoading(false);
+        setLoading(false);
       } catch (error) {
         setError('Error fetching job details.');
         setLoading(false);
@@ -142,16 +141,16 @@ const JobDetail = () => {
   }, [jobId]);
   const formatDate = (dateString) => {
     if (!dateString) return '';
-  
+
     // Nếu đầu vào chứa 'T' hoặc 'Z', loại bỏ phần thời gian
     let dateOnly = dateString.split('T')[0];
-  
+
     // Nếu chuỗi có dạng 'YYYY-MM-DD', tách và định dạng lại
     if (dateOnly.includes('-')) {
       const [year, month, day] = dateOnly.split('-');
       return `${day}/${month}/${year}`;
     }
-    
+
     // Nếu không, chuyển đổi thành đối tượng Date và định dạng lại
     const dateObj = new Date(dateOnly);
     return dateObj.toLocaleDateString('vi-VN');
@@ -171,49 +170,49 @@ const JobDetail = () => {
       <BackButton onClick={() => navigate(-1)}>
         <FaArrowLeft /> Back
       </BackButton>
-    <JobDetailContainer>
-      <Title>{job.job_title}</Title>
-      <Section>
-        <Label>Location:</Label>
-        <Text>{job.job_work_location}</Text>
-      </Section>
-      <Section>
-        <Label>Max Applications:</Label>
-        <Text>{job.job_max_applications}</Text>
-      </Section>
-      <Section>
-        <Label>Number of recruits:</Label>
-        <Text>{job.job_number_of_recruits}</Text>
-      </Section>
-      <Section>
-        <Label>From:</Label>
-        <Text>{formatDate(job.job_start_date)}</Text>
-        <Label>To:</Label>
-        <Text>{formatDate(job.job_end_date)}</Text>
-      </Section>
-      <Section>
-        <Label>Requirements:</Label>
-        <Text>{job.job_requirements} </Text>
-      </Section>
-      <Section>
-        <Label>Compensation:</Label>
-        <Text>Type: {job.job_compensation_types}</Text>
-        <Text>Amount: {job.job_compensation_amounts} {job.job_compensation_currencies} per {job.job_compensation_periods}</Text>
-      </Section>
-      <Section>
-        <Label>Custom Iterations:</Label>
-        <Text> {job.job_custom_iterations}</Text> 
-      </Section>
-      <Section>
-        <Label>Description:</Label>
-        <Text>{job.job_description}</Text>
-      </Section>
-      <Section>
-        <Label>Contact Info:</Label>
-        <Text>{job.job_contact_info}</Text>
-      </Section>
-      <ApplyButton>Apply</ApplyButton>
-    </JobDetailContainer>
+      <JobDetailContainer>
+        <Title>{job.job_title}</Title>
+        <Section>
+          <Label>Location:</Label>
+          <Text>{job.job_work_location}</Text>
+        </Section>
+        <Section>
+          <Label>Max Applications:</Label>
+          <Text>{job.job_max_applications}</Text>
+        </Section>
+        <Section>
+          <Label>Number of recruits:</Label>
+          <Text>{job.job_number_of_recruits}</Text>
+        </Section>
+        <Section>
+          <Label>From:</Label>
+          <Text>{formatDate(job.job_start_date)}</Text>
+          <Label>To:</Label>
+          <Text>{formatDate(job.job_end_date)}</Text>
+        </Section>
+        <Section>
+          <Label>Requirements:</Label>
+          <Text>{job.job_requirements} </Text>
+        </Section>
+        <Section>
+          <Label>Compensation:</Label>
+          <Text>Type: {job.job_compensation_types}</Text>
+          <Text>Amount: {job.job_compensation_amounts} {job.job_compensation_currencies} per {job.job_compensation_periods}</Text>
+        </Section>
+        <Section>
+          <Label>Custom Iterations:</Label>
+          <Text> {job.job_custom_iterations}</Text>
+        </Section>
+        <Section>
+          <Label>Description:</Label>
+          <Text>{job.job_description}</Text>
+        </Section>
+        <Section>
+          <Label>Contact Info:</Label>
+          <Text>{job.job_contact_info}</Text>
+        </Section>
+        <ApplyButton>Apply</ApplyButton>
+      </JobDetailContainer>
     </BackgroundContainer>
   );
 };
