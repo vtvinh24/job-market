@@ -33,6 +33,7 @@ import Dashboard from "./pages/home/Dashboard";
   import Security from "./pages/profile/Security";
   import Profile from "./pages/profile/Profile";
   import Information from "./pages/profile/Information";
+  import ViewProfile from "./pages/profile/ViewProfile";
 
 
 // Components
@@ -46,6 +47,7 @@ import React from "react";
 
 // import ErrorPage from "./pages/error/ErrorPage";
 import CreateTicketPage from "./pages/user/CreateTicket";
+
 
 function App() {
   return (
@@ -84,6 +86,7 @@ function App() {
           <Route exact path="/users" element={<Users />} /> 
           <Route exact path="/settings" element={<Setting />} /> 
           <Route exact path="/ticket" element={<CreateTicketPage />} />
+          <Route exact path="/viewprofile" element={<ViewProfile />} /> 
 
           
           {/* TECHNICAL ROUTES */}
