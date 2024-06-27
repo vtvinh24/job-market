@@ -1,11 +1,13 @@
-import { getMoment } from "../../functions/Converter.js";
+import { getMoment } from "../../functions/Converter";
 import avatar from "../../assets/img/default_avatar.webp";
-import usePostDetail from "../../hooks/forum/posts/usePostDetail.js";
+import usePostDetail from "../../hooks/forum/posts/usePostDetail";
 import { Link, useNavigate } from "react-router-dom";
 import { Button, Container } from "react-bootstrap";
-import { useEffect } from "react";
-import NavigateButton from "../buttons/NavigateButton.jsx";
-import usePostDelete from "../../hooks/forum/posts/usePostDelete.js";
+import { useContext, useEffect } from "react";
+import NavigateButton from "../ui/buttons/NavigateButton";
+import usePostDelete from "../../hooks/forum/posts/usePostDelete";
+import { AuthContext } from "../../context/AuthContext";
+import Skeleton from "react-loading-skeleton";
 
 const Post = ({ post_id }) => {
   useEffect(() => {
@@ -14,9 +16,8 @@ const Post = ({ post_id }) => {
 
   const navigate = useNavigate();
   const { post, loading, error } = usePostDetail(post_id);
-  const user_id = 1;
   const { deletePost } = usePostDelete();
-  const username = "andz1207";
+  const {userId} = useContext(AuthContext);
 
   const handleDeletePost = async () => {
     const confirmDelete = window.confirm(
@@ -28,6 +29,35 @@ const Post = ({ post_id }) => {
     }
   };
 
+  if(loading) return (
+    <Container
+      style={{ minHeight: "100vh", minWidth: "80vw" }}
+      className="post"
+    >
+      <div className="post-title">
+        <h1><Skeleton count={0.5}/> </h1>
+      </div>
+      <div className="d-flex gap-2">
+        <div className="post-author">
+          <div>
+            {/* <img className="avatar" src={avatar} alt="Default Avatar" /> */}
+            <Skeleton circle={true} height={50} width={50}/>
+          </div>
+          <div>
+            <Skeleton />
+          </div>
+          <div>
+            <Skeleton />
+          </div>
+        </div>
+        <div className="post-content flex-grow">
+          <Skeleton height={30} count={2.4} highlightColor="blue"/>
+        </div>
+      </div>
+    </Container>
+  )
+
+
   return (
     <Container
       style={{ minHeight: "100vh", minWidth: "80vw" }}
@@ -35,7 +65,7 @@ const Post = ({ post_id }) => {
     >
       <div className="post-title">
         <h1>{post.post_title} </h1>
-        {post.username == username && (
+        {post.user_id == userId && (
           <>
             <NavigateButton
               path={`/forum/edit/${post_id}`}

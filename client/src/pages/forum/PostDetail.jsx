@@ -1,6 +1,6 @@
 import { useParams } from "react-router-dom";
 import "../../assets/css/Forum.css";
-import NavigateButton from "../../components/buttons/NavigateButton.jsx";
+import NavigateButton from "../../components/ui/buttons/NavigateButton.jsx";
 import Post from "../../components/forum/Post.jsx";
 
 const PostDetail = () => {
