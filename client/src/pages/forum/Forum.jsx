@@ -1,6 +1,6 @@
 import ListPost from "../../components/forum/ListPost";
 import { Button, Row } from "react-bootstrap";
-import NavigateButton from "../../components/buttons/NavigateButton";
+import NavigateButton from "../../components/ui/buttons/NavigateButton";
 
 const Forum = () => {
   return (

@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
 import { Navbar, Nav, NavDropdown, Container, NavItem } from "react-bootstrap";
-import NavigateLink from "./buttons/NavigateLink";
+import NavigateLink from "./ui/buttons/NavigateLink";
 import { AuthContext } from "../context/AuthContext";
 
 const AppNavbar = () => {
