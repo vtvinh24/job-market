@@ -6,12 +6,12 @@ const ViewProfile = () => {
   const userData = {
     userAvatar: 'https://via.placeholder.com/150',
     username: '',
-    fullName: '',
-    dob: '',
-    email: '',
-    contactNumber: '',
-    citizenId: '',
-    address: '',
+    fullName: 'Minh',
+    dob: '02/08/2004',
+    email: 'ducminhh1708@gmail.com',
+    contactNumber: '11131212312',
+    citizenId: '1111',
+    address: 'Ho Tay',
     strengths: '',
     weaknesses: '',
     bio: ''

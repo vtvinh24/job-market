@@ -28,7 +28,7 @@ const Profile = () => {
     setUsername(fullName);
 
     const userData = {
-      userId: 33, // Assuming a static user ID for this example
+      userId: 37, // Assuming a static user ID for this example
       userAvatar: selectedImage,
       userBio: fullName,
       userDob: dob,
