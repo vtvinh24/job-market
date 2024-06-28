@@ -8,7 +8,7 @@ ORDER BY post_updated_time DESC;
 
 const SELECT_POST_BY_ID = `
 SELECT post_id, post_title, post_content, username, post.user_id, post_updated_time
-FROM post JOIN auth ON post.user_id = auth.user_id
+FROM post JOIN [user] ON post.user_id = [user].user_id
 WHERE post_id = @id;
 `;
 

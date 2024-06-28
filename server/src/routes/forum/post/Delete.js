@@ -1,6 +1,6 @@
 const db = require("../../../models/DBContext");
 
-const DELETE_POST = `DELETE FROM post WHERE post_id = @post_id;`;
+const DELETE_POST = `DELETE post WHERE post_id = @post_id;`;
 
 const deleteById = async (req, res) => {
   try {
@@ -16,10 +16,11 @@ const deleteById = async (req, res) => {
       res.status(200).send();
     }
   } catch (err) {
+    console.log(123, err);
     res.status(500).send();
   }
 };
 
 module.exports = {
-  deleteById
-}
+  deleteById,
+};

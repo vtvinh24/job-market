@@ -1,9 +1,10 @@
 {
-  "name": "job-market-backend",
+  "name": "mjob-server",
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon server.js"
+    "start": "nodemon server.js",
+    "db-dev": "nodemon db.js"
   },
   "keywords": [],
   "author": "",
@@ -13,10 +14,13 @@
     "crypto-js": "^4.2.0",
     "express": "^4.19.2",
     "express-rate-limit": "^7.3.0",
+    "fast-glob": "^3.3.2",
     "joi": "^17.13.1",
     "jsonwebtoken": "^9.0.2",
     "mssql": "^11.0.0",
-    "nodemon": "^3.1.0"
+    "nodemon": "^3.1.0",
+    "sequelize": "^6.37.3",
+    "tedious": "^18.2.1"
   },
   "description": ""
 }

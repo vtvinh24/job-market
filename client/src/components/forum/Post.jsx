@@ -41,7 +41,9 @@ const Post = ({ post_id }) => {
         <div className="post-author">
           <div>
             {/* <img className="avatar" src={avatar} alt="Default Avatar" /> */}
-            <Skeleton circle={true} height={50} width={50}/>
+            <Skeleton circle={true} height={100} width={100} className="mt-2"/>
+            <Skeleton width={80} className="mt-2"/>
+            <Skeleton width={100} className="mt-2"/>
           </div>
           <div>
             <Skeleton />
@@ -51,7 +53,7 @@ const Post = ({ post_id }) => {
           </div>
         </div>
         <div className="post-content flex-grow">
-          <Skeleton height={30} count={2.4} highlightColor="blue"/>
+          <Skeleton height={30} count={2} highlightColor="blue"/>
         </div>
       </div>
     </Container>

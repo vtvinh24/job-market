@@ -16,9 +16,10 @@
 
   "database": {
     "user": "sa",
-    "password": "123",
+    "password": "1400",
     "server": "localhost",
-    "database": "mJOB",
+    "database": "mJOB1",
+    "schema": "dbo1",
     "encrypt": false
   }
 }
