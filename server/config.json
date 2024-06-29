@@ -18,7 +18,14 @@
     "user": "sa",
     "password": "123",
     "server": "localhost",
-    "database": "mJOB",
-    "encrypt": false
+    "database": "mJob",
+    "schema": "dbo",
+    "encrypt": false,
+    "pool": {
+      "max": 8,
+      "min": 0,
+      "idle": 10000,
+      "acquire": 30000
+    }
   }
 }

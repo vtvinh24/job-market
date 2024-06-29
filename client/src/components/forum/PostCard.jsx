@@ -3,8 +3,9 @@ import { Link } from "react-router-dom";
 import { getMoment } from "../../functions/Converter";
 
 const PostCard = ({ post, onClick }) => {
+  
   return (
-    <Card className="post-card" key={post.post_id} onClick={onClick}>
+    <Card className="post-card" key={post.id} onClick={onClick}>
       <Card.Body>
         <Card.Title as="h2" className="post-card-title">
           {post.post_title}
@@ -23,10 +24,10 @@ const PostCard = ({ post, onClick }) => {
         <Card.Text className="post-card-content">{post.post_content}</Card.Text>
         
         <Link
-          to={`/users/${post.username}`}
+          to={`/users/${post.author}`}
           className="card-author"
           data-toggle="tooltip"
-          title={`Author: ${post.username}`}
+          title={`Author: ${post.author}`}
           onClick={(e) => e.stopPropagation()}
         >
           <img
@@ -38,7 +39,7 @@ const PostCard = ({ post, onClick }) => {
           {post.username}
         </Link>
         <Card.Text style={{ textAlign: "right", fontSize: "small" }}>
-          {getMoment(post.post_updated_time)}
+          {getMoment(post.updatedAt)}
         </Card.Text>
       </Card.Body>
     </Card>

@@ -60,8 +60,8 @@ const Post = ({ post_id }) => {
   return (
     <div className="post">
       <div className="post-title">
-        <h1>{post.post_title} </h1>
-        {post.user_id == userId && (
+        <h1>{post.title} </h1>
+        {post.id == userId && (
           <>
             <NavigateButton
               path={`/forum/edit/${post_id}`}
@@ -80,14 +80,14 @@ const Post = ({ post_id }) => {
             <img className="avatar" src={avatar} alt="Default Avatar" />
           </div>
           <div>
-            <Link to={`/users/${post.username}`}>{post.username}</Link>
+            <Link to={`/users/${post.author}`}>{post.author}</Link>
           </div>
           <div>
-            <p>{getMoment(post.post_updated_time)}</p>
+            <p>{getMoment(post.updatedAt)}</p>
           </div>
         </div>
         <div className="post-content flex-grow">
-          <p>{post.post_content}</p>
+          <p>{post.content}</p>
         </div>
       </div>
     </div>
