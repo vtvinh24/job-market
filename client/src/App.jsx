@@ -50,52 +50,53 @@ import { AuthProvider } from "./context/AuthContext";
 
 function App() {
   return (
-    <AuthProvider>
-      <BrowserRouter>
-        {/* <HomeNavbar /> */}
-        <AppNavbar />
-        <div className="content">
-          <Routes>
-            {/* AUTH ROUTES */}
-            <Route exact path="/login" element={<Login />} />
-            <Route exact path="/logout" element={<Logout />} />
-            <Route exact path="/register" element={<Register />} />
-            <Route exact path="/reset-password" element={<ResetPassword />} />
+    <div className="page">
+      <AuthProvider>
+        <BrowserRouter>
+          <AppNavbar className="mb-auto"/>
+          <body className="min-vh-100 mt-5">
+            <Routes>
+              {/* AUTH ROUTES */}
+              <Route exact path="/login" element={<Login />} />
+              <Route exact path="/logout" element={<Logout />} />
+              <Route exact path="/register" element={<Register />} />
+              <Route exact path="/reset-password" element={<ResetPassword />} />
 
-            {/* HOME ROUTES */}
-            <Route exact path="/" element={<HomeGuest />} />
-            <Route exact path="/home" element={<HomePage />} />
+              {/* HOME ROUTES */}
+              <Route exact path="/" element={<HomeGuest />} />
+              <Route exact path="/home" element={<HomePage />} />
 
-            {/* FORUM ROUTES */}
-            <Route exact path="/forum" element={<Forum />} />
-            <Route exact path="/posts/:id" element={<PostDetail />} />
-            <Route exact path="/forum/add" element={<AddPost />} />
-            <Route exact path="/forum/edit/:id" element={<EditPost />} />
+              {/* FORUM ROUTES */}
+              <Route exact path="/forum" element={<Forum />} />
+              <Route exact path="/posts/:id" element={<PostDetail />} />
+              <Route exact path="/forum/add" element={<AddPost />} />
+              <Route exact path="/forum/edit/:id" element={<EditPost />} />
 
-            {/* JOBS ROUTES */}
-            <Route exact path="/market" element={<Market />} />
-            <Route exact path="/jobs" element={<Jobs />} />
-            <Route exact path="/jobs/:id" element={<JobDetail />} />
-            <Route exact path="/jobs/add" element={<EnlistJob />} />
-            <Route exact path="/myjobs" element={<MyJobs />} />
-            <Route exact path="/jobs/edit/:id" element={<EditJob />} />
+              {/* JOBS ROUTES */}
+              <Route exact path="/market" element={<Market />} />
+              <Route exact path="/jobs" element={<Jobs />} />
+              <Route exact path="/jobs/:id" element={<JobDetail />} />
+              <Route exact path="/jobs/add" element={<EnlistJob />} />
+              <Route exact path="/myjobs" element={<MyJobs />} />
+              <Route exact path="/jobs/edit/:id" element={<EditJob />} />
 
-            {/* USERS ROUTES */}
-            <Route exact path="/profile" element={<Profile />} />
-            <Route exact path="/security" element={<Security />} />
-            {/* <Route exact path="/users" element={<Users />} /> */}
-            {/* <Route exact path="/settings" element={<Setting />} /> */}
-            <Route exact path="/ticket" element={<CreateTicketPage />} />
+              {/* USERS ROUTES */}
+              <Route exact path="/profile" element={<Profile />} />
+              <Route exact path="/security" element={<Security />} />
+              {/* <Route exact path="/users" element={<Users />} /> */}
+              {/* <Route exact path="/settings" element={<Setting />} /> */}
+              <Route exact path="/ticket" element={<CreateTicketPage />} />
 
-            {/* TECHNICAL ROUTES */}
-            <Route exact path="*" element={<PageNotFound />} />
-            <Route exact path="/dashboard" element={<Dashboard />} />
-            <Route exact path="/test" element={<TestPage />} />
-          </Routes>
-        </div>
-        <HomeFooter />
-      </BrowserRouter>
-    </AuthProvider>
+              {/* TECHNICAL ROUTES */}
+              <Route exact path="*" element={<PageNotFound />} />
+              <Route exact path="/dashboard" element={<Dashboard />} />
+              <Route exact path="/test" element={<TestPage />} />
+            </Routes>
+          </body>
+          <HomeFooter />
+        </BrowserRouter>
+      </AuthProvider>
+    </div>
   );
 }
 export default App;
