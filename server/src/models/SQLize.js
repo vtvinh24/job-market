@@ -28,8 +28,6 @@ const sequelize = new Sequelize(
   }
 );
 
-const db = {};
-
 async () => {
   try {
     await sequelize.authenticate();
@@ -41,7 +39,6 @@ async () => {
 
 sequelize.sync();
 
-db.Sequelize = Sequelize;
-db.sequelize = sequelize;
+// sequelize.sync( force = true, alter = true, logging = console.log);
 
-module.exports = db;
+module.exports = sequelize;

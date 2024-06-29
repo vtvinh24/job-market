@@ -1,19 +1,24 @@
-const { Sequelize, DataTypes } = require('sequelize');
-const db = require('./SQLize');
+const Comment = require("./Comment");
+const PostLike = require("./PostLike");
+const sequelize = require("./SQLize");
+const { Model, DataTypes } = require("sequelize");
 
-const Post = db.sequelize.define('Post', {
-  // Model attributes are defined here
-  title: {
-    type: DataTypes.STRING,
-    allowNull: false
+class Post extends Model {}
+
+Post.init(
+  {
+    title: DataTypes.STRING,
+    content: DataTypes.STRING,
   },
-  content: {
-    type: DataTypes.TEXT,
-    allowNull: false
+  {
+    sequelize,
   }
-  // Add other attributes as needed
-}, {
-  // Other model options go here
-});
+);
+
+Post.hasMany(Comment);
+Comment.belongsTo(Post);
+
+Post.hasMany(PostLike);
+PostLike.belongsTo(Post);
 
 module.exports = Post;

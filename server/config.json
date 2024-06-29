@@ -19,7 +19,7 @@
     "user": "sa",
     "password": "1400",
     "server": "localhost",
-    "database": "mJOB",
+    "database": "mJob",
     "schema": "dbo",
     "encrypt": false,
     "pool": {

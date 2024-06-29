@@ -18,7 +18,7 @@ const post = async (req, res) => {
       content,
       author,
     });
-
+    console.log(123)
     res.status(201).json(newPost);
   } catch (err) {
     console.error(err);

@@ -22,6 +22,8 @@ app.use(express.json());
 const forumRoute = require("./src/routes/Forum");
 app.use("/api/forum", forumRoute);
 
+const authRoute = require("./src/routes/Auth");
+app.use("/api/auth", authRoute);
 
 // Start the server, if port is already in use, try the next port
 var port = config.boot.port;
