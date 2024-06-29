@@ -1,22 +1,24 @@
-const db = require("../../../models/DBContext");
-
-const DELETE_POST = `DELETE post WHERE post_id = @post_id;`;
+const Post = require("../../../models/Post");
 
 const deleteById = async (req, res) => {
   try {
-    const { post_id } = req.body;
-    const pool = await db.poolPromise;
-    const result = await pool
-      .request()
-      .input("post_id", db.sql.Int, post_id)
-      .query(DELETE_POST);
-    if (result.rowsAffected[0] === 0) {
-      res.status(404).send();
-    } else {
-      res.status(200).send();
+    const { id } = req.body;
+
+    const post = await Post.findOne({
+      where: {
+        id: id,
+      },
+    });
+
+    if (!post) {
+      return res.status(404).send();
     }
+
+    await post.destroy();
+
+    res.status(200).send();
   } catch (err) {
-    console.log(123, err);
+    console.error(err);
     res.status(500).send();
   }
 };

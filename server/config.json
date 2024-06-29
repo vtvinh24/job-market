@@ -15,11 +15,18 @@
   },
 
   "database": {
+    "dialect": "mssql",
     "user": "sa",
     "password": "1400",
     "server": "localhost",
-    "database": "mJOB1",
-    "schema": "dbo1",
-    "encrypt": false
+    "database": "mJOB",
+    "schema": "dbo",
+    "encrypt": false,
+    "pool": {
+      "max": 8,
+      "min": 0,
+      "idle": 10000,
+      "acquire": 30000
+    }
   }
 }

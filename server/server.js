@@ -23,8 +23,9 @@ app.use(express.json());
 const exampleRoutes = require("./src/routes/Example");
 app.use("/api/example", exampleRoutes);
 
-const forumRoute = require("./src/routes/Forum");
-app.use("/api/forum", forumRoute);
+// route forum đã đổi sang dùng sequelize
+// const forumRoute = require("./src/routes/Forum");
+// app.use("/api/forum", forumRoute);
 
 const authRoute = require("./src/routes/auth");
 app.use("/api/auth", authRoute);
