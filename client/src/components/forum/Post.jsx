@@ -17,7 +17,7 @@ const Post = ({ post_id }) => {
   const navigate = useNavigate();
   const { post, loading, error } = usePostDetail(post_id);
   const { deletePost } = usePostDelete();
-  const {userId} = useContext(AuthContext);
+  const { userId } = useContext(AuthContext);
 
   const handleDeletePost = async () => {
     const confirmDelete = window.confirm(
@@ -29,40 +29,36 @@ const Post = ({ post_id }) => {
     }
   };
 
-  if(loading) return (
-    <Container
-      style={{ minHeight: "100vh", minWidth: "80vw" }}
-      className="post"
-    >
-      <div className="post-title">
-        <h1><Skeleton count={0.5}/> </h1>
-      </div>
-      <div className="d-flex gap-2">
-        <div className="post-author">
-          <div>
-            {/* <img className="avatar" src={avatar} alt="Default Avatar" /> */}
-            <Skeleton circle={true} height={50} width={50}/>
+  if (loading)
+    return (
+      <Container className="post">
+        <div className="post-title">
+          <h1>
+            <Skeleton count={0.5} />{" "}
+          </h1>
+        </div>
+        <div className="d-flex gap-2">
+          <div className="post-author">
+            <div>
+              {/* <img className="avatar" src={avatar} alt="Default Avatar" /> */}
+              <Skeleton circle={true} height={50} width={50} />
+            </div>
+            <div>
+              <Skeleton />
+            </div>
+            <div>
+              <Skeleton />
+            </div>
           </div>
-          <div>
-            <Skeleton />
-          </div>
-          <div>
-            <Skeleton />
+          <div className="post-content flex-grow">
+            <Skeleton height={30} count={2.4} highlightColor="blue" />
           </div>
         </div>
-        <div className="post-content flex-grow">
-          <Skeleton height={30} count={2.4} highlightColor="blue"/>
-        </div>
-      </div>
-    </Container>
-  )
-
+      </Container>
+    );
 
   return (
-    <Container
-      style={{ minHeight: "100vh", minWidth: "80vw" }}
-      className="post"
-    >
+    <div className="post">
       <div className="post-title">
         <h1>{post.post_title} </h1>
         {post.user_id == userId && (
@@ -94,7 +90,7 @@ const Post = ({ post_id }) => {
           <p>{post.post_content}</p>
         </div>
       </div>
-    </Container>
+    </div>
   );
 };
 
