@@ -76,6 +76,14 @@
   text-overflow: ellipsis;
 }
 
+.post-card-title {
+  font-size: 1.5em;
+  font-weight: bold;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
 .post-card:hover {
   background-color: #f0f0f0;
   cursor: pointer;

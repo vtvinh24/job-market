@@ -50,11 +50,11 @@ import { AuthProvider } from "./context/AuthContext";
 
 function App() {
   return (
-    <div className="page">
-      <AuthProvider>
+    
+      <AuthProvider className="page">
         <BrowserRouter>
           <AppNavbar className="mb-auto"/>
-          <body className="min-vh-100 mt-5">
+          <div className="min-vh-100 mt-5">
             <Routes>
               {/* AUTH ROUTES */}
               <Route exact path="/login" element={<Login />} />
@@ -92,11 +92,11 @@ function App() {
               <Route exact path="/dashboard" element={<Dashboard />} />
               <Route exact path="/test" element={<TestPage />} />
             </Routes>
-          </body>
+          </div>
           <HomeFooter />
         </BrowserRouter>
       </AuthProvider>
-    </div>
+    
   );
 }
 export default App;
