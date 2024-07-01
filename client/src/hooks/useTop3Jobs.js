@@ -10,13 +10,12 @@ const useTop3Jobs = () => {
   const [error, setError] = useState(null);
   const navigate = useNavigate();
 
-  console.log(contents);
-  console.log('Hello');
   useEffect(() => {
     const fetchContents = async () => {
       try {
         const url = `${API_URL}/jobs/top3`;
         const response = await axios.get(url);
+        console.log("Top 3: ", response.data);
         setContents(response.data);
         setLoading(false);
       } catch (error) {
