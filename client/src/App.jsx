@@ -50,17 +50,17 @@ import { AuthProvider } from "./context/AuthContext";
 
 function App() {
   return (
-    <AuthProvider>
-      <BrowserRouter>
-        {/* <HomeNavbar /> */}
-        <AppNavbar />
-        <div className="content">
-          <Routes>
-            {/* AUTH ROUTES */}
-            <Route exact path="/login" element={<Login />} />
-            <Route exact path="/logout" element={<Logout />} />
-            <Route exact path="/register" element={<Register />} />
-            <Route exact path="/reset-password" element={<ResetPassword />} />
+    
+      <AuthProvider className="page">
+        <BrowserRouter>
+          <AppNavbar className="mb-auto"/>
+          <div className="min-vh-100">
+            <Routes>
+              {/* AUTH ROUTES */}
+              <Route exact path="/login" element={<Login />} />
+              <Route exact path="/logout" element={<Logout />} />
+              <Route exact path="/register" element={<Register />} />
+              <Route exact path="/reset-password" element={<ResetPassword />} />
 
             {/* HOME ROUTES */}
             <Route exact path="/" element={<HomeGuest />} />
