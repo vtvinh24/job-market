@@ -1,9 +1,13 @@
 import { Card } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { getMoment } from "../../functions/Converter";
+import { useState } from "react";
 
 const PostCard = ({ post, onClick }) => {
-  
+  const [likes] = useState(20);
+  const [dislikes] = useState(2);
+  const [comments] = useState(5);
+  const [views] = useState(100);
   return (
     <Card className="post-card" key={post.id} onClick={onClick}>
       <Card.Body>
@@ -13,16 +17,23 @@ const PostCard = ({ post, onClick }) => {
             className="ms-2"
             style={{ textAlign: "right", float: "right", fontSize: "small" }}
           >
-            {post.views}123 <span>👁</span> {/* UPDATE */}
+            {views} <span>👁</span> {/* UPDATE */}
           </Card.Text>
           <Card.Text
+            className="ms-2"
             style={{ textAlign: "right", float: "right", fontSize: "small" }}
           >
-            {post.views}10 <span>💬</span> {/* UPDATE */}
+            {comments} <span>💬</span> {/* UPDATE */}
+          </Card.Text>
+          <Card.Text
+            className="ms-2"
+            style={{ textAlign: "right", float: "right", fontSize: "small" }}
+          >
+            {likes - dislikes} <span>👎👍</span> {/* UPDATE */}
           </Card.Text>
         </Card.Title>
         <Card.Text className="post-card-content">{post.post_content}</Card.Text>
-        
+
         <Link
           to={`/users/${post.author}`}
           className="card-author"
@@ -30,12 +41,6 @@ const PostCard = ({ post, onClick }) => {
           title={`Author: ${post.author}`}
           onClick={(e) => e.stopPropagation()}
         >
-          <img
-            src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png"
-            width={20}
-            height={20}
-            className="me-2"
-          />
           {post.username}
         </Link>
         <Card.Text style={{ textAlign: "right", fontSize: "small" }}>

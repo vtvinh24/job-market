@@ -1,5 +1,6 @@
 const express = require("express");
 const router = express.Router();
+const db = require("../../models/DBContext");
 
 const COUNT_LIKES_BY_POST_ID = `
 SELECT COUNT(*) AS likes
@@ -25,37 +26,27 @@ FROM [comment_like]
 WHERE comment_id = @commentId AND user_id = @userId;
 `;
 
+// post_id int, user_id int, liked boolean
 const LIKE_POST = `
-INSERT INTO post_like (post_id, user_id)
-VALUES (@postId, @userId);
+INSERT INTO post_like (post_id, user_id, liked)
+VALUES (@postId, @userId, @liked);
 `;
 
 const LIKE_COMMENT = `
-INSERT INTO comment_like (comment_id, user_id)
-VALUES (@commentId, @userId);
-`;
-
-const UNLIKE_POST = `
-DELETE FROM post_like
-WHERE post_id = @postId AND user_id = @userId;
-`;
-
-const UNLIKE_COMMENT = `
-DELETE FROM comment_like
-WHERE comment_id = @commentId AND user_id = @userId;
+INSERT INTO comment_like (comment_id, user_id, liked)
+VALUES (@commentId, @userId, @liked);
 `;
 
 const getLikesByPostId = async (req, res) => {
   try {
-    const { postId } = req.body;
+    const { postId } = req.params;
 
     const pool = await db.poolPromise;
     const result = await pool
       .request()
       .input("postId", db.sql.Int, postId)
       .query(COUNT_LIKES_BY_POST_ID);
-    console.log(result.recordset);
-    res.status(200).json(result.recordset);
+    res.status(200).json(result.recordset[0].likes);
   } catch (err) {
     // res.status(200).json(0);
     res.status(500).json({ message: "Error occurred", error: err });
@@ -64,14 +55,14 @@ const getLikesByPostId = async (req, res) => {
 
 const getLikesByCommentId = async (req, res) => {
   try {
-    const { commentId } = req.body;
+    const { commentId } = req.params;
 
     const pool = await db.poolPromise;
     const result = await pool
       .request()
       .input("commentId", db.sql.Int, commentId)
       .query(COUNT_LIKES_BY_COMMENT_ID);
-    res.status(200).json(result.recordset);
+    res.status(200).json(result.recordset[0].likes);
   } catch (err) {
     res.status(500).json({ message: "Error occurred", error: err });
   }
@@ -79,7 +70,7 @@ const getLikesByCommentId = async (req, res) => {
 
 const postLikedByUser = async (req, res) => {
   try {
-    const { postId, userId } = req.body;
+    const { postId, userId } = req.params;
 
     const pool = await db.poolPromise;
     const result = await pool
@@ -95,7 +86,7 @@ const postLikedByUser = async (req, res) => {
 
 const commentLikedByUser = async (req, res) => {
   try {
-    const { commentId, userId } = req.body;
+    const { commentId, userId } = req.params;
 
     const pool = await db.poolPromise;
     const result = await pool
@@ -112,7 +103,6 @@ const commentLikedByUser = async (req, res) => {
 const likePost = async (req, res) => {
   try {
     const { postId, userId } = req.body;
-
     const pool = await db.poolPromise;
     const result = await pool
       .request()
@@ -141,11 +131,11 @@ const likeComment = async (req, res) => {
   }
 };
 
-router.get("/post", getLikesByPostId);
-router.get("/comment", getLikesByCommentId);
-router.get("/post/liked", postLikedByUser);
-router.get("/comment/liked", commentLikedByUser);
-router.post("/post", likePost);
-router.post("/comment", likeComment);
+router.get("/post/:postId", getLikesByPostId);
+router.get("/comment/:commentId/", getLikesByCommentId);
+router.get("/post/liked/:postId/:userId", postLikedByUser);
+router.get("/comment/liked/:commentId/:userId", commentLikedByUser);
+router.put("/post", likePost);
+router.put("/comment", likeComment);
 
 module.exports = router;

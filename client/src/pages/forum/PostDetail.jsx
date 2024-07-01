@@ -15,11 +15,10 @@ const PostDetail = () => {
     <div className="forum-body">
       <NavigateButton path="/forum" text="Back to Forum" variant="primary" />
       <Post post_id={id} />
-      <Container className="mt-3 border">
+      <Container className="mt-5 border">
         #Comments list
         {comments.map((comment) => (
-          
-          <Container className="mt-3 border" key={comment.comment_id}>
+          <Container className="border" key={comment.comment_id}>
             #Comment
             <h2>{comment.username}</h2>
             <p>{comment.comment_content}</p>
