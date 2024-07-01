@@ -1,9 +1,13 @@
 const express = require("express");
 const cors = require("cors");
+const compression = require("compression");
+const helmet = require("helmet");
 const config = require("./config.json");
 const rateLimit = require("express-rate-limit");
 
 const app = express();
+// Explicitly parse request body as JSON
+app.use(express.json());
 
 // CORS rule
 app.use(cors({
@@ -16,8 +20,17 @@ app.use(rateLimit({
   max: config.middleware.rateLimiter.max
 }));
 
-app.use(express.json());
+// Compression
+app.use(compression());
 
+// Helmet
+app.use(
+  helmet.contentSecurityPolicy({
+    directives: {
+      "script-src": ["'self'", "code.jquery.com", "cdn.jsdelivr.net"],
+    },
+  }),
+);
 
 // Import and define routes
 const exampleRoutes = require("./src/routes/Example");
